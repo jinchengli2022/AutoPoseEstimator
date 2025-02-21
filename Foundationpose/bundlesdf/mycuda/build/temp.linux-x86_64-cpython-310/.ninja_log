@@ -1,0 +1,5 @@
+# ninja log v5
+0	18605	1740156486074796130	/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-310/bindings.o	4661d3528711a258
+0	55544	1740156523014731009	/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-310/common.o	34804f86c998b075
+4	18832	1740156542274697055	/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-310/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/torch_ngp_grid_encoder/bindings.o	af0bec598a2af840
+5	81848	1740156605286585972	/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-310/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/torch_ngp_grid_encoder/gridencoder.o	be7f803dd4702b42

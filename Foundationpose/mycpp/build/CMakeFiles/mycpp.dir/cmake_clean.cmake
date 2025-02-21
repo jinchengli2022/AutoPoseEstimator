@@ -3,7 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/mycpp.dir/src/Utils.cpp.o.d"
   "CMakeFiles/mycpp.dir/src/app/pybind_api.cpp.o"
   "CMakeFiles/mycpp.dir/src/app/pybind_api.cpp.o.d"
-  "mycpp.cpython-39-x86_64-linux-gnu.so"
+  "mycpp.cpython-310-x86_64-linux-gnu.so"
   "mycpp.pdb"
 )
 

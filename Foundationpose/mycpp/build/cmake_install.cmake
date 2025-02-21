@@ -1,4 +1,4 @@
-# Install script for directory: /Git/pose_estimator/Foundationpose/mycpp
+# Install script for directory: /Git/AutoPoseEstimator/Foundationpose/mycpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Git/pose_estimator/Foundationpose/mycpp/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Git/AutoPoseEstimator/Foundationpose/mycpp/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

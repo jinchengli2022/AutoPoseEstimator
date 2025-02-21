@@ -1,12 +1,12 @@
 [
 {
-  "directory": "/Git/pose_estimator/Foundationpose/mycpp/build",
-  "command": "/usr/bin/c++ -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_NO_LIB -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -Dmycpp_EXPORTS -I/Git/pose_estimator/Foundationpose/mycpp/include -isystem /root/miniconda3/envs/samfp/lib/python3.9/site-packages/pybind11/include -isystem /root/miniconda3/envs/samfp/include/python3.9 -isystem /root/miniconda3/envs/samfp/include -isystem /root/miniconda3/envs/samfp/include/eigen3  -std=c++14 -fopenmp -g3 -O3 -O3 -DNDEBUG -fPIC -fvisibility=hidden -flto -fno-fat-lto-objects -o CMakeFiles/mycpp.dir/src/app/pybind_api.cpp.o -c /Git/pose_estimator/Foundationpose/mycpp/src/app/pybind_api.cpp",
-  "file": "/Git/pose_estimator/Foundationpose/mycpp/src/app/pybind_api.cpp"
+  "directory": "/Git/AutoPoseEstimator/Foundationpose/mycpp/build",
+  "command": "/usr/bin/c++ -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_NO_LIB -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -Dmycpp_EXPORTS -I/Git/AutoPoseEstimator/Foundationpose/mycpp/include -isystem /root/miniconda3/envs/ljc/lib/python3.10/site-packages/pybind11/include -isystem /root/miniconda3/envs/ljc/include/python3.10 -isystem /root/miniconda3/envs/ljc/include -isystem /root/miniconda3/envs/ljc/include/eigen3  -std=c++14 -fopenmp -g3 -O3 -O3 -DNDEBUG -fPIC -fvisibility=hidden -flto -fno-fat-lto-objects -o CMakeFiles/mycpp.dir/src/app/pybind_api.cpp.o -c /Git/AutoPoseEstimator/Foundationpose/mycpp/src/app/pybind_api.cpp",
+  "file": "/Git/AutoPoseEstimator/Foundationpose/mycpp/src/app/pybind_api.cpp"
 },
 {
-  "directory": "/Git/pose_estimator/Foundationpose/mycpp/build",
-  "command": "/usr/bin/c++ -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_NO_LIB -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -Dmycpp_EXPORTS -I/Git/pose_estimator/Foundationpose/mycpp/include -isystem /root/miniconda3/envs/samfp/lib/python3.9/site-packages/pybind11/include -isystem /root/miniconda3/envs/samfp/include/python3.9 -isystem /root/miniconda3/envs/samfp/include -isystem /root/miniconda3/envs/samfp/include/eigen3  -std=c++14 -fopenmp -g3 -O3 -O3 -DNDEBUG -fPIC -fvisibility=hidden -flto -fno-fat-lto-objects -o CMakeFiles/mycpp.dir/src/Utils.cpp.o -c /Git/pose_estimator/Foundationpose/mycpp/src/Utils.cpp",
-  "file": "/Git/pose_estimator/Foundationpose/mycpp/src/Utils.cpp"
+  "directory": "/Git/AutoPoseEstimator/Foundationpose/mycpp/build",
+  "command": "/usr/bin/c++ -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_NO_LIB -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -Dmycpp_EXPORTS -I/Git/AutoPoseEstimator/Foundationpose/mycpp/include -isystem /root/miniconda3/envs/ljc/lib/python3.10/site-packages/pybind11/include -isystem /root/miniconda3/envs/ljc/include/python3.10 -isystem /root/miniconda3/envs/ljc/include -isystem /root/miniconda3/envs/ljc/include/eigen3  -std=c++14 -fopenmp -g3 -O3 -O3 -DNDEBUG -fPIC -fvisibility=hidden -flto -fno-fat-lto-objects -o CMakeFiles/mycpp.dir/src/Utils.cpp.o -c /Git/AutoPoseEstimator/Foundationpose/mycpp/src/Utils.cpp",
+  "file": "/Git/AutoPoseEstimator/Foundationpose/mycpp/src/Utils.cpp"
 }
 ]

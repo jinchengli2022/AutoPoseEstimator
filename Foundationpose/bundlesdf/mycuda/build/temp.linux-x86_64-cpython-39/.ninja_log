@@ -1,5 +1,0 @@
-# ninja log v5
-0	16654	1740026646112341559	/Git/pose_estimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-39/bindings.o	c6e31ab8a54ee63a
-0	53269	1740026682728277425	/Git/pose_estimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-39/common.o	9e0124e746dbe066
-4	16635	1740026699744247622	/Git/pose_estimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-39/Git/pose_estimator/Foundationpose/bundlesdf/mycuda/torch_ngp_grid_encoder/bindings.o	8b2723106021f136
-4	80957	1740026764060134973	/Git/pose_estimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-39/Git/pose_estimator/Foundationpose/bundlesdf/mycuda/torch_ngp_grid_encoder/gridencoder.o	491442be3565db72
