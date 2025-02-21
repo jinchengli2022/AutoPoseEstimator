@@ -1,0 +1,3 @@
+/Git/pose_estimator/Foundationpose/mycpp/build/CMakeFiles/mycpp.dir
+/Git/pose_estimator/Foundationpose/mycpp/build/CMakeFiles/edit_cache.dir
+/Git/pose_estimator/Foundationpose/mycpp/build/CMakeFiles/rebuild_cache.dir
