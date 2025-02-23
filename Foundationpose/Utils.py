@@ -688,8 +688,8 @@ def draw_xyz_axis(color, ob_in_cam, scale=0.1, K=np.eye(3), thickness=3, transpa
     xx = tuple(project_3d_to_2d(xx, K, ob_in_cam))
     yy = tuple(project_3d_to_2d(yy, K, ob_in_cam))
     zz = tuple(project_3d_to_2d(zz, K, ob_in_cam))
-    print(f"xx:{xx}  yy:{yy} zz:{zz}")
-    print(f"ob_in_cam{ob_in_cam}")
+    # print(f"xx:{xx}  yy:{yy} zz:{zz}")
+    # print(f"ob_in_cam{ob_in_cam}")
     line_type = cv2.LINE_AA
     arrow_len = 0
     tmp = color.copy()

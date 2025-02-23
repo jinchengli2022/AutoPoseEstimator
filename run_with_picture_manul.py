@@ -381,8 +381,8 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.CRITICAL)
     
     # MASK DEBUG
-    cup = 1
-    time = 5
+    cup = 0
+    time = 0
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--cad_path", default=f"Data/real_data/cup{cup}_mesh/cup{cup}.obj", help="Path to CAD model")  # 注意输入单位为mm，中间处理为m

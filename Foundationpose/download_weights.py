@@ -5,7 +5,8 @@ import os
 import time
 
 # 设置 Google Drive 文件的文件ID
-file_id = '1eSeeMNJRdcLh3UdG0ZOkLwxghnFYwE17'
+# https://drive.google.com/file/d/1o3Ci3YGtHTcOxdSuCwcJhToWRJIq6kNr/view?usp=drive_link
+file_id = '1o3Ci3YGtHTcOxdSuCwcJhToWRJIq6kNr'
 
 # 设置下载文件保存的路径
 downloaded_file = 'weights.tar.xz'
