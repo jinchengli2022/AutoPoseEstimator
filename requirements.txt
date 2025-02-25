@@ -104,7 +104,7 @@ fvcore==0.1.5.post20221221
 
 
 # SAM and FastSAM related dependencies
-xformers==0.0.20
+xformers==0.0.27
 #xformers==0.0.18
 torchmetrics==0.10.3
 blenderproc==2.6.1
