@@ -49,7 +49,7 @@ class VideoMaskPredictor:
         #     shutil.rmtree(self.save_dir)
         # os.makedirs(self.save_dir)
 
-    def process_frames(self, ref_image_path, ref_mask_path, input_image_path, output_mask_path):
+    def process_frames(self, ref_image_path, ref_mask_path, input_image_path, output_mask_path, mask_vis_path):
         # 加载参考掩码
         self.ref_mask = cv2.imread(ref_mask_path, cv2.IMREAD_GRAYSCALE)
         self.ref_mask = (self.ref_mask > 127).astype(np.uint8)
@@ -84,6 +84,8 @@ class VideoMaskPredictor:
             mask_combined = np.max(masks, axis=0)  # Combine masks by taking the maximum value
             mask_result = mask_combined * 255
             cv2.imwrite(output_mask_path, mask_result)  # Save as PNG (0 or 255)
+            # cv2.imwrite(mask_vis_path, mask_result)  # Save as PNG (0 or 255)
+
 
         # Update the mask for the next frame
         # self.mask_last = mask_result

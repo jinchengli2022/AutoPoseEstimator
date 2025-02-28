@@ -23,6 +23,8 @@ pretrained_weight_dict = {
 
 def load_sam(model_type, checkpoint_dir):
     logging.info(f"Loading SAM model from {checkpoint_dir}")
+    print(f"checkpoing_dir:{checkpoint_dir}")
+    print(f"model_type:{model_type}")
     sam = sam_model_registry[model_type](
         checkpoint=osp.join(checkpoint_dir, pretrained_weight_dict[model_type])
     )

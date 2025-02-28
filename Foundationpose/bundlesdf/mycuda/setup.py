@@ -33,9 +33,9 @@ setup(
         ],extra_compile_args={'gcc': c_flags, 'nvcc': nvcc_flags}),
     ],
     include_dirs=[
-        "/usr/local/include/eigen3",
-        "/usr/include/eigen3",
-        "/root/miniconda3/envs/ljc/include/eigen3"
+	"/home/a4090/miniconda3/envs/auto2/include/eigen3",
+	"/usr/local/include/eigen3",
+	"/usr/include/eigen3"
     ],
     cmdclass={
         'build_ext': BuildExtension

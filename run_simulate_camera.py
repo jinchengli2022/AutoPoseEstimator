@@ -80,8 +80,8 @@ def sam_process_frame(processor, rgb_path, depth_path, mask_path, cam_info):
     return processor.process_frame(rgb_path, depth_path, mask_path, cam_info)
 
 @timed("GDSAM2切割")
-def gdsam2_process_frame(processor, ref_image_path, ref_mask_path, input_image_path, output_mask_path):
-    return processor.process_frames(ref_image_path, ref_mask_path, input_image_path, output_mask_path)
+def gdsam2_process_frame(processor, ref_image_path, ref_mask_path, input_image_path, output_mask_path, mask_vis_path):
+    return processor.process_frames(ref_image_path, ref_mask_path, input_image_path, output_mask_path, mask_vis_path)
 
 @timed("FP位姿估计")  # 这里使用装饰器对方法耗时进行统计
 def fp_process_frame(processor, color_img, depth_map, mask, obj_id, frame_id, camera_matrix):
@@ -248,9 +248,10 @@ class SamProcessor:
         model_points = self.mesh.sample(2048).astype(np.float32) / 1000.0
         self.model.ref_data["pointcloud"] = torch.tensor(model_points, dtype=torch.float32).unsqueeze(0).to(self.device)
 
+    # def process_frame(self, rgb_path, depth_path, mask_path, cam_info):
     def process_frame(self, rgb_path, depth_path, mask_path, cam_info):
         # 加载rgb depth 相机内参
-        rgb = Image.open(rgb_path).convert("RGB")
+        rgb = np.array(Image.open(rgb_path).convert("RGB"))
         depth = np.array(Image.open(depth_path)).astype(np.int32)
         cam_K = np.array(cam_info['cam_K']).reshape((3, 3))
         depth_scale = np.array(cam_info['depth_scale'])
@@ -262,10 +263,10 @@ class SamProcessor:
             "depth_scale": torch.from_numpy(depth_scale).float().unsqueeze(0).to(self.device)
         }
 
-        detections = self.model.segmentor_model.generate_masks(np.array(rgb))   # 调用模型，从RGB图像生成分割掩码
+        detections = self.model.segmentor_model.generate_masks(rgb)   # 调用模型，从RGB图像生成分割掩码
         detections = Detections(detections) # 将分割模型转换为Detections对象（Detections类：专门封装掩码、边界框、标签等信息）
 
-        query_decriptors, query_appe_descriptors = self.model.descriptor_model.forward(np.array(rgb), detections)   # 提取目标的特征描述符。decriptors为几何信息，appe+descriptors为外观信息
+        query_decriptors, query_appe_descriptors = self.model.descriptor_model.forward(rgb, detections)   # 提取目标的特征描述符。decriptors为几何信息，appe+descriptors为外观信息
 
         # 计算语义分数
         idx_selected_proposals, pred_idx_objects, semantic_score, best_template = self.model.compute_semantic_score(
@@ -310,21 +311,21 @@ class SamProcessor:
         print(f"掩码保存至{mask_path};其分数为{best_score}", end='\t')
 
 
-def capture_and_process(sam2_checkpoint, model_cfg, cad_path, sam_tmp_dir, data_dir, track_vis_dir, track_pose_path, segmentor_model, stability_score_thresh, use_parallel_mode, cup):
+def capture_and_process(sam2_checkpoint, model_cfg, cad_path, sam_tmp_dir, data_dir, track_vis_dir, mask_vis_dir, track_pose_path, segmentor_model, stability_score_thresh, use_parallel_mode):
     # 虚拟相机读取的目标数据目录
     rgb_data_dir = os.path.join(data_dir, "rgb")    # RGB图像所在文件夹
     depth_data_dir = os.path.join(data_dir, "depth")  # 深度图像所在文件夹
-    camera_dir = 'simulate_captured'  # 保存捕捉到的图像的文件夹目录
+    camera_dir = f'simulate_captured/{name}'  # 保存捕捉到的图像的文件夹目录
 
     # 模拟相机拍摄每帧的保存地
     ref_mask_path = "simulate_captured/ref_mask.png"
     ref_image_path = "simulate_captured/ref_image.png"
 
-
     # 读取相机内参
     camera_path = os.path.join(data_dir, 'scene_camera.json')
     # # 删除旧目录并重新创建
-    for dir_path in [camera_dir, track_vis_dir]:
+    for dir_path in [camera_dir, track_vis_dir, mask_vis_dir]:
+    # for dir_path in [track_vis_dir, mask_vis_dir]:
         if os.path.exists(dir_path):
             shutil.rmtree(dir_path)  # 删除目录及其内容
         os.makedirs(dir_path, exist_ok=True)  # 重新创建空目录
@@ -333,6 +334,7 @@ def capture_and_process(sam2_checkpoint, model_cfg, cad_path, sam_tmp_dir, data_
 
     # 相机内参
     cam_info = load_camera_info(camera_path)
+    # cam_info['depth_scale'] = 0.0015
 
     # 初始化计数器
     frame_count = 0  
@@ -340,20 +342,25 @@ def capture_and_process(sam2_checkpoint, model_cfg, cad_path, sam_tmp_dir, data_
     all_poses = []
     # 初始化SAM处理实例
     sam_processor = create_sam_processor(cad_path, sam_tmp_dir, segmentor_model, stability_score_thresh)
-    # 初始化foundation处理实例 
+    # 初始化foundation处理实例  
     fp_processor = create_fp_processor(model_path=cad_path, camera_info=cam_info)
     # 初始化GDSAM2处理示例
     gdsam2_processor = create_gdsam2_processor(model_cfg=model_cfg, sam2_checkpoint=sam2_checkpoint)
 
     # 模拟相机拍摄首帧
     simulate_camera_first_capture(rgb_data_dir, depth_data_dir, camera_dir)
-    while frame_count < 300:
+    frame_num = len(glob.glob(os.path.join(rgb_data_dir, "*.png")))
+    print(f"模拟数据总共{frame_num}帧")
+
+    while frame_count < frame_num:
         # 模拟相机持续拍摄
         simulate_camera_capture(rgb_data_dir, depth_data_dir, camera_dir, frame_count)
+
         # rgb,depth都是读取，mask即是保存也是读取
         rgb_path = os.path.join(camera_dir, f"rgb.png")
         depth_path = os.path.join(camera_dir, f"depth.png")
         mask_path = os.path.join(camera_dir, f"mask.png")
+        mask_vis_path=os.path.join(mask_vis_dir, f'{frame_count:06d}.png')
 
         ref_mask_path = os.path.join(camera_dir, f"ref_mask.png")
         ref_image_path = os.path.join(camera_dir, f"ref_image.png")
@@ -370,12 +377,14 @@ def capture_and_process(sam2_checkpoint, model_cfg, cad_path, sam_tmp_dir, data_
             sam_process_frame(processor=sam_processor, rgb_path=ref_image_path, depth_path=depth_path, mask_path=ref_mask_path, cam_info=cam_info)  # 将读取到的相机参数传输入sam6d的分割文件
             print("首帧切割完成")
             del sam_processor   # 工作完成，释放显存
+            gdsam2_process_frame(processor=gdsam2_processor, ref_mask_path=ref_mask_path, ref_image_path=ref_image_path, input_image_path=rgb_path, output_mask_path=mask_path, mask_vis_path=mask_vis_path)
+        else:
+            gdsam2_process_frame(processor=gdsam2_processor, ref_mask_path=mask_path, ref_image_path=rgb_path, input_image_path=rgb_path, output_mask_path=mask_path, mask_vis_path=mask_vis_path)
 
 
         # ************用GD SAM2进行checking************ #
         # gdsam2_process_frame(processor=gdsam2_processor, ref_mask_path=ref_mask_path, ref_image_path=ref_image_path, intput_image_path=rgb_path, output_mask_path="output/ljc.png")
         # gdsam2_processor.process_frames(ref_mask_path=ref_mask_path, ref_image_path=ref_image_path, input_image_path=rgb_path, output_mask_path=mask_path)
-        gdsam2_process_frame(processor=gdsam2_processor, ref_mask_path=ref_mask_path, ref_image_path=ref_image_path, input_image_path=rgb_path, output_mask_path=mask_path)
 
 
         # ************用fp进行目标跟踪************ #
@@ -397,10 +406,11 @@ def capture_and_process(sam2_checkpoint, model_cfg, cad_path, sam_tmp_dir, data_
             frame_id=frame_count,
             camera_matrix=fp_processor.config['camera_matrix']
         )
-        
+
         # 可视化保存
         vis_img = fp_processor.visualize_result(color_img, pose, fp_processor.config['camera_matrix'])
         save_path=os.path.join(track_vis_dir, f'{frame_count:06d}.png')
+        # save_path=os.path.join(mask_vis_dir, f'{frame_count:06d}.png')
         cv2.imwrite(save_path , vis_img[..., ::-1])
         # Pose添加
         all_poses.append(pose)
@@ -424,19 +434,24 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.CRITICAL)
     
     # MASK DEBUG
-    cup = 1
-    time = 0
-
+    id = ""
+    time = 6
+    name = "flower"
+    
     parser = argparse.ArgumentParser()
     # 输入数据(模拟相机输入数据不在此列)
     parser.add_argument("--sam2_checkpoint", default="Grounded_SAM_2/checkpoints/sam2.1_hiera_large.pt", help="Path to SAM2 checkpoint")
     parser.add_argument("--model_cfg", default="sam2.1_hiera_l.yaml", help="Model configuration file")
-    parser.add_argument("--cad_path", default=f"Data/real_data/cup{cup}_mesh/cup{cup}.obj", help="Path to CAD model")  # 注意输入单位为mm，中间处理为m
-    parser.add_argument("--sam_tmp_dir", default=f"Data/real_data/cup{cup}_mesh/cup{cup}_tmp", help="tmp directory")
+    # parser.add_argument("--cad_path", default=f"Data/real_data/cup{cup}_mesh/cup{cup}.obj", help="Path to CAD model")  # 注意输入单位为mm，中间处理为m
+    parser.add_argument("--cad_path", default=f"Data/real_data/{name}{id}_mesh/{name}{id}.obj", help="Path to CAD model")  # 注意输入单位为mm，中间处理为m
+    # parser.add_argument("--sam_tmp_dir", default=f"Data/real_data/cup{cup}_mesh/cup{cup}_tmp", help="tmp directory")
+    parser.add_argument("--sam_tmp_dir", default=f"Data/real_data/{name}{id}_mesh/{name}{id}_tmp", help="tmp directory")
     # 最终输出/中间输出 地址
-    parser.add_argument("--data_dir", default=f"Data/real_data/pour_water/episode_{time}", help="rgb, depth and mask")
-    parser.add_argument("--track_vis_dir", default=f"simulate_captured/cup{cup}_track_vis", help="rgb, depth and mask")
-    parser.add_argument("--track_pose_path", default=f"simulate_captured", help="rgb, depth and mask")
+    # parser.add_argument("--data_dir", default=f"Data/real_data/pour_water/episode_{time}", help="rgb, depth and mask")
+    parser.add_argument("--data_dir", default=f"Data/real_data/pour_water3/episode_{time}", help="rgb, depth and mask")
+    parser.add_argument("--track_vis_dir", default=f"output/{name}{id}/{name}{id}_track_vis", help="rgb, depth and mask")
+    parser.add_argument("--mask_vis_dir", default=f"output/{name}{id}/{name}{id}_mask_vis", help="rgb, depth and mask")
+    parser.add_argument("--track_pose_path", default=f"output/{name}{id}", help="rgb, depth and mask")
     # 参数配置
     parser.add_argument("--segmentor_model", choices=["sam", "fastsam"], default="sam", help="Segmentor model type")
     parser.add_argument("--stability_score_thresh", type=float, default=0.97, help="SAM stability score threshold")
@@ -445,7 +460,7 @@ if __name__ == "__main__":
     # 调整日志输出等级（正常运行时）
     logging.disable(logging.CRITICAL)
     
-    capture_and_process(
+    pose = capture_and_process(
         sam2_checkpoint=args.sam2_checkpoint,  # Add sam2_checkpoint
         model_cfg=args.model_cfg,  # Add model_cfg
         cad_path=args.cad_path,
@@ -454,9 +469,9 @@ if __name__ == "__main__":
         stability_score_thresh=args.stability_score_thresh,
         data_dir=args.data_dir,
         track_vis_dir=args.track_vis_dir,
+        mask_vis_dir=args.mask_vis_dir,
         track_pose_path=args.track_pose_path,
-        use_parallel_mode=False,
-        cup=cup
+        use_parallel_mode=False
     )
 
     # record

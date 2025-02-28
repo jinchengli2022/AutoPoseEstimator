@@ -1,0 +1,1919 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f7c2400a6c8, pid=162363, tid=162433
+#
+# JRE version: OpenJDK Runtime Environment GraalVM CE 17.0.7+4.1 (17.0.7+4) (build 17.0.7+4-jvmci-23.0-b10)
+# Java VM: OpenJDK 64-Bit Server VM GraalVM CE 17.0.7+4.1 (17.0.7+4-jvmci-23.0-b10, mixed mode, sharing, tiered, jvmci, jvmci compiler, compressed oops, compressed class ptrs, g1 gc, linux-amd64)
+# Problematic frame:
+# C  0x00007f7c2400a6c8
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/share/apport/apport -p%p -s%s -c%c -d%d -P%P -u%u -g%g -- %E" (or dumping to /home/a4090/ljc/AutoPoseEstimator/core.162363)
+#
+# If you would like to submit a bug report, please visit:
+#   https://github.com/oracle/graal/issues
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -Dorg.graalvm.launcher.class=com.oracle.graal.python.shell.GraalPythonMain -Dorg.graalvm.launcher.executablename=/home/a4090/miniconda3/envs/auto_pose/bin/python 
+
+Host: Intel(R) Core(TM) i9-14900K, 32 cores, 125G, Ubuntu 20.04.6 LTS
+Time: Thu Feb 27 16:27:53 2025 CST elapsed time: 1.315355 seconds (0d 0h 0m 1s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00005651b3790f10):  JavaThread "TruffleCompilerThread-33" daemon [_thread_in_vm, id=162433, stack(0x00007f7b9faf7000,0x00007f7b9fbf8000)]
+
+Stack: [0x00007f7b9faf7000,0x00007f7b9fbf8000],  sp=0x00007f7b9fbf51e8,  free space=1016k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  0x00007f7c2400a6c8
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  org.graalvm.compiler.truffle.runtime.hotspot.libgraal.TruffleToLibGraalCalls.doCompile(JJJJ[BLorg/graalvm/compiler/truffle/common/TruffleCompilationTask;Lorg/graalvm/compiler/truffle/common/TruffleCompilerListener;)V+0 jdk.internal.vm.compiler
+j  org.graalvm.compiler.truffle.runtime.hotspot.libgraal.LibGraalHotSpotTruffleCompiler.doCompile(Lorg/graalvm/compiler/truffle/common/TruffleDebugContext;Lorg/graalvm/compiler/truffle/common/TruffleCompilation;Ljava/util/Map;Lorg/graalvm/compiler/truffle/common/TruffleCompilationTask;Lorg/graalvm/compiler/truffle/common/TruffleCompilerListener;)V+40 jdk.internal.vm.compiler
+j  org.graalvm.compiler.truffle.runtime.GraalTruffleRuntime.compileImpl(Lorg/graalvm/compiler/truffle/common/TruffleDebugContext;Lorg/graalvm/compiler/truffle/runtime/OptimizedCallTarget;Lorg/graalvm/compiler/truffle/common/TruffleCompilationTask;)V+86 jdk.internal.vm.compiler
+j  org.graalvm.compiler.truffle.runtime.GraalTruffleRuntime.doCompile(Lorg/graalvm/compiler/truffle/common/TruffleDebugContext;Lorg/graalvm/compiler/truffle/runtime/OptimizedCallTarget;Lorg/graalvm/compiler/truffle/common/TruffleCompilationTask;)V+154 jdk.internal.vm.compiler
+j  org.graalvm.compiler.truffle.runtime.GraalTruffleRuntime.doCompile(Lorg/graalvm/compiler/truffle/runtime/OptimizedCallTarget;Lorg/graalvm/compiler/truffle/common/TruffleCompilationTask;)V+4 jdk.internal.vm.compiler
+j  org.graalvm.compiler.truffle.runtime.CompilationTask$1.accept(Lorg/graalvm/compiler/truffle/runtime/CompilationTask;)V+30 jdk.internal.vm.compiler
+j  org.graalvm.compiler.truffle.runtime.CompilationTask$1.accept(Ljava/lang/Object;)V+5 jdk.internal.vm.compiler
+j  org.graalvm.compiler.truffle.runtime.CompilationTask.call()Ljava/lang/Void;+5 jdk.internal.vm.compiler
+j  org.graalvm.compiler.truffle.runtime.CompilationTask.call()Ljava/lang/Object;+1 jdk.internal.vm.compiler
+j  java.util.concurrent.FutureTask.run()V+39 java.base@17.0.7
+j  java.util.concurrent.ThreadPoolExecutor.runWorker(Ljava/util/concurrent/ThreadPoolExecutor$Worker;)V+92 java.base@17.0.7
+j  java.util.concurrent.ThreadPoolExecutor$Worker.run()V+5 java.base@17.0.7
+j  java.lang.Thread.run()V+11 java.base@17.0.7
+j  org.graalvm.compiler.truffle.runtime.BackgroundCompileQueue$TruffleCompilerThreadFactory$1.run()V+30 jdk.internal.vm.compiler
+v  ~StubRoutines::call_stub
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 2 (SEGV_ACCERR), si_addr: 0x00007f7c2400a6c8
+
+Register to memory mapping:
+
+RAX=0x00007f7c34104290 points into unknown readable memory: 0x00007f7c24093f50 | 50 3f 09 24 7c 7f 00 00
+RBX=0x00007f7b9fbf5a20 is pointing into the stack for thread: 0x00005651b3790f10
+RCX=0x00007f7b5809e0fd points into unknown readable memory: 00 00 00
+RDX=0x00007f7c341042a0 points into unknown readable memory: 0x0000000000002b24 | 24 2b 00 00 00 00 00 00
+RSP=0x00007f7b9fbf51e8 is pointing into the stack for thread: 0x00005651b3790f10
+RBP=0x0000000524004090 is an unallocated location in the heap
+RSI=0x0000000000000042 is an unknown value
+RDI=0x0000000000000004 is an unknown value
+R8 =0x00005651b3791b10 points into unknown readable memory: 0x0000000000000003 | 03 00 00 00 00 00 00 00
+R9 =0x00005651b3791b10 points into unknown readable memory: 0x0000000000000003 | 03 00 00 00 00 00 00 00
+R10=0x0 is NULL
+R11=0x0000000000000005 is an unknown value
+R12=0x000000000000000f is an unknown value
+R13=0x00007f7cd8dca7da: <offset 0x00000000008f47da> in /home/a4090/miniconda3/envs/auto_pose/lib/jvm/languages/python/bin/../../../lib/server/libjvm.so at 0x00007f7cd84d6000
+R14=0x00007f7c240026e0 points into unknown readable memory: 0x0000000000000000 | 00 00 00 00 00 00 00 00
+R15=0x00007f7bf0010180 points into unknown readable memory: 0x00007f7b580440d0 | d0 40 04 58 7b 7f 00 00
+
+
+Registers:
+RAX=0x00007f7c34104290, RBX=0x00007f7b9fbf5a20, RCX=0x00007f7b5809e0fd, RDX=0x00007f7c341042a0
+RSP=0x00007f7b9fbf51e8, RBP=0x0000000524004090, RSI=0x0000000000000042, RDI=0x0000000000000004
+R8 =0x00005651b3791b10, R9 =0x00005651b3791b10, R10=0x0000000000000000, R11=0x0000000000000005
+R12=0x000000000000000f, R13=0x00007f7cd8dca7da, R14=0x00007f7c240026e0, R15=0x00007f7bf0010180
+RIP=0x00007f7c2400a6c8, EFLAGS=0x0000000000010202, CSGSFS=0x002b000000000033, ERR=0x0000000000000015
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007f7b9fbf51e8)
+0x00007f7b9fbf51e8:   0000000000010088 00007f7b9fbf5340
+0x00007f7b9fbf51f8:   00007f7b9fbf5a20 00007f7b9fbf5960
+0x00007f7b9fbf5208:   00007f7bf0010180 00007f7b9fbf5270
+0x00007f7b9fbf5218:   00007f7cc6dfb68c 00007f7b9fbf52c0 
+
+Instructions: (pc=0x00007f7c2400a6c8)
+0x00007f7c2400a5c8:   ff 04 00 00 00 00 00 00 e0 de cc 5c 7c 7f 00 00
+0x00007f7c2400a5d8:   11 00 00 00 7c 7f 00 00 60 a6 00 24 7c 7f 00 00
+0x00007f7c2400a5e8:   10 83 00 24 7c 7f 00 00 20 5f 19 34 7c 7f 00 00
+0x00007f7c2400a5f8:   b0 60 19 34 7c 7f 00 00 e0 62 19 34 7c 7f 00 00
+0x00007f7c2400a608:   09 00 00 00 04 00 00 00 02 00 00 00 00 00 00 00
+0x00007f7c2400a618:   00 00 00 00 ff ff ff 7f 16 00 00 00 00 00 00 00
+0x00007f7c2400a628:   ff ff ff ff 02 00 00 00 00 01 01 01 01 01 00 00
+0x00007f7c2400a638:   40 62 19 34 7c 7f 00 00 50 62 19 34 7c 7f 00 00
+0x00007f7c2400a648:   80 62 19 34 7c 7f 00 00 00 00 00 00 00 00 00 00
+0x00007f7c2400a658:   00 00 00 00 00 00 00 00 58 cf 5f d9 7c 7f 00 00
+0x00007f7c2400a668:   00 00 00 00 00 00 00 00 00 de 37 b3 51 56 00 00
+0x00007f7c2400a678:   00 00 00 00 7c 7f 00 00 58 cf 5f d9 7c 7f 00 00
+0x00007f7c2400a688:   00 00 00 00 00 00 00 00 90 ff 38 b3 51 56 00 00
+0x00007f7c2400a698:   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0x00007f7c2400a6a8:   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0x00007f7c2400a6b8:   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0x00007f7c2400a6c8:   65 00 00 00 00 00 00 00 70 ec 0e 24 7c 7f 00 00
+0x00007f7c2400a6d8:   d0 08 00 24 7c 7f 00 00 0c 01 00 00 08 00 00 00
+0x00007f7c2400a6e8:   3e 01 00 00 10 00 00 00 5f 01 00 00 18 00 00 00
+0x00007f7c2400a6f8:   69 01 00 00 18 00 00 00 02 00 00 00 c8 23 c0 23
+0x00007f7c2400a708:   00 00 00 00 00 00 00 00 02 00 00 00 30 10 00 00
+0x00007f7c2400a718:   02 00 00 00 10 c0 23 00 00 00 00 00 00 00 00 00
+0x00007f7c2400a728:   25 00 00 00 00 00 00 00 4d 44 4f 20 65 78 74 72
+0x00007f7c2400a738:   61 20 64 61 74 61 20 6c 6f 63 6b 00 7c 7f 00 00
+0x00007f7c2400a748:   f5 7f 00 00 00 00 00 00 70 59 15 00 7c 7f 00 00
+0x00007f7c2400a758:   d8 7f 00 00 00 00 00 00 a9 6a 00 00 01 6b 00 00
+0x00007f7c2400a768:   59 6b 00 00 b1 6b 00 00 09 6c 00 00 99 6c 00 00
+0x00007f7c2400a778:   29 6d 00 00 b9 6d 00 00 49 6e 00 00 d9 6e 00 00
+0x00007f7c2400a788:   69 6f 00 00 f9 6f 00 00 89 70 00 00 9d 70 00 00
+0x00007f7c2400a798:   00 00 00 00 00 00 00 00 00 00 00 00 10 00 00 00
+0x00007f7c2400a7a8:   e0 a7 00 24 7c 7f 00 00 b0 09 0d fc 7b 7f 00 00
+0x00007f7c2400a7b8:   00 00 00 00 00 00 00 00 71 75 00 00 c9 75 00 00 
+
+
+Stack slot to memory mapping:
+stack at sp + 0 slots: 0x0000000000010088 is an unknown value
+stack at sp + 1 slots: 0x00007f7b9fbf5340 is pointing into the stack for thread: 0x00005651b3790f10
+stack at sp + 2 slots: 0x00007f7b9fbf5a20 is pointing into the stack for thread: 0x00005651b3790f10
+stack at sp + 3 slots: 0x00007f7b9fbf5960 is pointing into the stack for thread: 0x00005651b3790f10
+stack at sp + 4 slots: 0x00007f7bf0010180 points into unknown readable memory: 0x00007f7b580440d0 | d0 40 04 58 7b 7f 00 00
+stack at sp + 5 slots: 0x00007f7b9fbf5270 is pointing into the stack for thread: 0x00005651b3790f10
+stack at sp + 6 slots: 0x00007f7cc6dfb68c is at code_begin+17932 in 
+[CodeBlob (0x00007f7cc6df7010)]
+Framesize: 0
+BufferBlob (0x00007f7cc6df7010) used for JVMCI Compiler CodeBuffer
+stack at sp + 7 slots: 0x00007f7b9fbf52c0 is pointing into the stack for thread: 0x00005651b3790f10
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00005651b45d5820, length=33, elements={
+0x00005651b2db89d0, 0x00005651b2facb70, 0x00005651b2fadfc0, 0x00005651b2fb4810,
+0x00005651b2fb5bf0, 0x00005651b2fb7030, 0x00005651b2fb8a50, 0x00005651b2fb9fb0,
+0x00005651b2fc3440, 0x00007f7c3404c0c0, 0x00005651b2fd1a00, 0x00007f7c2c052ea0,
+0x00005651b30192e0, 0x00007f7c400454c0, 0x00007f7c400466a0, 0x00007f7c4004b160,
+0x00007f7c2c0bcdc0, 0x00005651b332d4a0, 0x00007f7c34174d30, 0x00007f7c2c146e60,
+0x00007f7c2c147f80, 0x00005651b34b9f90, 0x00005651b44171e0, 0x00005651b3790f10,
+0x00005651b4447aa0, 0x00005651b4488600, 0x00005651b44a98f0, 0x00005651b44c4360,
+0x00005651b44f6730, 0x00005651b4595710, 0x00005651b4597940, 0x00005651b45bd810,
+0x00005651b45d4cd0
+}
+
+Java Threads: ( => current thread )
+  0x00005651b2db89d0 JavaThread "main" [_thread_in_vm, id=162363, stack(0x00007fffcad45000,0x00007fffcae45000)]
+  0x00005651b2facb70 JavaThread "Reference Handler" daemon [_thread_blocked, id=162370, stack(0x00007f7c66835000,0x00007f7c66936000)]
+  0x00005651b2fadfc0 JavaThread "Finalizer" daemon [_thread_blocked, id=162371, stack(0x00007f7c66734000,0x00007f7c66835000)]
+  0x00005651b2fb4810 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=162372, stack(0x00007f7c65dc2000,0x00007f7c65ec3000)]
+  0x00005651b2fb5bf0 JavaThread "Service Thread" daemon [_thread_blocked, id=162373, stack(0x00007f7c65cc1000,0x00007f7c65dc2000)]
+  0x00005651b2fb7030 JavaThread "Monitor Deflation Thread" daemon [_thread_blocked, id=162374, stack(0x00007f7c65bc0000,0x00007f7c65cc1000)]
+  0x00005651b2fb8a50 JavaThread "JVMCI-native CompilerThread0" daemon [_thread_in_native, id=162375, stack(0x00007f7c659bf000,0x00007f7c65bc0000)]
+  0x00005651b2fb9fb0 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=162376, stack(0x00007f7c657be000,0x00007f7c659bf000)]
+  0x00005651b2fc3440 JavaThread "Sweeper thread" daemon [_thread_blocked, id=162377, stack(0x00007f7c656bd000,0x00007f7c657be000)]
+  0x00007f7c3404c0c0 JavaThread "C1 CompilerThread1" daemon [_thread_in_vm, id=162378, stack(0x00007f7c654bc000,0x00007f7c656bd000)]
+  0x00005651b2fd1a00 JavaThread "Common-Cleaner" daemon [_thread_blocked, id=162379, stack(0x00007f7c653bb000,0x00007f7c654bc000)]
+  0x00007f7c2c052ea0 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=162380, stack(0x00007f7c651ba000,0x00007f7c653bb000)]
+  0x00005651b30192e0 JavaThread "Notification Thread" daemon [_thread_blocked, id=162381, stack(0x00007f7c650b9000,0x00007f7c651ba000)]
+  0x00007f7c400454c0 JavaThread "JVMCI-native CompilerThread1" daemon [_thread_in_native, id=162383, stack(0x00007f7c1b5ff000,0x00007f7c1b800000)]
+  0x00007f7c400466a0 JavaThread "JVMCI-native CompilerThread2" daemon [_thread_in_native, id=162384, stack(0x00007f7c1b3fe000,0x00007f7c1b5ff000)]
+  0x00007f7c4004b160 JavaThread "JVMCI-native CompilerThread3" daemon [_thread_in_native, id=162385, stack(0x00007f7c1b1fd000,0x00007f7c1b3fe000)]
+  0x00007f7c2c0bcdc0 JavaThread "C1 CompilerThread3" daemon [_thread_in_vm, id=162386, stack(0x00007f7c068ff000,0x00007f7c06b00000)]
+  0x00005651b332d4a0 JavaThread "process reaper" daemon [_thread_blocked, id=162388, stack(0x00007f7c64ed2000,0x00007f7c64ef4000)]
+  0x00007f7c34174d30 JavaThread "C1 CompilerThread4" daemon [_thread_in_vm, id=162395, stack(0x00007f7c044ff000,0x00007f7c04700000)]
+  0x00007f7c2c146e60 JavaThread "C1 CompilerThread5" daemon [_thread_in_vm, id=162396, stack(0x00007f7c042fe000,0x00007f7c044ff000)]
+  0x00007f7c2c147f80 JavaThread "C1 CompilerThread6" daemon [_thread_in_native, id=162397, stack(0x00007f7c040fd000,0x00007f7c042fe000)]
+  0x00005651b34b9f90 JavaThread "TruffleCompilerThread-30" daemon [_thread_in_native, id=162398, stack(0x00007f7befcff000,0x00007f7befe00000)]
+  0x00005651b44171e0 JavaThread "TruffleCompilerThread-32" daemon [_thread_in_native, id=162428, stack(0x00007f7b79eff000,0x00007f7b7a000000)]
+=>0x00005651b3790f10 JavaThread "TruffleCompilerThread-33" daemon [_thread_in_vm, id=162433, stack(0x00007f7b9faf7000,0x00007f7b9fbf8000)]
+  0x00005651b4447aa0 JavaThread "TruffleCompilerThread-34" daemon [_thread_in_native, id=162434, stack(0x00007f7b5c1ff000,0x00007f7b5c300000)]
+  0x00005651b4488600 JavaThread "TruffleCompilerThread-35" daemon [_thread_in_native, id=162435, stack(0x00007f7b5c0fe000,0x00007f7b5c1ff000)]
+  0x00005651b44a98f0 JavaThread "TruffleCompilerThread-36" daemon [_thread_in_native, id=162436, stack(0x00007f7b470ff000,0x00007f7b47200000)]
+  0x00005651b44c4360 JavaThread "TruffleCompilerThread-37" daemon [_thread_in_native, id=162437, stack(0x00007f7b3daff000,0x00007f7b3dc00000)]
+  0x00005651b44f6730 JavaThread "TruffleCompilerThread-38" daemon [_thread_in_native, id=162438, stack(0x00007f7b376ff000,0x00007f7b37800000)]
+  0x00005651b4595710 JavaThread "TruffleCompilerThread-39" daemon [_thread_in_native, id=162439, stack(0x00007f7b2ecff000,0x00007f7b2ee00000)]
+  0x00005651b4597940 JavaThread "TruffleCompilerThread-40" daemon [_thread_in_native, id=162440, stack(0x00007f7b2ccff000,0x00007f7b2ce00000)]
+  0x00005651b45bd810 JavaThread "python-actions-pool-1-thread-1" daemon [_thread_blocked, id=162441, stack(0x00007f7b196ff000,0x00007f7b19800000)]
+  0x00005651b45d4cd0 JavaThread "nfi-gc" daemon [_thread_blocked, id=162442, stack(0x00007f7b128ff000,0x00007f7b12a00000)]
+
+Other Threads:
+  0x00005651b2fa8870 VMThread "VM Thread" [stack: 0x00007f7c66938000,0x00007f7c66a38000] [id=162369]
+  0x00005651b301ac50 WatcherThread [stack: 0x00007f7c64fb9000,0x00007f7c650b9000] [id=162382]
+  0x00005651b2def120 GCTaskThread "GC Thread#0" [stack: 0x00007f7c76762000,0x00007f7c76862000] [id=162364]
+  0x00007f7c54008e60 GCTaskThread "GC Thread#1" [stack: 0x00007f7bed300000,0x00007f7bed400000] [id=162401]
+  0x00007f7c540098b0 GCTaskThread "GC Thread#2" [stack: 0x00007f7bed1fe000,0x00007f7bed2fe000] [id=162402]
+  0x00007f7c5400a300 GCTaskThread "GC Thread#3" [stack: 0x00007f7bed0fc000,0x00007f7bed1fc000] [id=162403]
+  0x00007f7c5400ad50 GCTaskThread "GC Thread#4" [stack: 0x00007f7becffa000,0x00007f7bed0fa000] [id=162404]
+  0x00007f7c5400b7a0 GCTaskThread "GC Thread#5" [stack: 0x00007f7becef8000,0x00007f7becff8000] [id=162405]
+  0x00007f7c5400c1f0 GCTaskThread "GC Thread#6" [stack: 0x00007f7becdf6000,0x00007f7becef6000] [id=162406]
+  0x00007f7c5400cc40 GCTaskThread "GC Thread#7" [stack: 0x00007f7beccf4000,0x00007f7becdf4000] [id=162407]
+  0x00007f7c5400d690 GCTaskThread "GC Thread#8" [stack: 0x00007f7becbf2000,0x00007f7beccf2000] [id=162408]
+  0x00007f7c5400e0e0 GCTaskThread "GC Thread#9" [stack: 0x00007f7becaf0000,0x00007f7becbf0000] [id=162409]
+  0x00007f7c5400eb30 GCTaskThread "GC Thread#10" [stack: 0x00007f7bec9ee000,0x00007f7becaee000] [id=162410]
+  0x00007f7c5400f580 GCTaskThread "GC Thread#11" [stack: 0x00007f7bec8ec000,0x00007f7bec9ec000] [id=162411]
+  0x00007f7c54010400 GCTaskThread "GC Thread#12" [stack: 0x00007f7bec7ea000,0x00007f7bec8ea000] [id=162412]
+  0x00007f7c54011280 GCTaskThread "GC Thread#13" [stack: 0x00007f7bec6e8000,0x00007f7bec7e8000] [id=162413]
+  0x00007f7c54012100 GCTaskThread "GC Thread#14" [stack: 0x00007f7bec5e6000,0x00007f7bec6e6000] [id=162414]
+  0x00007f7c54012f80 GCTaskThread "GC Thread#15" [stack: 0x00007f7bec4e4000,0x00007f7bec5e4000] [id=162415]
+  0x00007f7c54013e00 GCTaskThread "GC Thread#16" [stack: 0x00007f7bec3e2000,0x00007f7bec4e2000] [id=162416]
+  0x00007f7c54014c80 GCTaskThread "GC Thread#17" [stack: 0x00007f7bec2e0000,0x00007f7bec3e0000] [id=162417]
+  0x00007f7c54015b00 GCTaskThread "GC Thread#18" [stack: 0x00007f7bec1de000,0x00007f7bec2de000] [id=162418]
+  0x00007f7c54016980 GCTaskThread "GC Thread#19" [stack: 0x00007f7bec0dc000,0x00007f7bec1dc000] [id=162419]
+  0x00007f7c54017800 GCTaskThread "GC Thread#20" [stack: 0x00007f7b9ff00000,0x00007f7ba0000000] [id=162420]
+  0x00007f7c54018680 GCTaskThread "GC Thread#21" [stack: 0x00007f7b9fdfe000,0x00007f7b9fefe000] [id=162421]
+  0x00007f7c54019500 GCTaskThread "GC Thread#22" [stack: 0x00007f7b9fcfc000,0x00007f7b9fdfc000] [id=162422]
+  0x00005651b2dff770 ConcurrentGCThread "G1 Main Marker" [stack: 0x00007f7c76660000,0x00007f7c76760000] [id=162365]
+  0x00005651b2e00710 ConcurrentGCThread "G1 Conc#0" [stack: 0x00007f7c7655e000,0x00007f7c7665e000] [id=162366]
+  0x00007f7c68000d30 ConcurrentGCThread "G1 Conc#1" [stack: 0x00007f7b9fbfa000,0x00007f7b9fcfa000] [id=162423]
+  0x00007f7c68001b80 ConcurrentGCThread "G1 Conc#2" [stack: 0x00007f7b9f900000,0x00007f7b9fa00000] [id=162424]
+  0x00007f7c68002610 ConcurrentGCThread "G1 Conc#3" [stack: 0x00007f7b9f7fe000,0x00007f7b9f8fe000] [id=162425]
+  0x00007f7c680030a0 ConcurrentGCThread "G1 Conc#4" [stack: 0x00007f7b9f6fc000,0x00007f7b9f7fc000] [id=162426]
+  0x00007f7c68003b30 ConcurrentGCThread "G1 Conc#5" [stack: 0x00007f7b9f5fa000,0x00007f7b9f6fa000] [id=162427]
+  0x00005651b2f74bc0 ConcurrentGCThread "G1 Refine#0" [stack: 0x00007f7c66cee000,0x00007f7c66dee000] [id=162367]
+  0x00007f7c60000d30 ConcurrentGCThread "G1 Refine#1" [stack: 0x00007f7c08800000,0x00007f7c08900000] [id=162429]
+  0x00007f7b68000d30 ConcurrentGCThread "G1 Refine#2" [stack: 0x00007f7c086fe000,0x00007f7c087fe000] [id=162430]
+  0x00007f7b6c000d30 ConcurrentGCThread "G1 Refine#3" [stack: 0x00007f7c07a00000,0x00007f7c07b00000] [id=162431]
+  0x00007f7b60000d30 ConcurrentGCThread "G1 Refine#4" [stack: 0x00007f7c078fe000,0x00007f7c079fe000] [id=162432]
+  0x00005651b2f75ad0 ConcurrentGCThread "G1 Service" [stack: 0x00007f7c66bec000,0x00007f7c66cec000] [id=162368]
+
+Threads with active compile tasks:
+JVMCI-native CompilerThread0     1316 5567       4       com.oracle.truffle.object.LayoutStrategy::defineNewProperty (97 bytes)
+C1 CompilerThread1     1316 5718  s    3       org.graalvm.compiler.truffle.runtime.OptimizedCallTarget::initialize (128 bytes)
+JVMCI-native CompilerThread1     1316 5568       4       com.oracle.truffle.object.DynamicObjectLibraryImplGen$DynamicObjectLibraryExports$Cached::getOrDefault (118 bytes)
+JVMCI-native CompilerThread2     1316 5543       4       com.oracle.truffle.api.strings.TruffleString::fromByteArrayUncached (13 bytes)
+JVMCI-native CompilerThread3     1316 5710       4       com.oracle.truffle.api.nodes.NodeClassImpl$1::compare (13 bytes)
+C1 CompilerThread5     1316 5721       3       com.oracle.truffle.api.instrumentation.InstrumentationHandler::onFirstExecution (103 bytes)
+C1 CompilerThread6     1316 5720       3       com.oracle.truffle.api.instrumentation.InstrumentAccessor$InstrumentImpl::onFirstExecution (40 bytes)
+
+VM state: not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap address: 0x0000000082000000, size: 30688 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+
+CDS archive(s) mapped at: [0x0000000800000000-0x0000000800bcb000-0x0000000800bcb000), size 12365824, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 0.
+Compressed class space mapped at: 0x0000000801000000-0x0000000841000000, reserved size: 1073741824
+Narrow klass base: 0x0000000800000000, Narrow klass shift: 0, Narrow klass range: 0x100000000
+
+GC Precious Log:
+ CPUs: 32 total, 32 available
+ Memory: 125G
+ Large Page Support: Disabled
+ NUMA Support: Disabled
+ Compressed Oops: Enabled (Zero based)
+ Heap Region Size: 16M
+ Heap Min Capacity: 16M
+ Heap Initial Capacity: 2016M
+ Heap Max Capacity: 30688M
+ Pre-touch: Disabled
+ Parallel Workers: 23
+ Concurrent Workers: 6
+ Concurrent Refinement Workers: 23
+ Periodic GC: Disabled
+
+Heap:
+ garbage-first heap   total 393216K, used 117480K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 6 young (98304K), 1 survivors (16384K)
+ Metaspace       used 68908K, committed 69248K, reserved 1114112K
+  class space    used 9811K, committed 9984K, reserved 1048576K
+
+Heap Regions: E=young(eden), S=young(survivor), O=old, HS=humongous(starts), HC=humongous(continues), CS=collection set, F=free, OA=open archive, CA=closed archive, TAMS=top-at-mark-start (previous, next)
+|   0|0x0000000082000000, 0x0000000083000000, 0x0000000083000000|100%| O|  |TAMS 0x0000000083000000, 0x0000000082000000| Untracked 
+|   1|0x0000000083000000, 0x0000000083000000, 0x0000000084000000|  0%| F|  |TAMS 0x0000000083000000, 0x0000000083000000| Untracked 
+|   2|0x0000000084000000, 0x0000000085000000, 0x0000000085000000|100%| O|  |TAMS 0x0000000085000000, 0x0000000084000000| Untracked 
+|   3|0x0000000085000000, 0x00000000850a8000, 0x0000000086000000|  4%| O|  |TAMS 0x00000000850a8000, 0x0000000085000000| Complete 
+|   4|0x0000000086000000, 0x0000000086000000, 0x0000000087000000|  0%| F|  |TAMS 0x0000000086000000, 0x0000000086000000| Untracked 
+|   5|0x0000000087000000, 0x0000000087000000, 0x0000000088000000|  0%| F|  |TAMS 0x0000000087000000, 0x0000000087000000| Untracked 
+|   6|0x0000000088000000, 0x0000000088000000, 0x0000000089000000|  0%| F|  |TAMS 0x0000000088000000, 0x0000000088000000| Untracked 
+|   7|0x0000000089000000, 0x0000000089000000, 0x000000008a000000|  0%| F|  |TAMS 0x0000000089000000, 0x0000000089000000| Untracked 
+|   8|0x000000008a000000, 0x000000008a000000, 0x000000008b000000|  0%| F|  |TAMS 0x000000008a000000, 0x000000008a000000| Untracked 
+|   9|0x000000008b000000, 0x000000008b000000, 0x000000008c000000|  0%| F|  |TAMS 0x000000008b000000, 0x000000008b000000| Untracked 
+|  10|0x000000008c000000, 0x000000008c000000, 0x000000008d000000|  0%| F|  |TAMS 0x000000008c000000, 0x000000008c000000| Untracked 
+|  11|0x000000008d000000, 0x000000008d000000, 0x000000008e000000|  0%| F|  |TAMS 0x000000008d000000, 0x000000008d000000| Untracked 
+|  12|0x000000008e000000, 0x000000008e000000, 0x000000008f000000|  0%| F|  |TAMS 0x000000008e000000, 0x000000008e000000| Untracked 
+|  13|0x000000008f000000, 0x000000008f000000, 0x0000000090000000|  0%| F|  |TAMS 0x000000008f000000, 0x000000008f000000| Untracked 
+|  14|0x0000000090000000, 0x0000000090000000, 0x0000000091000000|  0%| F|  |TAMS 0x0000000090000000, 0x0000000090000000| Untracked 
+|  15|0x0000000091000000, 0x0000000091000000, 0x0000000092000000|  0%| F|  |TAMS 0x0000000091000000, 0x0000000091000000| Untracked 
+|  16|0x0000000092000000, 0x00000000925800b8, 0x0000000093000000| 34%| E|  |TAMS 0x0000000092000000, 0x0000000092000000| Complete 
+|  17|0x0000000093000000, 0x0000000094000000, 0x0000000094000000|100%| E|CS|TAMS 0x0000000093000000, 0x0000000093000000| Complete 
+|  18|0x0000000094000000, 0x0000000095000000, 0x0000000095000000|100%| E|CS|TAMS 0x0000000094000000, 0x0000000094000000| Complete 
+|  19|0x0000000095000000, 0x0000000096000000, 0x0000000096000000|100%| E|CS|TAMS 0x0000000095000000, 0x0000000095000000| Complete 
+|  67|0x00000000c5000000, 0x00000000c523f1d8, 0x00000000c6000000| 14%| S|CS|TAMS 0x00000000c5000000, 0x00000000c5000000| Complete 
+| 125|0x00000000ff000000, 0x0000000100000000, 0x0000000100000000|100%| E|CS|TAMS 0x00000000ff000000, 0x00000000ff000000| Complete 
+|1916|0x00000007fe000000, 0x00000007fef46000, 0x00000007ff000000| 95%|OA|  |TAMS 0x00000007fef46000, 0x00000007fe000000| Untracked 
+|1917|0x00000007ff000000, 0x00000007ff08d000, 0x0000000800000000|  3%|CA|  |TAMS 0x00000007ff08d000, 0x00000007ff000000| Untracked 
+
+Card table byte_map: [0x00007f7cb64fa000,0x00007f7cba0ea000] _byte_map_base: 0x00007f7cb60ea000
+
+Marking Bits (Prev, Next): (CMBitMap*) 0x00005651b2defc00, (CMBitMap*) 0x00005651b2defbc0
+ Prev Bits: [0x00007f7c76a0a000, 0x00007f7c9498a000)
+ Next Bits: [0x00007f7c9498a000, 0x00007f7cb290a000)
+
+Polling page: 0x00007f7cce711000
+
+Metaspace:
+
+Usage:
+  Non-class:     57.71 MB used.
+      Class:      9.58 MB used.
+       Both:     67.30 MB used.
+
+Virtual space:
+  Non-class space:       64.00 MB reserved,      57.88 MB ( 90%) committed,  1 nodes.
+      Class space:        1.00 GB reserved,       9.75 MB ( <1%) committed,  1 nodes.
+             Both:        1.06 GB reserved,      67.62 MB (  6%) committed. 
+
+Chunk freelists:
+   Non-Class:  5.41 MB
+       Class:  6.17 MB
+        Both:  11.58 MB
+
+MaxMetaspaceSize: unlimited
+CompressedClassSpaceSize: 1.00 GB
+Initial GC threshold: 21.00 MB
+Current GC threshold: 102.31 MB
+CDS: on
+MetaspaceReclaimPolicy: balanced
+ - commit_granule_bytes: 65536.
+ - commit_granule_words: 8192.
+ - virtual_space_node_default_size: 8388608.
+ - enlarge_chunks_in_place: 1.
+ - new_chunks_are_fully_committed: 0.
+ - uncommit_free_chunks: 1.
+ - use_allocation_guard: 0.
+ - handle_deallocations: 1.
+
+
+Internal statistics:
+
+num_allocs_failed_limit: 21.
+num_arena_births: 322.
+num_arena_deaths: 0.
+num_vsnodes_births: 2.
+num_vsnodes_deaths: 0.
+num_space_committed: 1082.
+num_space_uncommitted: 0.
+num_chunks_returned_to_freelist: 21.
+num_chunks_taken_from_freelist: 2605.
+num_chunk_merges: 21.
+num_chunk_splits: 2060.
+num_chunks_enlarged: 1671.
+num_inconsistent_stats: 0.
+
+CodeHeap 'non-profiled nmethods': size=117208Kb used=1942Kb max_used=2026Kb free=115265Kb
+ bounds [0x00007f7cc744c000, 0x00007f7cc76bc000, 0x00007f7cce6c2000]
+CodeHeap 'profiled nmethods': size=117208Kb used=13146Kb max_used=14823Kb free=104062Kb
+ bounds [0x00007f7cbf6c2000, 0x00007f7cc0542000, 0x00007f7cc6938000]
+CodeHeap 'non-nmethods': size=11344Kb used=4867Kb max_used=4885Kb free=6476Kb
+ bounds [0x00007f7cc6938000, 0x00007f7cc6e08000, 0x00007f7cc744c000]
+ total_blobs=5654 nmethods=4835 adapters=712
+ compilation: enabled
+              stopped_count=0, restarted_count=0
+ full_count=0
+
+JVMCI Events (20 events):
+Event: 1.267 Thread 0x00007f7c400454c0 compacted oop handles in JVMCI runtime 1 from 142 to 140
+Event: 1.268 Thread 0x00005651b2fb8a50 compacted oop handles in JVMCI runtime 0 from 150 to 148
+Event: 1.274 Thread 0x00007f7c400466a0 compacted oop handles in JVMCI runtime 2 from 196 to 193
+Event: 1.275 Thread 0x00007f7c400466a0 compacted oop handles in JVMCI runtime 2 from 194 to 139
+Event: 1.277 Thread 0x00005651b4488600 compacted oop handles in JVMCI runtime 8 from 540 to 435
+Event: 1.278 Thread 0x00007f7c4004b160 compacted oop handles in JVMCI runtime 3 from 186 to 154
+Event: 1.279 Thread 0x00005651b44a98f0 compacted oop handles in JVMCI runtime 9 from 1391 to 1034
+Event: 1.279 Thread 0x00005651b2fb8a50 compacted oop handles in JVMCI runtime 0 from 156 to 155
+Event: 1.279 Thread 0x00007f7c4004b160 compacted oop handles in JVMCI runtime 3 from 155 to 132
+Event: 1.280 Thread 0x00007f7c4004b160 compacted oop handles in JVMCI runtime 3 from 138 to 136
+Event: 1.290 Thread 0x00005651b44a98f0 compacted oop handles in JVMCI runtime 9 from 1054 to 719
+Event: 1.290 Thread 0x00007f7c400454c0 compacted oop handles in JVMCI runtime 1 from 147 to 146
+Event: 1.290 Thread 0x00007f7c400454c0 compacted oop handles in JVMCI runtime 1 from 147 to 99
+Event: 1.291 Thread 0x00005651b2fb8a50 compacted oop handles in JVMCI runtime 0 from 157 to 156
+Event: 1.291 Thread 0x00005651b2fb8a50 compacted oop handles in JVMCI runtime 0 from 157 to 104
+Event: 1.291 Thread 0x00007f7c400466a0 compacted oop handles in JVMCI runtime 2 from 258 to 225
+Event: 1.291 Thread 0x00007f7c400466a0 compacted oop handles in JVMCI runtime 2 from 226 to 170
+Event: 1.293 Thread 0x00005651b44f6730 compacted oop handles in JVMCI runtime 11 from 1222 to 886
+Event: 1.294 Thread 0x00005651b44f6730 compacted oop handles in JVMCI runtime 11 from 903 to 756
+Event: 1.295 Thread 0x00007f7c4004b160 compacted oop handles in JVMCI runtime 3 from 182 to 160
+
+Compilation events (20 events):
+Event: 1.293 Thread 0x00005651b2fb9fb0 nmethod 5582 0x00007f7cbfb7af10 code [0x00007f7cbfb7b0e0, 0x00007f7cbfb7b6f0]
+Event: 1.293 Thread 0x00007f7c3404c0c0 nmethod 5573 0x00007f7cbfdb6810 code [0x00007f7cbfdb6b60, 0x00007f7cbfdb9300]
+Event: 1.294 Thread 0x00007f7c2c0bcdc0 5587       3       com.oracle.graal.python.nodes.bytecode.MakeFunctionNode::create (94 bytes)
+Event: 1.294 Thread 0x00007f7c34174d30 nmethod 5583 0x00007f7cc0026110 code [0x00007f7cc0026400, 0x00007f7cc0027f70]
+Event: 1.294 Thread 0x00007f7c2c147f80 5588       3       com.oracle.graal.python.nodes.attributes.LookupCallableSlotInMRONodeFactory$SlotValueProfileNodeGen::execute (206 bytes)
+Event: 1.294 Thread 0x00007f7c2c0bcdc0 nmethod 5587 0x00007f7cbfdc6290 code [0x00007f7cbfdc6560, 0x00007f7cbfdc7ea0]
+Event: 1.294 Thread 0x00007f7c34174d30 5589       3       com.oracle.graal.python.nodes.bytecode.PBytecodeRootNode::bytecodeCollectionFromStack (474 bytes)
+Event: 1.294 Thread 0x00007f7c2c146e60 5590       3       com.oracle.graal.python.nodes.bytecode.PBytecodeRootNode::bytecodeLoadName (46 bytes)
+Event: 1.294 Thread 0x00007f7c2c052ea0 nmethod 5581 0x00007f7cbfc3e510 code [0x00007f7cbfc3eae0, 0x00007f7cbfc46a20]
+Event: 1.294 Thread 0x00007f7c2c146e60 nmethod 5590 0x00007f7cbf94e490 code [0x00007f7cbf94e660, 0x00007f7cbf94eb00]
+Event: 1.295 Thread 0x00007f7c2c052ea0 5592       3       com.oracle.truffle.object.DynamicObjectLibraryImplGen$DynamicObjectLibraryExports$Uncached::getOrDefault (38 bytes)
+Event: 1.295 Thread 0x00007f7c2c052ea0 nmethod 5592 0x00007f7cbfd57790 code [0x00007f7cbfd57960, 0x00007f7cbfd57c40]
+Event: 1.295 Thread 0x00007f7c2c147f80 nmethod 5588 0x00007f7cbfba3d10 code [0x00007f7cbfba4020, 0x00007f7cbfba6b70]
+Event: 1.295 Thread 0x00007f7c3404c0c0 5593       3       com.oracle.graal.python.nodes.argument.ReadVarKeywordsNode::getKwargLen (6 bytes)
+Event: 1.295 Thread 0x00007f7c3404c0c0 nmethod 5593 0x00007f7cbf971a90 code [0x00007f7cbf971c60, 0x00007f7cbf972100]
+Event: 1.295 Thread 0x00007f7c2c052ea0 5594       3       org.graalvm.compiler.truffle.runtime.OptimizedCallTarget::onLoopCount (44 bytes)
+Event: 1.295 Thread 0x00007f7c34174d30 nmethod 5589 0x00007f7cbf895d90 code [0x00007f7cbf896180, 0x00007f7cbf898ee0]
+Event: 1.295 Thread 0x00007f7c2c052ea0 nmethod 5594 0x00007f7cbf80f110 code [0x00007f7cbf80f2a0, 0x00007f7cbf80f410]
+Event: 1.295 Thread 0x00007f7c4004b160 nmethod 5544 0x00007f7cc754f890 code [0x00007f7cc754fa20, 0x00007f7cc754fd68]
+Event: 1.295 Thread 0x00007f7c4004b160 5591       4       com.oracle.truffle.api.strings.TruffleString$EqualNode::checkContentEquals (228 bytes)
+
+GC Heap History (14 events):
+Event: 0.371 GC heap before
+{Heap before GC invocations=0 (full 0):
+ garbage-first heap   total 2097152K, used 81740K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 5 young (81920K), 0 survivors (0K)
+ Metaspace       used 21317K, committed 21504K, reserved 1114112K
+  class space    used 2085K, committed 2176K, reserved 1048576K
+}
+Event: 0.374 GC heap after
+{Heap after GC invocations=1 (full 0):
+ garbage-first heap   total 2097152K, used 34298K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 1 survivors (16384K)
+ Metaspace       used 21317K, committed 21504K, reserved 1114112K
+  class space    used 2085K, committed 2176K, reserved 1048576K
+}
+Event: 0.635 GC heap before
+{Heap before GC invocations=2 (full 0):
+ garbage-first heap   total 278528K, used 99834K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 6 young (98304K), 1 survivors (16384K)
+ Metaspace       used 35873K, committed 36160K, reserved 1114112K
+  class space    used 4370K, committed 4544K, reserved 1048576K
+}
+Event: 0.638 GC heap after
+{Heap after GC invocations=3 (full 0):
+ garbage-first heap   total 278528K, used 38450K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 1 survivors (16384K)
+ Metaspace       used 35873K, committed 36160K, reserved 1114112K
+  class space    used 4370K, committed 4544K, reserved 1048576K
+}
+Event: 0.647 GC heap before
+{Heap before GC invocations=3 (full 0):
+ garbage-first heap   total 278528K, used 38450K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 2 young (32768K), 1 survivors (16384K)
+ Metaspace       used 36189K, committed 36480K, reserved 1114112K
+  class space    used 4430K, committed 4608K, reserved 1048576K
+}
+Event: 0.648 GC heap after
+{Heap after GC invocations=4 (full 0):
+ garbage-first heap   total 278528K, used 38659K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 1 survivors (16384K)
+ Metaspace       used 36189K, committed 36480K, reserved 1114112K
+  class space    used 4430K, committed 4608K, reserved 1048576K
+}
+Event: 0.653 GC heap before
+{Heap before GC invocations=4 (full 0):
+ garbage-first heap   total 278528K, used 38659K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 2 young (32768K), 1 survivors (16384K)
+ Metaspace       used 36507K, committed 36800K, reserved 1114112K
+  class space    used 4492K, committed 4672K, reserved 1048576K
+}
+Event: 0.655 GC heap after
+{Heap after GC invocations=5 (full 0):
+ garbage-first heap   total 278528K, used 38662K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 1 survivors (16384K)
+ Metaspace       used 36507K, committed 36800K, reserved 1114112K
+  class space    used 4492K, committed 4672K, reserved 1048576K
+}
+Event: 1.039 GC heap before
+{Heap before GC invocations=6 (full 0):
+ garbage-first heap   total 278528K, used 153350K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 8 young (131072K), 1 survivors (16384K)
+ Metaspace       used 60701K, committed 60992K, reserved 1114112K
+  class space    used 8948K, committed 9088K, reserved 1048576K
+}
+Event: 1.044 GC heap after
+{Heap after GC invocations=7 (full 0):
+ garbage-first heap   total 278528K, used 50715K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 1 survivors (16384K)
+ Metaspace       used 60701K, committed 60992K, reserved 1114112K
+  class space    used 8948K, committed 9088K, reserved 1048576K
+}
+Event: 1.071 GC heap before
+{Heap before GC invocations=7 (full 0):
+ garbage-first heap   total 278528K, used 50715K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 2 young (32768K), 1 survivors (16384K)
+ Metaspace       used 61921K, committed 62208K, reserved 1114112K
+  class space    used 9062K, committed 9216K, reserved 1048576K
+}
+Event: 1.079 GC heap after
+{Heap after GC invocations=8 (full 0):
+ garbage-first heap   total 1179648K, used 52790K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 1 survivors (16384K)
+ Metaspace       used 61921K, committed 62208K, reserved 1114112K
+  class space    used 9062K, committed 9216K, reserved 1048576K
+}
+Event: 1.087 GC heap before
+{Heap before GC invocations=8 (full 0):
+ garbage-first heap   total 1179648K, used 52790K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 2 young (32768K), 1 survivors (16384K)
+ Metaspace       used 62232K, committed 62528K, reserved 1114112K
+  class space    used 9105K, committed 9280K, reserved 1048576K
+}
+Event: 1.088 GC heap after
+{Heap after GC invocations=9 (full 0):
+ garbage-first heap   total 1179648K, used 51944K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 1 survivors (16384K)
+ Metaspace       used 62232K, committed 62528K, reserved 1114112K
+  class space    used 9105K, committed 9280K, reserved 1048576K
+}
+
+Dll operation events (11 events):
+Event: 0.001 Loaded shared library /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjava.so
+Event: 0.005 Loaded shared library /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjsvml.so
+Event: 0.019 Loaded shared library /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+Event: 0.019 Loaded shared library /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libnio.so
+Event: 0.020 Loaded shared library /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libzip.so
+Event: 0.022 Loaded shared library /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjimage.so
+Event: 0.025 Loaded shared library /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libmanagement.so
+Event: 0.026 Loaded shared library /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libmanagement_ext.so
+Event: 0.028 Loaded shared library /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libnet.so
+Event: 0.392 Loaded shared library /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libverify.so
+Event: 1.246 Loaded shared library /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libtrufflenfi.so
+
+Deoptimization events (20 events):
+Event: 1.289 Thread 0x00005651b2db89d0 Uncommon trap: trap_request=0xffffffcd fr.pc=0x00007f7cc74e7524 relative=0x00000000000005c4
+Event: 1.289 Thread 0x00005651b2db89d0 Uncommon trap: reason=intrinsic_or_type_checked_inlining action=reinterpret pc=0x00007f7cc74e7524 method=com.oracle.truffle.object.DynamicObjectLibraryImpl$AnyKey.getOrDefault(Lcom/oracle/truffle/api/object/DynamicObject;Lcom/oracle/truffle/api/object/Sha
+Event: 1.289 Thread 0x00005651b2db89d0 DEOPT PACKING pc=0x00007f7cc74e7524 sp=0x00007fffcae2eeb0
+Event: 1.289 Thread 0x00005651b2db89d0 DEOPT UNPACKING pc=0x00007f7cc698ec25 sp=0x00007fffcae2e2f0 mode 3
+Event: 1.292 Thread 0x00005651b2db89d0 Uncommon trap: trap_request=0xffffffed fr.pc=0x00007f7cc74ab908 relative=0x00000000000004c8
+Event: 1.292 Thread 0x00005651b2db89d0 Uncommon trap: reason=null_assert_or_unreached0 action=reinterpret pc=0x00007f7cc74ab908 method=com.oracle.truffle.api.dsl.InlineSupport$InlinableField.resolveReceiver(Lcom/oracle/truffle/api/nodes/Node;)Ljava/lang/Object; @ 23 jvmci
+Event: 1.292 Thread 0x00005651b2db89d0 DEOPT PACKING pc=0x00007f7cc74ab908 sp=0x00007fffcae2e510
+Event: 1.292 Thread 0x00005651b2db89d0 DEOPT UNPACKING pc=0x00007f7cc698ec25 sp=0x00007fffcae2d8d8 mode 3
+Event: 1.293 Thread 0x00005651b2db89d0 Uncommon trap: trap_request=0xffffffcd fr.pc=0x00007f7cc762a565 relative=0x00000000000004e5
+Event: 1.293 Thread 0x00005651b2db89d0 Uncommon trap: reason=intrinsic_or_type_checked_inlining action=reinterpret pc=0x00007f7cc762a565 method=com.oracle.truffle.api.nodes.NodeClassImpl.getFieldObject(Ljava/lang/Object;Lcom/oracle/truffle/api/nodes/Node;)Ljava/lang/Object; @ 8 jvmci
+Event: 1.293 Thread 0x00005651b2db89d0 DEOPT PACKING pc=0x00007f7cc762a565 sp=0x00007fffcae2dd20
+Event: 1.293 Thread 0x00005651b2db89d0 DEOPT UNPACKING pc=0x00007f7cc698ec25 sp=0x00007fffcae2d0c0 mode 3
+Event: 1.293 Thread 0x00005651b2db89d0 Uncommon trap: trap_request=0xffffffcd fr.pc=0x00007f7cc762241e relative=0x00000000000003be
+Event: 1.293 Thread 0x00005651b2db89d0 Uncommon trap: reason=intrinsic_or_type_checked_inlining action=reinterpret pc=0x00007f7cc762241e method=com.oracle.truffle.api.nodes.NodeClassImpl.getFieldObject(Ljava/lang/Object;Lcom/oracle/truffle/api/nodes/Node;)Ljava/lang/Object; @ 8 jvmci
+Event: 1.293 Thread 0x00005651b2db89d0 DEOPT PACKING pc=0x00007f7cc762241e sp=0x00007fffcae2dc20
+Event: 1.293 Thread 0x00005651b2db89d0 DEOPT UNPACKING pc=0x00007f7cc698ec25 sp=0x00007fffcae2d030 mode 3
+Event: 1.294 Thread 0x00005651b2db89d0 Uncommon trap: trap_request=0xffffffcd fr.pc=0x00007f7cc74b8343 relative=0x00000000000003a3
+Event: 1.294 Thread 0x00005651b2db89d0 Uncommon trap: reason=intrinsic_or_type_checked_inlining action=reinterpret pc=0x00007f7cc74b8343 method=com.oracle.truffle.object.TriePropertyMap.get(Ljava/lang/Object;)Lcom/oracle/truffle/api/object/Property; @ 18 jvmci
+Event: 1.294 Thread 0x00005651b2db89d0 DEOPT PACKING pc=0x00007f7cc74b8343 sp=0x00007fffcae2dd20
+Event: 1.294 Thread 0x00005651b2db89d0 DEOPT UNPACKING pc=0x00007f7cc698ec25 sp=0x00007fffcae2cfa8 mode 3
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (20 events):
+Event: 1.225 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x000000009449bf08}> (0x000000009449bf08) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.225 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x000000009449c4f8}> (0x000000009449c4f8) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.225 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x000000009449cd20}> (0x000000009449cd20) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.225 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x000000009449dbb8}> (0x000000009449dbb8) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.225 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x000000009449e1a8}> (0x000000009449e1a8) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.227 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x00000000944c13b8}> (0x00000000944c13b8) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.227 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x00000000944c2088}> (0x00000000944c2088) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.227 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x00000000944c2970}> (0x00000000944c2970) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.227 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x00000000944c37d8}> (0x00000000944c37d8) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.227 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x00000000944c3dc8}> (0x00000000944c3dc8) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.227 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x00000000944c45f0}> (0x00000000944c45f0) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.228 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x00000000944c5480}> (0x00000000944c5480) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.228 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x00000000944c5a70}> (0x00000000944c5a70) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.281 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x0000000093e36228}> (0x0000000093e36228) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.281 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x0000000093e37ec8}> (0x0000000093e37ec8) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.281 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x0000000093e39750}> (0x0000000093e39750) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.281 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x0000000093e3b4c8}> (0x0000000093e3b4c8) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.281 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x0000000093e3caa8}> (0x0000000093e3caa8) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.288 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x0000000093f78c18}> (0x0000000093f78c18) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+Event: 1.288 Thread 0x00005651b2db89d0 Exception <a 'sun/nio/fs/UnixException'{0x0000000093f7b340}> (0x0000000093f7b340) 
+thrown [src/hotspot/share/prims/jni.cpp, line 516]
+
+VM Operations (20 events):
+Event: 1.105 Executing VM operation: G1Concurrent
+Event: 1.108 Executing VM operation: G1Concurrent done
+Event: 1.133 Executing VM operation: HandshakeAllThreads
+Event: 1.133 Executing VM operation: HandshakeAllThreads done
+Event: 1.149 Executing VM operation: HandshakeAllThreads
+Event: 1.149 Executing VM operation: HandshakeAllThreads done
+Event: 1.168 Executing VM operation: ICBufferFull
+Event: 1.168 Executing VM operation: ICBufferFull done
+Event: 1.195 Executing VM operation: HandshakeAllThreads
+Event: 1.195 Executing VM operation: HandshakeAllThreads done
+Event: 1.210 Executing VM operation: HandshakeAllThreads
+Event: 1.210 Executing VM operation: HandshakeAllThreads done
+Event: 1.217 Executing VM operation: HandshakeAllThreads
+Event: 1.217 Executing VM operation: HandshakeAllThreads done
+Event: 1.224 Executing VM operation: HandshakeAllThreads
+Event: 1.225 Executing VM operation: HandshakeAllThreads done
+Event: 1.234 Executing VM operation: HandshakeAllThreads
+Event: 1.234 Executing VM operation: HandshakeAllThreads done
+Event: 1.281 Executing VM operation: ICBufferFull
+Event: 1.281 Executing VM operation: ICBufferFull done
+
+Events (20 events):
+Event: 1.238 loading class java/util/concurrent/Executors$DefaultThreadFactory done
+Event: 1.238 Thread 0x00005651b2fc3440 flushing nmethod 0x00007f7cc015f010
+Event: 1.238 Thread 0x00005651b2fc3440 flushing nmethod 0x00007f7cc0179510
+Event: 1.238 Thread 0x00005651b45bd810 Thread added: 0x00005651b45bd810
+Event: 1.238 Protecting memory [0x00007f7b196ff000,0x00007f7b19703000] with protection modes 0
+Event: 1.238 loading class java/util/concurrent/TimeUnit$1
+Event: 1.238 loading class java/util/concurrent/TimeUnit$1 done
+Event: 1.238 Thread 0x00005651b2fc3440 flushing nmethod 0x00007f7cc02ebb10
+Event: 1.245 loading class java/lang/Class$EnclosingMethodInfo
+Event: 1.245 loading class java/lang/Class$EnclosingMethodInfo done
+Event: 1.246 loading class jdk/internal/loader/NativeLibraries$Unloader
+Event: 1.246 loading class jdk/internal/loader/NativeLibraries$Unloader done
+Event: 1.246 Thread 0x00005651b45d4cd0 Thread added: 0x00005651b45d4cd0
+Event: 1.246 Protecting memory [0x00007f7b128ff000,0x00007f7b12903000] with protection modes 0
+Event: 1.253 loading class java/util/concurrent/atomic/AtomicIntegerFieldUpdater
+Event: 1.253 loading class java/util/concurrent/atomic/AtomicIntegerFieldUpdater done
+Event: 1.253 loading class java/util/concurrent/atomic/AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl
+Event: 1.253 loading class java/util/concurrent/atomic/AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl done
+Event: 1.253 loading class java/util/concurrent/atomic/AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl$1
+Event: 1.253 loading class java/util/concurrent/atomic/AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl$1 done
+
+
+Dynamic libraries:
+82000000-96000000 rw-p 00000000 00:00 0 
+96000000-c5000000 ---p 00000000 00:00 0 
+c5000000-c6000000 rw-p 00000000 00:00 0 
+c6000000-ff000000 ---p 00000000 00:00 0 
+ff000000-100000000 rw-p 00000000 00:00 0 
+100000000-7fe000000 ---p 00000000 00:00 0 
+7fe000000-7fef00000 rw-p 00000000 00:00 0 
+7fef00000-7fef46000 rw-p 00c8f000 103:02 51866601                        /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/server/classes.jsa
+7fef46000-7ff000000 rw-p 00000000 00:00 0 
+7ff000000-7ff08d000 rw-p 00c02000 103:02 51866601                        /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/server/classes.jsa
+7ff08d000-800000000 rw-p 00000000 00:00 0 
+800000000-80044a000 rw-p 00001000 103:02 51866601                        /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/server/classes.jsa
+80044a000-800bcb000 r--p 0044b000 103:02 51866601                        /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/server/classes.jsa
+800bcb000-801000000 ---p 00000000 00:00 0 
+801000000-801040000 rw-p 00000000 00:00 0 
+801040000-8010c0000 rw-p 00000000 00:00 0 
+8010c0000-801100000 rw-p 00000000 00:00 0 
+801100000-801180000 rw-p 00000000 00:00 0 
+801180000-801240000 rw-p 00000000 00:00 0 
+801240000-801260000 rw-p 00000000 00:00 0 
+801260000-801280000 ---p 00000000 00:00 0 
+801280000-8019e0000 rw-p 00000000 00:00 0 
+8019e0000-841000000 ---p 00000000 00:00 0 
+5651b2812000-5651b2815000 r--p 00000000 103:02 51868967                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/languages/python/bin/python
+5651b2815000-5651b2819000 r-xp 00003000 103:02 51868967                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/languages/python/bin/python
+5651b2819000-5651b281b000 r--p 00007000 103:02 51868967                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/languages/python/bin/python
+5651b281b000-5651b281c000 r--p 00008000 103:02 51868967                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/languages/python/bin/python
+5651b281c000-5651b281d000 rw-p 00009000 103:02 51868967                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/languages/python/bin/python
+5651b2d5b000-5651b467a000 rw-p 00000000 00:00 0                          [heap]
+7f7afda00000-7f7afdb00000 rw-p 00000000 00:00 0 
+7f7afdc00000-7f7afdd00000 rw-p 00000000 00:00 0 
+7f7afde00000-7f7afdf00000 rw-p 00000000 00:00 0 
+7f7afe000000-7f7afe100000 rw-p 00000000 00:00 0 
+7f7afe200000-7f7afe300000 rw-p 00000000 00:00 0 
+7f7afe400000-7f7afe500000 rw-p 00000000 00:00 0 
+7f7afe600000-7f7afe700000 rw-p 00000000 00:00 0 
+7f7afe800000-7f7afe900000 rw-p 00000000 00:00 0 
+7f7afea00000-7f7afeb00000 rw-p 00000000 00:00 0 
+7f7afec00000-7f7afed00000 rw-p 00000000 00:00 0 
+7f7afee00000-7f7afef00000 rw-p 00000000 00:00 0 
+7f7aff000000-7f7aff100000 rw-p 00000000 00:00 0 
+7f7aff200000-7f7aff300000 rw-p 00000000 00:00 0 
+7f7aff400000-7f7aff500000 rw-p 00000000 00:00 0 
+7f7aff600000-7f7aff700000 rw-p 00000000 00:00 0 
+7f7aff800000-7f7aff900000 rw-p 00000000 00:00 0 
+7f7affa00000-7f7affb00000 rw-p 00000000 00:00 0 
+7f7affc00000-7f7affd00000 rw-p 00000000 00:00 0 
+7f7affe00000-7f7afff00000 rw-p 00000000 00:00 0 
+7f7b00000000-7f7b00100000 rw-p 00000000 00:00 0 
+7f7b00200000-7f7b00300000 rw-p 00000000 00:00 0 
+7f7b00400000-7f7b00500000 rw-p 00000000 00:00 0 
+7f7b00600000-7f7b00700000 rw-p 00000000 00:00 0 
+7f7b00800000-7f7b00900000 rw-p 00000000 00:00 0 
+7f7b00a00000-7f7b00b00000 rw-p 00000000 00:00 0 
+7f7b00c00000-7f7b00d00000 rw-p 00000000 00:00 0 
+7f7b00e00000-7f7b00f00000 rw-p 00000000 00:00 0 
+7f7b01000000-7f7b01100000 rw-p 00000000 00:00 0 
+7f7b01200000-7f7b01300000 rw-p 00000000 00:00 0 
+7f7b01400000-7f7b01500000 rw-p 00000000 00:00 0 
+7f7b01600000-7f7b01700000 rw-p 00000000 00:00 0 
+7f7b01800000-7f7b01900000 rw-p 00000000 00:00 0 
+7f7b019f7000-7f7b01c00000 rw-p 00000000 00:00 0 
+7f7b01d00000-7f7b01e00000 rw-p 00000000 00:00 0 
+7f7b01f00000-7f7b02000000 rw-p 00000000 00:00 0 
+7f7b02100000-7f7b02200000 rw-p 00000000 00:00 0 
+7f7b02300000-7f7b02400000 rw-p 00000000 00:00 0 
+7f7b02500000-7f7b02600000 rw-p 00000000 00:00 0 
+7f7b02700000-7f7b02800000 rw-p 00000000 00:00 0 
+7f7b02900000-7f7b02a00000 rw-p 00000000 00:00 0 
+7f7b02b00000-7f7b02c00000 rw-p 00000000 00:00 0 
+7f7b02d00000-7f7b02e00000 rw-p 00000000 00:00 0 
+7f7b02f00000-7f7b03000000 rw-p 00000000 00:00 0 
+7f7b03100000-7f7b03200000 rw-p 00000000 00:00 0 
+7f7b03300000-7f7b03400000 rw-p 00000000 00:00 0 
+7f7b03500000-7f7b03600000 rw-p 00000000 00:00 0 
+7f7b03700000-7f7b03800000 rw-p 00000000 00:00 0 
+7f7b03900000-7f7b03a00000 rw-p 00000000 00:00 0 
+7f7b03b00000-7f7b03c00000 rw-p 00000000 00:00 0 
+7f7b03d00000-7f7b03e00000 rw-p 00000000 00:00 0 
+7f7b03f00000-7f7b04000000 rw-p 00000000 00:00 0 
+7f7b04100000-7f7b04200000 rw-p 00000000 00:00 0 
+7f7b04300000-7f7b04400000 rw-p 00000000 00:00 0 
+7f7b04500000-7f7b04600000 rw-p 00000000 00:00 0 
+7f7b04700000-7f7b04800000 rw-p 00000000 00:00 0 
+7f7b04900000-7f7b04a00000 rw-p 00000000 00:00 0 
+7f7b04b00000-7f7b04c00000 rw-p 00000000 00:00 0 
+7f7b04cf7000-7f7b04f00000 rw-p 00000000 00:00 0 
+7f7b05000000-7f7b05100000 rw-p 00000000 00:00 0 
+7f7b05200000-7f7b05300000 rw-p 00000000 00:00 0 
+7f7b05400000-7f7b05500000 rw-p 00000000 00:00 0 
+7f7b05600000-7f7b05700000 rw-p 00000000 00:00 0 
+7f7b05800000-7f7b05900000 rw-p 00000000 00:00 0 
+7f7b05a00000-7f7b05b00000 rw-p 00000000 00:00 0 
+7f7b05c00000-7f7b05d00000 rw-p 00000000 00:00 0 
+7f7b05e00000-7f7b05f00000 rw-p 00000000 00:00 0 
+7f7b06000000-7f7b06100000 rw-p 00000000 00:00 0 
+7f7b06200000-7f7b06300000 rw-p 00000000 00:00 0 
+7f7b06400000-7f7b06500000 rw-p 00000000 00:00 0 
+7f7b06600000-7f7b06700000 rw-p 00000000 00:00 0 
+7f7b06800000-7f7b06900000 rw-p 00000000 00:00 0 
+7f7b06a00000-7f7b06b00000 rw-p 00000000 00:00 0 
+7f7b06c00000-7f7b06d00000 rw-p 00000000 00:00 0 
+7f7b06e00000-7f7b06f00000 rw-p 00000000 00:00 0 
+7f7b07000000-7f7b07100000 rw-p 00000000 00:00 0 
+7f7b07200000-7f7b07300000 rw-p 00000000 00:00 0 
+7f7b07400000-7f7b07500000 rw-p 00000000 00:00 0 
+7f7b07600000-7f7b07700000 rw-p 00000000 00:00 0 
+7f7b07800000-7f7b07900000 rw-p 00000000 00:00 0 
+7f7b07a00000-7f7b07b00000 rw-p 00000000 00:00 0 
+7f7b07c00000-7f7b07d00000 rw-p 00000000 00:00 0 
+7f7b07e00000-7f7b07f00000 rw-p 00000000 00:00 0 
+7f7b08000000-7f7b08100000 rw-p 00000000 00:00 0 
+7f7b08200000-7f7b08300000 rw-p 00000000 00:00 0 
+7f7b08400000-7f7b08500000 rw-p 00000000 00:00 0 
+7f7b08600000-7f7b08700000 rw-p 00000000 00:00 0 
+7f7b08800000-7f7b08900000 rw-p 00000000 00:00 0 
+7f7b08a00000-7f7b08b00000 rw-p 00000000 00:00 0 
+7f7b08c00000-7f7b08d00000 rw-p 00000000 00:00 0 
+7f7b08e00000-7f7b08f00000 rw-p 00000000 00:00 0 
+7f7b09000000-7f7b09100000 rw-p 00000000 00:00 0 
+7f7b09200000-7f7b09300000 rw-p 00000000 00:00 0 
+7f7b09400000-7f7b09500000 rw-p 00000000 00:00 0 
+7f7b09600000-7f7b09700000 rw-p 00000000 00:00 0 
+7f7b09800000-7f7b09900000 rw-p 00000000 00:00 0 
+7f7b09a00000-7f7b09b00000 rw-p 00000000 00:00 0 
+7f7b09c00000-7f7b09d00000 rw-p 00000000 00:00 0 
+7f7b09e00000-7f7b09f00000 rw-p 00000000 00:00 0 
+7f7b0a000000-7f7b0a100000 rw-p 00000000 00:00 0 
+7f7b0a200000-7f7b0a300000 rw-p 00000000 00:00 0 
+7f7b0a400000-7f7b0a500000 rw-p 00000000 00:00 0 
+7f7b0a600000-7f7b0a700000 rw-p 00000000 00:00 0 
+7f7b0a800000-7f7b0a900000 rw-p 00000000 00:00 0 
+7f7b0aa00000-7f7b0ab00000 rw-p 00000000 00:00 0 
+7f7b0ac00000-7f7b0ad00000 rw-p 00000000 00:00 0 
+7f7b0ae00000-7f7b0af00000 rw-p 00000000 00:00 0 
+7f7b0b000000-7f7b0b100000 rw-p 00000000 00:00 0 
+7f7b0b200000-7f7b0b300000 rw-p 00000000 00:00 0 
+7f7b0b400000-7f7b0b500000 rw-p 00000000 00:00 0 
+7f7b0b600000-7f7b0b700000 rw-p 00000000 00:00 0 
+7f7b0b800000-7f7b0b900000 rw-p 00000000 00:00 0 
+7f7b0ba00000-7f7b0bb00000 rw-p 00000000 00:00 0 
+7f7b0bc00000-7f7b0bd00000 rw-p 00000000 00:00 0 
+7f7b0be00000-7f7b0bf00000 rw-p 00000000 00:00 0 
+7f7b0c000000-7f7b0c021000 rw-p 00000000 00:00 0 
+7f7b0c021000-7f7b10000000 ---p 00000000 00:00 0 
+7f7b10100000-7f7b10200000 rw-p 00000000 00:00 0 
+7f7b10300000-7f7b10400000 rw-p 00000000 00:00 0 
+7f7b10500000-7f7b10600000 rw-p 00000000 00:00 0 
+7f7b10700000-7f7b10800000 rw-p 00000000 00:00 0 
+7f7b10900000-7f7b10a00000 rw-p 00000000 00:00 0 
+7f7b10b00000-7f7b10c00000 rw-p 00000000 00:00 0 
+7f7b10d00000-7f7b10e00000 rw-p 00000000 00:00 0 
+7f7b10f00000-7f7b11000000 rw-p 00000000 00:00 0 
+7f7b11100000-7f7b11200000 rw-p 00000000 00:00 0 
+7f7b11300000-7f7b11400000 rw-p 00000000 00:00 0 
+7f7b11500000-7f7b11600000 rw-p 00000000 00:00 0 
+7f7b11700000-7f7b11800000 rw-p 00000000 00:00 0 
+7f7b11900000-7f7b11a00000 rw-p 00000000 00:00 0 
+7f7b11b00000-7f7b11c00000 rw-p 00000000 00:00 0 
+7f7b11d00000-7f7b11e00000 rw-p 00000000 00:00 0 
+7f7b11f00000-7f7b12000000 rw-p 00000000 00:00 0 
+7f7b12100000-7f7b12200000 rw-p 00000000 00:00 0 
+7f7b12300000-7f7b12400000 rw-p 00000000 00:00 0 
+7f7b12500000-7f7b12600000 rw-p 00000000 00:00 0 
+7f7b12700000-7f7b12800000 rw-p 00000000 00:00 0 
+7f7b128ff000-7f7b12903000 ---p 00000000 00:00 0 
+7f7b12903000-7f7b12b00000 rw-p 00000000 00:00 0 
+7f7b12c00000-7f7b12d00000 rw-p 00000000 00:00 0 
+7f7b12e00000-7f7b12f00000 rw-p 00000000 00:00 0 
+7f7b13000000-7f7b13100000 rw-p 00000000 00:00 0 
+7f7b13200000-7f7b13300000 rw-p 00000000 00:00 0 
+7f7b13400000-7f7b13500000 rw-p 00000000 00:00 0 
+7f7b13600000-7f7b13700000 rw-p 00000000 00:00 0 
+7f7b13800000-7f7b13900000 rw-p 00000000 00:00 0 
+7f7b13a00000-7f7b13b00000 rw-p 00000000 00:00 0 
+7f7b13c00000-7f7b13d00000 rw-p 00000000 00:00 0 
+7f7b13e00000-7f7b13f00000 rw-p 00000000 00:00 0 
+7f7b14000000-7f7b14021000 rw-p 00000000 00:00 0 
+7f7b14021000-7f7b18000000 ---p 00000000 00:00 0 
+7f7b18100000-7f7b18200000 rw-p 00000000 00:00 0 
+7f7b18300000-7f7b18400000 rw-p 00000000 00:00 0 
+7f7b18500000-7f7b18600000 rw-p 00000000 00:00 0 
+7f7b18700000-7f7b18800000 rw-p 00000000 00:00 0 
+7f7b18900000-7f7b18a00000 rw-p 00000000 00:00 0 
+7f7b18b00000-7f7b18c00000 rw-p 00000000 00:00 0 
+7f7b18d00000-7f7b18e00000 rw-p 00000000 00:00 0 
+7f7b18f00000-7f7b19000000 rw-p 00000000 00:00 0 
+7f7b19100000-7f7b19200000 rw-p 00000000 00:00 0 
+7f7b19300000-7f7b19400000 rw-p 00000000 00:00 0 
+7f7b19500000-7f7b19600000 rw-p 00000000 00:00 0 
+7f7b196ff000-7f7b19703000 ---p 00000000 00:00 0 
+7f7b19703000-7f7b19900000 rw-p 00000000 00:00 0 
+7f7b19a00000-7f7b19b00000 rw-p 00000000 00:00 0 
+7f7b19c00000-7f7b19d00000 rw-p 00000000 00:00 0 
+7f7b19e00000-7f7b19f00000 rw-p 00000000 00:00 0 
+7f7b1a000000-7f7b1a100000 rw-p 00000000 00:00 0 
+7f7b1a200000-7f7b1a300000 rw-p 00000000 00:00 0 
+7f7b1a400000-7f7b1a500000 rw-p 00000000 00:00 0 
+7f7b1a600000-7f7b1a700000 rw-p 00000000 00:00 0 
+7f7b1a800000-7f7b1a900000 rw-p 00000000 00:00 0 
+7f7b1aa00000-7f7b1ab00000 rw-p 00000000 00:00 0 
+7f7b1ac00000-7f7b1ad00000 rw-p 00000000 00:00 0 
+7f7b1ae00000-7f7b1af00000 rw-p 00000000 00:00 0 
+7f7b1b000000-7f7b1b100000 rw-p 00000000 00:00 0 
+7f7b1b200000-7f7b1b300000 rw-p 00000000 00:00 0 
+7f7b1b400000-7f7b1b500000 rw-p 00000000 00:00 0 
+7f7b1b600000-7f7b1b700000 rw-p 00000000 00:00 0 
+7f7b1b800000-7f7b1b900000 rw-p 00000000 00:00 0 
+7f7b1ba00000-7f7b1bb00000 rw-p 00000000 00:00 0 
+7f7b1bc00000-7f7b1bd00000 rw-p 00000000 00:00 0 
+7f7b1be00000-7f7b1bf00000 rw-p 00000000 00:00 0 
+7f7b1c000000-7f7b1c100000 rw-p 00000000 00:00 0 
+7f7b1c200000-7f7b1c300000 rw-p 00000000 00:00 0 
+7f7b1c400000-7f7b1c500000 rw-p 00000000 00:00 0 
+7f7b1c600000-7f7b1c700000 rw-p 00000000 00:00 0 
+7f7b1c800000-7f7b1c900000 rw-p 00000000 00:00 0 
+7f7b1ca00000-7f7b1cb00000 rw-p 00000000 00:00 0 
+7f7b1cc00000-7f7b1cd00000 rw-p 00000000 00:00 0 
+7f7b1ce00000-7f7b1cf00000 rw-p 00000000 00:00 0 
+7f7b1d000000-7f7b1d100000 rw-p 00000000 00:00 0 
+7f7b1d200000-7f7b1d300000 rw-p 00000000 00:00 0 
+7f7b1d400000-7f7b1d500000 rw-p 00000000 00:00 0 
+7f7b1d600000-7f7b1d700000 rw-p 00000000 00:00 0 
+7f7b1d800000-7f7b1d900000 rw-p 00000000 00:00 0 
+7f7b1da00000-7f7b1db00000 rw-p 00000000 00:00 0 
+7f7b1dc00000-7f7b1dd00000 rw-p 00000000 00:00 0 
+7f7b1de00000-7f7b1df00000 rw-p 00000000 00:00 0 
+7f7b1e000000-7f7b1e100000 rw-p 00000000 00:00 0 
+7f7b1e200000-7f7b1e300000 rw-p 00000000 00:00 0 
+7f7b1e400000-7f7b1e500000 rw-p 00000000 00:00 0 
+7f7b1e600000-7f7b1e700000 rw-p 00000000 00:00 0 
+7f7b1e800000-7f7b1e900000 rw-p 00000000 00:00 0 
+7f7b1ea00000-7f7b1eb00000 rw-p 00000000 00:00 0 
+7f7b1ec00000-7f7b1ed00000 rw-p 00000000 00:00 0 
+7f7b1ee00000-7f7b1ef00000 rw-p 00000000 00:00 0 
+7f7b1f000000-7f7b1f100000 rw-p 00000000 00:00 0 
+7f7b1f200000-7f7b1f300000 rw-p 00000000 00:00 0 
+7f7b1f400000-7f7b1f500000 rw-p 00000000 00:00 0 
+7f7b1f600000-7f7b1f700000 rw-p 00000000 00:00 0 
+7f7b1f800000-7f7b1f900000 rw-p 00000000 00:00 0 
+7f7b1fa00000-7f7b1fb00000 rw-p 00000000 00:00 0 
+7f7b1fc00000-7f7b1fd00000 rw-p 00000000 00:00 0 
+7f7b1fe00000-7f7b1ff00000 rw-p 00000000 00:00 0 
+7f7b20000000-7f7b2007a000 rw-p 00000000 00:00 0 
+7f7b2007a000-7f7b24000000 ---p 00000000 00:00 0 
+7f7b24100000-7f7b24200000 rw-p 00000000 00:00 0 
+7f7b24300000-7f7b24400000 rw-p 00000000 00:00 0 
+7f7b24500000-7f7b24600000 rw-p 00000000 00:00 0 
+7f7b24700000-7f7b24800000 rw-p 00000000 00:00 0 
+7f7b24900000-7f7b24a00000 rw-p 00000000 00:00 0 
+7f7b24b00000-7f7b24c00000 rw-p 00000000 00:00 0 
+7f7b24d00000-7f7b24e00000 rw-p 00000000 00:00 0 
+7f7b24f00000-7f7b25000000 rw-p 00000000 00:00 0 
+7f7b25100000-7f7b25200000 rw-p 00000000 00:00 0 
+7f7b25300000-7f7b25400000 rw-p 00000000 00:00 0 
+7f7b25500000-7f7b25600000 rw-p 00000000 00:00 0 
+7f7b25700000-7f7b25800000 rw-p 00000000 00:00 0 
+7f7b25900000-7f7b25a00000 rw-p 00000000 00:00 0 
+7f7b25b00000-7f7b25c00000 rw-p 00000000 00:00 0 
+7f7b25d00000-7f7b25e00000 rw-p 00000000 00:00 0 
+7f7b25f00000-7f7b26000000 rw-p 00000000 00:00 0 
+7f7b26100000-7f7b26200000 rw-p 00000000 00:00 0 
+7f7b26300000-7f7b26400000 rw-p 00000000 00:00 0 
+7f7b26500000-7f7b26600000 rw-p 00000000 00:00 0 
+7f7b26700000-7f7b26800000 rw-p 00000000 00:00 0 
+7f7b26900000-7f7b26a00000 rw-p 00000000 00:00 0 
+7f7b26b00000-7f7b26c00000 rw-p 00000000 00:00 0 
+7f7b26d00000-7f7b26e00000 ---p 00000000 00:00 0 
+7f7b26e00000-7f7b2745f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b2745f000-7f7b27600000 r--p 00000000 00:00 0 
+7f7b27600000-7f7b2760e000 rw-p 00000000 00:00 0 
+7f7b2760e000-7f7b27b63000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b27b63000-7f7b27fdd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b28000000-7f7b28021000 rw-p 00000000 00:00 0 
+7f7b28021000-7f7b2c000000 ---p 00000000 00:00 0 
+7f7b2c100000-7f7b2c200000 rw-p 00000000 00:00 0 
+7f7b2c300000-7f7b2c400000 rw-p 00000000 00:00 0 
+7f7b2c500000-7f7b2c600000 rw-p 00000000 00:00 0 
+7f7b2c700000-7f7b2c800000 rw-p 00000000 00:00 0 
+7f7b2c900000-7f7b2ca00000 rw-p 00000000 00:00 0 
+7f7b2cb00000-7f7b2cc00000 rw-p 00000000 00:00 0 
+7f7b2ccff000-7f7b2cd03000 ---p 00000000 00:00 0 
+7f7b2cd03000-7f7b2cf00000 rw-p 00000000 00:00 0 
+7f7b2d000000-7f7b2d100000 rw-p 00000000 00:00 0 
+7f7b2d200000-7f7b2d300000 rw-p 00000000 00:00 0 
+7f7b2d400000-7f7b2d500000 rw-p 00000000 00:00 0 
+7f7b2d600000-7f7b2d700000 rw-p 00000000 00:00 0 
+7f7b2d800000-7f7b2d900000 rw-p 00000000 00:00 0 
+7f7b2da00000-7f7b2db00000 ---p 00000000 00:00 0 
+7f7b2db00000-7f7b2e15f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b2e15f000-7f7b2e300000 r--p 00000000 00:00 0 
+7f7b2e300000-7f7b2e30e000 rw-p 00000000 00:00 0 
+7f7b2e30e000-7f7b2e863000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b2e863000-7f7b2ecdd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b2ecff000-7f7b2ed03000 ---p 00000000 00:00 0 
+7f7b2ed03000-7f7b2ef00000 rw-p 00000000 00:00 0 
+7f7b2f000000-7f7b2f100000 rw-p 00000000 00:00 0 
+7f7b2f200000-7f7b2f300000 rw-p 00000000 00:00 0 
+7f7b2f400000-7f7b2f500000 rw-p 00000000 00:00 0 
+7f7b2f600000-7f7b2f700000 rw-p 00000000 00:00 0 
+7f7b2f800000-7f7b2f900000 rw-p 00000000 00:00 0 
+7f7b2fa00000-7f7b2fb00000 rw-p 00000000 00:00 0 
+7f7b2fc00000-7f7b2fd00000 rw-p 00000000 00:00 0 
+7f7b2fe00000-7f7b2ff00000 rw-p 00000000 00:00 0 
+7f7b30000000-7f7b3003c000 rw-p 00000000 00:00 0 
+7f7b3003c000-7f7b34000000 ---p 00000000 00:00 0 
+7f7b34000000-7f7b34100000 rw-p 00000000 00:00 0 
+7f7b34200000-7f7b34300000 rw-p 00000000 00:00 0 
+7f7b34400000-7f7b34500000 rw-p 00000000 00:00 0 
+7f7b34600000-7f7b34700000 rw-p 00000000 00:00 0 
+7f7b34800000-7f7b34900000 rw-p 00000000 00:00 0 
+7f7b34a00000-7f7b34b00000 rw-p 00000000 00:00 0 
+7f7b34c00000-7f7b34d00000 rw-p 00000000 00:00 0 
+7f7b34e00000-7f7b34f00000 rw-p 00000000 00:00 0 
+7f7b35000000-7f7b35100000 rw-p 00000000 00:00 0 
+7f7b35200000-7f7b35300000 rw-p 00000000 00:00 0 
+7f7b35400000-7f7b35500000 rw-p 00000000 00:00 0 
+7f7b35600000-7f7b35700000 rw-p 00000000 00:00 0 
+7f7b35800000-7f7b35900000 rw-p 00000000 00:00 0 
+7f7b35a00000-7f7b35b00000 rw-p 00000000 00:00 0 
+7f7b35c00000-7f7b35d00000 rw-p 00000000 00:00 0 
+7f7b35e00000-7f7b35f00000 rw-p 00000000 00:00 0 
+7f7b36000000-7f7b36100000 rw-p 00000000 00:00 0 
+7f7b36200000-7f7b36300000 rw-p 00000000 00:00 0 
+7f7b36400000-7f7b36500000 ---p 00000000 00:00 0 
+7f7b36500000-7f7b36b5f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b36b5f000-7f7b36d00000 r--p 00000000 00:00 0 
+7f7b36d00000-7f7b36d0e000 rw-p 00000000 00:00 0 
+7f7b36d0e000-7f7b37263000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b37263000-7f7b376dd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b376ff000-7f7b37703000 ---p 00000000 00:00 0 
+7f7b37703000-7f7b37900000 rw-p 00000000 00:00 0 
+7f7b37a00000-7f7b37b00000 rw-p 00000000 00:00 0 
+7f7b37c00000-7f7b37d00000 rw-p 00000000 00:00 0 
+7f7b37e00000-7f7b37f00000 rw-p 00000000 00:00 0 
+7f7b38000000-7f7b3804d000 rw-p 00000000 00:00 0 
+7f7b3804d000-7f7b3c000000 ---p 00000000 00:00 0 
+7f7b3c000000-7f7b3c100000 rw-p 00000000 00:00 0 
+7f7b3c200000-7f7b3c300000 rw-p 00000000 00:00 0 
+7f7b3c400000-7f7b3c500000 rw-p 00000000 00:00 0 
+7f7b3c600000-7f7b3c700000 rw-p 00000000 00:00 0 
+7f7b3c800000-7f7b3c900000 ---p 00000000 00:00 0 
+7f7b3c900000-7f7b3cf5f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b3cf5f000-7f7b3d100000 r--p 00000000 00:00 0 
+7f7b3d100000-7f7b3d10e000 rw-p 00000000 00:00 0 
+7f7b3d10e000-7f7b3d663000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b3d663000-7f7b3dadd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b3daff000-7f7b3db03000 ---p 00000000 00:00 0 
+7f7b3db03000-7f7b3dd00000 rw-p 00000000 00:00 0 
+7f7b3de00000-7f7b3df00000 rw-p 00000000 00:00 0 
+7f7b3e000000-7f7b3e100000 rw-p 00000000 00:00 0 
+7f7b3e200000-7f7b3e300000 rw-p 00000000 00:00 0 
+7f7b3e400000-7f7b3e500000 rw-p 00000000 00:00 0 
+7f7b3e600000-7f7b3e700000 rw-p 00000000 00:00 0 
+7f7b3e800000-7f7b3e900000 rw-p 00000000 00:00 0 
+7f7b3ea00000-7f7b3eb00000 rw-p 00000000 00:00 0 
+7f7b3ec00000-7f7b3ed00000 rw-p 00000000 00:00 0 
+7f7b3ee00000-7f7b3ef00000 rw-p 00000000 00:00 0 
+7f7b3f000000-7f7b3f100000 rw-p 00000000 00:00 0 
+7f7b3f200000-7f7b3f300000 rw-p 00000000 00:00 0 
+7f7b3f400000-7f7b3f500000 rw-p 00000000 00:00 0 
+7f7b3f600000-7f7b3f700000 rw-p 00000000 00:00 0 
+7f7b3f800000-7f7b3f900000 rw-p 00000000 00:00 0 
+7f7b3fa00000-7f7b3fb00000 rw-p 00000000 00:00 0 
+7f7b3fc00000-7f7b3fd00000 rw-p 00000000 00:00 0 
+7f7b3fe00000-7f7b3ff00000 rw-p 00000000 00:00 0 
+7f7b40000000-7f7b40021000 rw-p 00000000 00:00 0 
+7f7b40021000-7f7b44000000 ---p 00000000 00:00 0 
+7f7b44000000-7f7b44100000 rw-p 00000000 00:00 0 
+7f7b44200000-7f7b44300000 rw-p 00000000 00:00 0 
+7f7b44400000-7f7b44500000 rw-p 00000000 00:00 0 
+7f7b44600000-7f7b44700000 rw-p 00000000 00:00 0 
+7f7b44800000-7f7b44900000 rw-p 00000000 00:00 0 
+7f7b44a00000-7f7b44b00000 rw-p 00000000 00:00 0 
+7f7b44c00000-7f7b44d00000 rw-p 00000000 00:00 0 
+7f7b44e00000-7f7b44f00000 rw-p 00000000 00:00 0 
+7f7b45000000-7f7b45100000 rw-p 00000000 00:00 0 
+7f7b45200000-7f7b45300000 rw-p 00000000 00:00 0 
+7f7b45400000-7f7b45500000 rw-p 00000000 00:00 0 
+7f7b45600000-7f7b45700000 rw-p 00000000 00:00 0 
+7f7b45800000-7f7b45900000 rw-p 00000000 00:00 0 
+7f7b45a00000-7f7b45b00000 rw-p 00000000 00:00 0 
+7f7b45c00000-7f7b45d00000 rw-p 00000000 00:00 0 
+7f7b45e00000-7f7b45f00000 ---p 00000000 00:00 0 
+7f7b45f00000-7f7b4655f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b4655f000-7f7b46700000 r--p 00000000 00:00 0 
+7f7b46700000-7f7b4670e000 rw-p 00000000 00:00 0 
+7f7b4670e000-7f7b46c63000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b46c63000-7f7b470dd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b470ff000-7f7b47103000 ---p 00000000 00:00 0 
+7f7b47103000-7f7b47300000 rw-p 00000000 00:00 0 
+7f7b47400000-7f7b47500000 rw-p 00000000 00:00 0 
+7f7b47600000-7f7b47700000 rw-p 00000000 00:00 0 
+7f7b47800000-7f7b47900000 rw-p 00000000 00:00 0 
+7f7b47a00000-7f7b47b00000 rw-p 00000000 00:00 0 
+7f7b47c00000-7f7b47d00000 rw-p 00000000 00:00 0 
+7f7b47e00000-7f7b47f00000 rw-p 00000000 00:00 0 
+7f7b48000000-7f7b48100000 rw-p 00000000 00:00 0 
+7f7b48200000-7f7b48300000 rw-p 00000000 00:00 0 
+7f7b48400000-7f7b48500000 rw-p 00000000 00:00 0 
+7f7b48600000-7f7b48700000 rw-p 00000000 00:00 0 
+7f7b48800000-7f7b48900000 rw-p 00000000 00:00 0 
+7f7b48a00000-7f7b48b00000 rw-p 00000000 00:00 0 
+7f7b48c00000-7f7b48d00000 rw-p 00000000 00:00 0 
+7f7b48e00000-7f7b48f00000 rw-p 00000000 00:00 0 
+7f7b49000000-7f7b49100000 rw-p 00000000 00:00 0 
+7f7b49200000-7f7b49300000 rw-p 00000000 00:00 0 
+7f7b49400000-7f7b49500000 rw-p 00000000 00:00 0 
+7f7b49600000-7f7b49700000 rw-p 00000000 00:00 0 
+7f7b49800000-7f7b49900000 rw-p 00000000 00:00 0 
+7f7b49a00000-7f7b49b00000 rw-p 00000000 00:00 0 
+7f7b49c00000-7f7b49d00000 rw-p 00000000 00:00 0 
+7f7b49e00000-7f7b49f00000 rw-p 00000000 00:00 0 
+7f7b4a000000-7f7b4a100000 rw-p 00000000 00:00 0 
+7f7b4a200000-7f7b4a300000 rw-p 00000000 00:00 0 
+7f7b4a400000-7f7b4a500000 rw-p 00000000 00:00 0 
+7f7b4a600000-7f7b4a700000 rw-p 00000000 00:00 0 
+7f7b4a800000-7f7b4a900000 rw-p 00000000 00:00 0 
+7f7b4aa00000-7f7b4ab00000 rw-p 00000000 00:00 0 
+7f7b4ac00000-7f7b4ad00000 rw-p 00000000 00:00 0 
+7f7b4ae00000-7f7b4af00000 rw-p 00000000 00:00 0 
+7f7b4b000000-7f7b4b100000 rw-p 00000000 00:00 0 
+7f7b4b200000-7f7b4b300000 rw-p 00000000 00:00 0 
+7f7b4b400000-7f7b4b500000 rw-p 00000000 00:00 0 
+7f7b4b600000-7f7b4b700000 rw-p 00000000 00:00 0 
+7f7b4b800000-7f7b4b900000 rw-p 00000000 00:00 0 
+7f7b4ba00000-7f7b4bb00000 rw-p 00000000 00:00 0 
+7f7b4bc00000-7f7b4bd00000 rw-p 00000000 00:00 0 
+7f7b4be00000-7f7b4bf00000 rw-p 00000000 00:00 0 
+7f7b4c000000-7f7b4c066000 rw-p 00000000 00:00 0 
+7f7b4c066000-7f7b50000000 ---p 00000000 00:00 0 
+7f7b50000000-7f7b50100000 rw-p 00000000 00:00 0 
+7f7b50200000-7f7b50300000 ---p 00000000 00:00 0 
+7f7b50300000-7f7b5095f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b5095f000-7f7b50b00000 r--p 00000000 00:00 0 
+7f7b50b00000-7f7b50b0e000 rw-p 00000000 00:00 0 
+7f7b50b0e000-7f7b51063000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b51063000-7f7b514dd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b51500000-7f7b51600000 rw-p 00000000 00:00 0 
+7f7b51700000-7f7b51800000 rw-p 00000000 00:00 0 
+7f7b51900000-7f7b51a00000 rw-p 00000000 00:00 0 
+7f7b51b00000-7f7b51c00000 rw-p 00000000 00:00 0 
+7f7b51d00000-7f7b51e00000 rw-p 00000000 00:00 0 
+7f7b51f00000-7f7b52000000 rw-p 00000000 00:00 0 
+7f7b52100000-7f7b52200000 rw-p 00000000 00:00 0 
+7f7b52300000-7f7b52400000 rw-p 00000000 00:00 0 
+7f7b52500000-7f7b52600000 rw-p 00000000 00:00 0 
+7f7b52700000-7f7b52800000 rw-p 00000000 00:00 0 
+7f7b52900000-7f7b52a00000 rw-p 00000000 00:00 0 
+7f7b52b00000-7f7b52c00000 rw-p 00000000 00:00 0 
+7f7b52d00000-7f7b52e00000 ---p 00000000 00:00 0 
+7f7b52e00000-7f7b5345f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b5345f000-7f7b53600000 r--p 00000000 00:00 0 
+7f7b53600000-7f7b5360e000 rw-p 00000000 00:00 0 
+7f7b5360e000-7f7b53b63000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b53b63000-7f7b53fdd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b54000000-7f7b54025000 rw-p 00000000 00:00 0 
+7f7b54025000-7f7b58000000 ---p 00000000 00:00 0 
+7f7b58000000-7f7b580b9000 rw-p 00000000 00:00 0 
+7f7b580b9000-7f7b5c000000 ---p 00000000 00:00 0 
+7f7b5c0fe000-7f7b5c102000 ---p 00000000 00:00 0 
+7f7b5c102000-7f7b5c1ff000 rw-p 00000000 00:00 0 
+7f7b5c1ff000-7f7b5c203000 ---p 00000000 00:00 0 
+7f7b5c203000-7f7b5c400000 rw-p 00000000 00:00 0 
+7f7b5c500000-7f7b5c600000 rw-p 00000000 00:00 0 
+7f7b5c700000-7f7b5c800000 rw-p 00000000 00:00 0 
+7f7b5c900000-7f7b5ca00000 rw-p 00000000 00:00 0 
+7f7b5cb00000-7f7b5cc00000 rw-p 00000000 00:00 0 
+7f7b5cd00000-7f7b5ce00000 rw-p 00000000 00:00 0 
+7f7b5cf00000-7f7b5d000000 rw-p 00000000 00:00 0 
+7f7b5d100000-7f7b5d200000 rw-p 00000000 00:00 0 
+7f7b5d300000-7f7b5d400000 rw-p 00000000 00:00 0 
+7f7b5d500000-7f7b5d600000 rw-p 00000000 00:00 0 
+7f7b5d700000-7f7b5d800000 rw-p 00000000 00:00 0 
+7f7b5d900000-7f7b5da00000 rw-p 00000000 00:00 0 
+7f7b5db00000-7f7b5dc00000 rw-p 00000000 00:00 0 
+7f7b5dd00000-7f7b5de00000 rw-p 00000000 00:00 0 
+7f7b5df00000-7f7b5e000000 rw-p 00000000 00:00 0 
+7f7b5e100000-7f7b5e200000 rw-p 00000000 00:00 0 
+7f7b5e300000-7f7b5e400000 rw-p 00000000 00:00 0 
+7f7b5e500000-7f7b5e600000 rw-p 00000000 00:00 0 
+7f7b5e700000-7f7b5e800000 rw-p 00000000 00:00 0 
+7f7b5e900000-7f7b5ea00000 rw-p 00000000 00:00 0 
+7f7b5eb00000-7f7b5ec00000 rw-p 00000000 00:00 0 
+7f7b5ed00000-7f7b5ee00000 ---p 00000000 00:00 0 
+7f7b5ee00000-7f7b5f45f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b5f45f000-7f7b5f600000 r--p 00000000 00:00 0 
+7f7b5f600000-7f7b5f60e000 rw-p 00000000 00:00 0 
+7f7b5f60e000-7f7b5fb63000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b5fb63000-7f7b5ffdd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b60000000-7f7b60021000 rw-p 00000000 00:00 0 
+7f7b60021000-7f7b64000000 ---p 00000000 00:00 0 
+7f7b64000000-7f7b64021000 rw-p 00000000 00:00 0 
+7f7b64021000-7f7b68000000 ---p 00000000 00:00 0 
+7f7b68000000-7f7b68021000 rw-p 00000000 00:00 0 
+7f7b68021000-7f7b6c000000 ---p 00000000 00:00 0 
+7f7b6c000000-7f7b6c021000 rw-p 00000000 00:00 0 
+7f7b6c021000-7f7b70000000 ---p 00000000 00:00 0 
+7f7b70000000-7f7b700b4000 rw-p 00000000 00:00 0 
+7f7b700b4000-7f7b74000000 ---p 00000000 00:00 0 
+7f7b74000000-7f7b74021000 rw-p 00000000 00:00 0 
+7f7b74021000-7f7b78000000 ---p 00000000 00:00 0 
+7f7b78000000-7f7b78100000 rw-p 00000000 00:00 0 
+7f7b78200000-7f7b78300000 rw-p 00000000 00:00 0 
+7f7b78400000-7f7b78500000 rw-p 00000000 00:00 0 
+7f7b78600000-7f7b78700000 rw-p 00000000 00:00 0 
+7f7b78800000-7f7b78900000 rw-p 00000000 00:00 0 
+7f7b78a00000-7f7b78b00000 rw-p 00000000 00:00 0 
+7f7b78c00000-7f7b78d00000 ---p 00000000 00:00 0 
+7f7b78d00000-7f7b7935f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b7935f000-7f7b79500000 r--p 00000000 00:00 0 
+7f7b79500000-7f7b7950e000 rw-p 00000000 00:00 0 
+7f7b7950e000-7f7b79a63000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b79a63000-7f7b79edd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7b79eff000-7f7b79f03000 ---p 00000000 00:00 0 
+7f7b79f03000-7f7b7a100000 rw-p 00000000 00:00 0 
+7f7b7a200000-7f7b7a300000 rw-p 00000000 00:00 0 
+7f7b7a400000-7f7b7a500000 rw-p 00000000 00:00 0 
+7f7b7a600000-7f7b7a700000 rw-p 00000000 00:00 0 
+7f7b7a800000-7f7b7a900000 rw-p 00000000 00:00 0 
+7f7b7aa00000-7f7b7ab00000 rw-p 00000000 00:00 0 
+7f7b7ac00000-7f7b7ad00000 rw-p 00000000 00:00 0 
+7f7b7ae00000-7f7b7af00000 rw-p 00000000 00:00 0 
+7f7b7b000000-7f7b7b100000 rw-p 00000000 00:00 0 
+7f7b7b200000-7f7b7b300000 rw-p 00000000 00:00 0 
+7f7b7b400000-7f7b7b500000 rw-p 00000000 00:00 0 
+7f7b7b600000-7f7b7b700000 rw-p 00000000 00:00 0 
+7f7b7b800000-7f7b7b900000 rw-p 00000000 00:00 0 
+7f7b7ba00000-7f7b7bb00000 rw-p 00000000 00:00 0 
+7f7b7bc00000-7f7b7bd00000 rw-p 00000000 00:00 0 
+7f7b7be00000-7f7b7bf00000 rw-p 00000000 00:00 0 
+7f7b7c000000-7f7b7c021000 rw-p 00000000 00:00 0 
+7f7b7c021000-7f7b80000000 ---p 00000000 00:00 0 
+7f7b80000000-7f7b80021000 rw-p 00000000 00:00 0 
+7f7b80021000-7f7b84000000 ---p 00000000 00:00 0 
+7f7b84000000-7f7b84021000 rw-p 00000000 00:00 0 
+7f7b84021000-7f7b88000000 ---p 00000000 00:00 0 
+7f7b88000000-7f7b88021000 rw-p 00000000 00:00 0 
+7f7b88021000-7f7b8c000000 ---p 00000000 00:00 0 
+7f7b8c000000-7f7b8c021000 rw-p 00000000 00:00 0 
+7f7b8c021000-7f7b90000000 ---p 00000000 00:00 0 
+7f7b90000000-7f7b90052000 rw-p 00000000 00:00 0 
+7f7b90052000-7f7b94000000 ---p 00000000 00:00 0 
+7f7b94000000-7f7b94021000 rw-p 00000000 00:00 0 
+7f7b94021000-7f7b98000000 ---p 00000000 00:00 0 
+7f7b98000000-7f7b98021000 rw-p 00000000 00:00 0 
+7f7b98021000-7f7b9c000000 ---p 00000000 00:00 0 
+7f7b9c000000-7f7b9c100000 rw-p 00000000 00:00 0 
+7f7b9c200000-7f7b9c300000 rw-p 00000000 00:00 0 
+7f7b9c400000-7f7b9c500000 rw-p 00000000 00:00 0 
+7f7b9c600000-7f7b9c700000 rw-p 00000000 00:00 0 
+7f7b9c800000-7f7b9c900000 rw-p 00000000 00:00 0 
+7f7b9ca00000-7f7b9cb00000 rw-p 00000000 00:00 0 
+7f7b9cc00000-7f7b9cd00000 rw-p 00000000 00:00 0 
+7f7b9ce00000-7f7b9cf00000 rw-p 00000000 00:00 0 
+7f7b9d000000-7f7b9d100000 rw-p 00000000 00:00 0 
+7f7b9d200000-7f7b9d300000 rw-p 00000000 00:00 0 
+7f7b9d400000-7f7b9d500000 rw-p 00000000 00:00 0 
+7f7b9d600000-7f7b9d700000 rw-p 00000000 00:00 0 
+7f7b9d800000-7f7b9d900000 rw-p 00000000 00:00 0 
+7f7b9da00000-7f7b9db00000 rw-p 00000000 00:00 0 
+7f7b9dc00000-7f7b9dd00000 rw-p 00000000 00:00 0 
+7f7b9de00000-7f7b9df00000 rw-p 00000000 00:00 0 
+7f7b9e000000-7f7b9e100000 rw-p 00000000 00:00 0 
+7f7b9e200000-7f7b9e300000 rw-p 00000000 00:00 0 
+7f7b9e400000-7f7b9e500000 rw-p 00000000 00:00 0 
+7f7b9e600000-7f7b9e700000 rw-p 00000000 00:00 0 
+7f7b9e800000-7f7b9e900000 rw-p 00000000 00:00 0 
+7f7b9ea00000-7f7b9eb00000 rw-p 00000000 00:00 0 
+7f7b9ec00000-7f7b9ed00000 rw-p 00000000 00:00 0 
+7f7b9ee00000-7f7b9ef00000 rw-p 00000000 00:00 0 
+7f7b9f000000-7f7b9f100000 rw-p 00000000 00:00 0 
+7f7b9f200000-7f7b9f300000 rw-p 00000000 00:00 0 
+7f7b9f400000-7f7b9f500000 rw-p 00000000 00:00 0 
+7f7b9f5f8000-7f7b9f5f9000 ---p 00000000 00:00 0 
+7f7b9f5f9000-7f7b9f6fa000 rw-p 00000000 00:00 0 
+7f7b9f6fa000-7f7b9f6fb000 ---p 00000000 00:00 0 
+7f7b9f6fb000-7f7b9f7fc000 rw-p 00000000 00:00 0 
+7f7b9f7fc000-7f7b9f7fd000 ---p 00000000 00:00 0 
+7f7b9f7fd000-7f7b9f8fe000 rw-p 00000000 00:00 0 
+7f7b9f8fe000-7f7b9f8ff000 ---p 00000000 00:00 0 
+7f7b9f8ff000-7f7b9fa00000 rw-p 00000000 00:00 0 
+7f7b9faf7000-7f7b9fafb000 ---p 00000000 00:00 0 
+7f7b9fafb000-7f7b9fbf8000 rw-p 00000000 00:00 0 
+7f7b9fbf8000-7f7b9fbf9000 ---p 00000000 00:00 0 
+7f7b9fbf9000-7f7b9fcfa000 rw-p 00000000 00:00 0 
+7f7b9fcfa000-7f7b9fcfb000 ---p 00000000 00:00 0 
+7f7b9fcfb000-7f7b9fdfc000 rw-p 00000000 00:00 0 
+7f7b9fdfc000-7f7b9fdfd000 ---p 00000000 00:00 0 
+7f7b9fdfd000-7f7b9fefe000 rw-p 00000000 00:00 0 
+7f7b9fefe000-7f7b9feff000 ---p 00000000 00:00 0 
+7f7b9feff000-7f7ba0000000 rw-p 00000000 00:00 0 
+7f7ba0000000-7f7ba0021000 rw-p 00000000 00:00 0 
+7f7ba0021000-7f7ba4000000 ---p 00000000 00:00 0 
+7f7ba4000000-7f7ba4021000 rw-p 00000000 00:00 0 
+7f7ba4021000-7f7ba8000000 ---p 00000000 00:00 0 
+7f7ba8000000-7f7ba8021000 rw-p 00000000 00:00 0 
+7f7ba8021000-7f7bac000000 ---p 00000000 00:00 0 
+7f7bac000000-7f7bac021000 rw-p 00000000 00:00 0 
+7f7bac021000-7f7bb0000000 ---p 00000000 00:00 0 
+7f7bb0000000-7f7bb0021000 rw-p 00000000 00:00 0 
+7f7bb0021000-7f7bb4000000 ---p 00000000 00:00 0 
+7f7bb4000000-7f7bb4021000 rw-p 00000000 00:00 0 
+7f7bb4021000-7f7bb8000000 ---p 00000000 00:00 0 
+7f7bb8000000-7f7bb8021000 rw-p 00000000 00:00 0 
+7f7bb8021000-7f7bbc000000 ---p 00000000 00:00 0 
+7f7bbc000000-7f7bbc021000 rw-p 00000000 00:00 0 
+7f7bbc021000-7f7bc0000000 ---p 00000000 00:00 0 
+7f7bc0000000-7f7bc0021000 rw-p 00000000 00:00 0 
+7f7bc0021000-7f7bc4000000 ---p 00000000 00:00 0 
+7f7bc4000000-7f7bc4021000 rw-p 00000000 00:00 0 
+7f7bc4021000-7f7bc8000000 ---p 00000000 00:00 0 
+7f7bc8000000-7f7bc8021000 rw-p 00000000 00:00 0 
+7f7bc8021000-7f7bcc000000 ---p 00000000 00:00 0 
+7f7bcc000000-7f7bcc021000 rw-p 00000000 00:00 0 
+7f7bcc021000-7f7bd0000000 ---p 00000000 00:00 0 
+7f7bd0000000-7f7bd0021000 rw-p 00000000 00:00 0 
+7f7bd0021000-7f7bd4000000 ---p 00000000 00:00 0 
+7f7bd4000000-7f7bd4021000 rw-p 00000000 00:00 0 
+7f7bd4021000-7f7bd8000000 ---p 00000000 00:00 0 
+7f7bd8000000-7f7bd8021000 rw-p 00000000 00:00 0 
+7f7bd8021000-7f7bdc000000 ---p 00000000 00:00 0 
+7f7bdc000000-7f7bdc021000 rw-p 00000000 00:00 0 
+7f7bdc021000-7f7be0000000 ---p 00000000 00:00 0 
+7f7be0000000-7f7be0021000 rw-p 00000000 00:00 0 
+7f7be0021000-7f7be4000000 ---p 00000000 00:00 0 
+7f7be4000000-7f7be4021000 rw-p 00000000 00:00 0 
+7f7be4021000-7f7be8000000 ---p 00000000 00:00 0 
+7f7be8000000-7f7be8048000 rw-p 00000000 00:00 0 
+7f7be8048000-7f7bec000000 ---p 00000000 00:00 0 
+7f7bec0da000-7f7bec0db000 ---p 00000000 00:00 0 
+7f7bec0db000-7f7bec1dc000 rw-p 00000000 00:00 0 
+7f7bec1dc000-7f7bec1dd000 ---p 00000000 00:00 0 
+7f7bec1dd000-7f7bec2de000 rw-p 00000000 00:00 0 
+7f7bec2de000-7f7bec2df000 ---p 00000000 00:00 0 
+7f7bec2df000-7f7bec3e0000 rw-p 00000000 00:00 0 
+7f7bec3e0000-7f7bec3e1000 ---p 00000000 00:00 0 
+7f7bec3e1000-7f7bec4e2000 rw-p 00000000 00:00 0 
+7f7bec4e2000-7f7bec4e3000 ---p 00000000 00:00 0 
+7f7bec4e3000-7f7bec5e4000 rw-p 00000000 00:00 0 
+7f7bec5e4000-7f7bec5e5000 ---p 00000000 00:00 0 
+7f7bec5e5000-7f7bec6e6000 rw-p 00000000 00:00 0 
+7f7bec6e6000-7f7bec6e7000 ---p 00000000 00:00 0 
+7f7bec6e7000-7f7bec7e8000 rw-p 00000000 00:00 0 
+7f7bec7e8000-7f7bec7e9000 ---p 00000000 00:00 0 
+7f7bec7e9000-7f7bec8ea000 rw-p 00000000 00:00 0 
+7f7bec8ea000-7f7bec8eb000 ---p 00000000 00:00 0 
+7f7bec8eb000-7f7bec9ec000 rw-p 00000000 00:00 0 
+7f7bec9ec000-7f7bec9ed000 ---p 00000000 00:00 0 
+7f7bec9ed000-7f7becaee000 rw-p 00000000 00:00 0 
+7f7becaee000-7f7becaef000 ---p 00000000 00:00 0 
+7f7becaef000-7f7becbf0000 rw-p 00000000 00:00 0 
+7f7becbf0000-7f7becbf1000 ---p 00000000 00:00 0 
+7f7becbf1000-7f7beccf2000 rw-p 00000000 00:00 0 
+7f7beccf2000-7f7beccf3000 ---p 00000000 00:00 0 
+7f7beccf3000-7f7becdf4000 rw-p 00000000 00:00 0 
+7f7becdf4000-7f7becdf5000 ---p 00000000 00:00 0 
+7f7becdf5000-7f7becef6000 rw-p 00000000 00:00 0 
+7f7becef6000-7f7becef7000 ---p 00000000 00:00 0 
+7f7becef7000-7f7becff8000 rw-p 00000000 00:00 0 
+7f7becff8000-7f7becff9000 ---p 00000000 00:00 0 
+7f7becff9000-7f7bed0fa000 rw-p 00000000 00:00 0 
+7f7bed0fa000-7f7bed0fb000 ---p 00000000 00:00 0 
+7f7bed0fb000-7f7bed1fc000 rw-p 00000000 00:00 0 
+7f7bed1fc000-7f7bed1fd000 ---p 00000000 00:00 0 
+7f7bed1fd000-7f7bed2fe000 rw-p 00000000 00:00 0 
+7f7bed2fe000-7f7bed2ff000 ---p 00000000 00:00 0 
+7f7bed2ff000-7f7bed500000 rw-p 00000000 00:00 0 
+7f7bed600000-7f7bed700000 rw-p 00000000 00:00 0 
+7f7bed800000-7f7bed900000 rw-p 00000000 00:00 0 
+7f7beda00000-7f7bedb00000 rw-p 00000000 00:00 0 
+7f7bedc00000-7f7bedd00000 rw-p 00000000 00:00 0 
+7f7bede00000-7f7bedf00000 rw-p 00000000 00:00 0 
+7f7bee000000-7f7bee100000 rw-p 00000000 00:00 0 
+7f7bee200000-7f7bee300000 rw-p 00000000 00:00 0 
+7f7bee400000-7f7bee500000 rw-p 00000000 00:00 0 
+7f7bee600000-7f7bee700000 rw-p 00000000 00:00 0 
+7f7bee800000-7f7bee900000 rw-p 00000000 00:00 0 
+7f7beea00000-7f7beeb00000 ---p 00000000 00:00 0 
+7f7beeb00000-7f7bef15f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7bef15f000-7f7bef300000 r--p 00000000 00:00 0 
+7f7bef300000-7f7bef30e000 rw-p 00000000 00:00 0 
+7f7bef30e000-7f7bef863000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7bef863000-7f7befcdd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7befcff000-7f7befd03000 ---p 00000000 00:00 0 
+7f7befd03000-7f7beff00000 rw-p 00000000 00:00 0 
+7f7bf0000000-7f7bf01ac000 rw-p 00000000 00:00 0 
+7f7bf01ac000-7f7bf4000000 ---p 00000000 00:00 0 
+7f7bf4000000-7f7bf414e000 rw-p 00000000 00:00 0 
+7f7bf414e000-7f7bf8000000 ---p 00000000 00:00 0 
+7f7bf8000000-7f7bf8021000 rw-p 00000000 00:00 0 
+7f7bf8021000-7f7bfc000000 ---p 00000000 00:00 0 
+7f7bfc000000-7f7bfc0d4000 rw-p 00000000 00:00 0 
+7f7bfc0d4000-7f7c00000000 ---p 00000000 00:00 0 
+7f7c00000000-7f7c0017e000 rw-p 00000000 00:00 0 
+7f7c0017e000-7f7c04000000 ---p 00000000 00:00 0 
+7f7c040fd000-7f7c04101000 ---p 00000000 00:00 0 
+7f7c04101000-7f7c042fe000 rw-p 00000000 00:00 0 
+7f7c042fe000-7f7c04302000 ---p 00000000 00:00 0 
+7f7c04302000-7f7c044ff000 rw-p 00000000 00:00 0 
+7f7c044ff000-7f7c04503000 ---p 00000000 00:00 0 
+7f7c04503000-7f7c04800000 rw-p 00000000 00:00 0 
+7f7c04900000-7f7c04a00000 rw-p 00000000 00:00 0 
+7f7c04b00000-7f7c04c00000 rw-p 00000000 00:00 0 
+7f7c04d00000-7f7c04e00000 rw-p 00000000 00:00 0 
+7f7c04f00000-7f7c05000000 rw-p 00000000 00:00 0 
+7f7c05100000-7f7c05200000 rw-p 00000000 00:00 0 
+7f7c05300000-7f7c05400000 rw-p 00000000 00:00 0 
+7f7c05500000-7f7c05600000 rw-p 00000000 00:00 0 
+7f7c05700000-7f7c05800000 rw-p 00000000 00:00 0 
+7f7c05900000-7f7c05a00000 rw-p 00000000 00:00 0 
+7f7c05b00000-7f7c05c00000 rw-p 00000000 00:00 0 
+7f7c05d00000-7f7c05e00000 rw-p 00000000 00:00 0 
+7f7c05f00000-7f7c06000000 rw-p 00000000 00:00 0 
+7f7c06100000-7f7c06200000 rw-p 00000000 00:00 0 
+7f7c06300000-7f7c06400000 rw-p 00000000 00:00 0 
+7f7c06500000-7f7c06600000 rw-p 00000000 00:00 0 
+7f7c06700000-7f7c06800000 rw-p 00000000 00:00 0 
+7f7c068ff000-7f7c06903000 ---p 00000000 00:00 0 
+7f7c06903000-7f7c06c00000 rw-p 00000000 00:00 0 
+7f7c06d00000-7f7c06e00000 rw-p 00000000 00:00 0 
+7f7c06f00000-7f7c07000000 rw-p 00000000 00:00 0 
+7f7c07100000-7f7c07200000 rw-p 00000000 00:00 0 
+7f7c07300000-7f7c07400000 rw-p 00000000 00:00 0 
+7f7c07500000-7f7c07600000 rw-p 00000000 00:00 0 
+7f7c07700000-7f7c07800000 rw-p 00000000 00:00 0 
+7f7c078fc000-7f7c078fd000 ---p 00000000 00:00 0 
+7f7c078fd000-7f7c079fe000 rw-p 00000000 00:00 0 
+7f7c079fe000-7f7c079ff000 ---p 00000000 00:00 0 
+7f7c079ff000-7f7c07c00000 rw-p 00000000 00:00 0 
+7f7c07d00000-7f7c07e00000 rw-p 00000000 00:00 0 
+7f7c07f00000-7f7c08000000 rw-p 00000000 00:00 0 
+7f7c08100000-7f7c08200000 rw-p 00000000 00:00 0 
+7f7c08300000-7f7c08400000 rw-p 00000000 00:00 0 
+7f7c08500000-7f7c08600000 rw-p 00000000 00:00 0 
+7f7c086fc000-7f7c086fd000 ---p 00000000 00:00 0 
+7f7c086fd000-7f7c087fe000 rw-p 00000000 00:00 0 
+7f7c087fe000-7f7c087ff000 ---p 00000000 00:00 0 
+7f7c087ff000-7f7c08a00000 rw-p 00000000 00:00 0 
+7f7c08b00000-7f7c08c00000 rw-p 00000000 00:00 0 
+7f7c08d00000-7f7c08e00000 rw-p 00000000 00:00 0 
+7f7c08f00000-7f7c09000000 rw-p 00000000 00:00 0 
+7f7c09100000-7f7c09200000 rw-p 00000000 00:00 0 
+7f7c09300000-7f7c09400000 rw-p 00000000 00:00 0 
+7f7c09500000-7f7c09600000 rw-p 00000000 00:00 0 
+7f7c09700000-7f7c09800000 rw-p 00000000 00:00 0 
+7f7c09900000-7f7c09a00000 rw-p 00000000 00:00 0 
+7f7c09b00000-7f7c09c00000 rw-p 00000000 00:00 0 
+7f7c09d00000-7f7c09e00000 rw-p 00000000 00:00 0 
+7f7c09f00000-7f7c0a000000 rw-p 00000000 00:00 0 
+7f7c0a100000-7f7c0a200000 rw-p 00000000 00:00 0 
+7f7c0a300000-7f7c0a400000 rw-p 00000000 00:00 0 
+7f7c0a500000-7f7c0a600000 rw-p 00000000 00:00 0 
+7f7c0a700000-7f7c0a800000 rw-p 00000000 00:00 0 
+7f7c0a900000-7f7c0aa00000 rw-p 00000000 00:00 0 
+7f7c0ab00000-7f7c0ac00000 rw-p 00000000 00:00 0 
+7f7c0ad00000-7f7c0ae00000 ---p 00000000 00:00 0 
+7f7c0ae00000-7f7c0b45f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c0b45f000-7f7c0b600000 r--p 00000000 00:00 0 
+7f7c0b600000-7f7c0b60e000 rw-p 00000000 00:00 0 
+7f7c0b60e000-7f7c0bb63000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c0bb63000-7f7c0bfdd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c0c000000-7f7c0c057000 rw-p 00000000 00:00 0 
+7f7c0c057000-7f7c10000000 ---p 00000000 00:00 0 
+7f7c10000000-7f7c10021000 rw-p 00000000 00:00 0 
+7f7c10021000-7f7c14000000 ---p 00000000 00:00 0 
+7f7c14000000-7f7c14048000 rw-p 00000000 00:00 0 
+7f7c14048000-7f7c18000000 ---p 00000000 00:00 0 
+7f7c18000000-7f7c18100000 rw-p 00000000 00:00 0 
+7f7c18200000-7f7c18300000 rw-p 00000000 00:00 0 
+7f7c18400000-7f7c18500000 rw-p 00000000 00:00 0 
+7f7c18600000-7f7c18700000 rw-p 00000000 00:00 0 
+7f7c18800000-7f7c18900000 rw-p 00000000 00:00 0 
+7f7c18a00000-7f7c18b00000 rw-p 00000000 00:00 0 
+7f7c18c00000-7f7c18d00000 ---p 00000000 00:00 0 
+7f7c18d00000-7f7c1935f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c1935f000-7f7c19500000 r--p 00000000 00:00 0 
+7f7c19500000-7f7c1950e000 rw-p 00000000 00:00 0 
+7f7c1950e000-7f7c19a63000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c19a63000-7f7c19edd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c19f00000-7f7c1a000000 ---p 00000000 00:00 0 
+7f7c1a000000-7f7c1a65f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c1a65f000-7f7c1a800000 r--p 00000000 00:00 0 
+7f7c1a800000-7f7c1a80e000 rw-p 00000000 00:00 0 
+7f7c1a80e000-7f7c1ad63000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c1ad63000-7f7c1b1dd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c1b1fd000-7f7c1b201000 ---p 00000000 00:00 0 
+7f7c1b201000-7f7c1b3fe000 rw-p 00000000 00:00 0 
+7f7c1b3fe000-7f7c1b402000 ---p 00000000 00:00 0 
+7f7c1b402000-7f7c1b5ff000 rw-p 00000000 00:00 0 
+7f7c1b5ff000-7f7c1b603000 ---p 00000000 00:00 0 
+7f7c1b603000-7f7c1b900000 rw-p 00000000 00:00 0 
+7f7c1ba00000-7f7c1bb00000 rw-p 00000000 00:00 0 
+7f7c1bc00000-7f7c1bd00000 rw-p 00000000 00:00 0 
+7f7c1be00000-7f7c1bf00000 rw-p 00000000 00:00 0 
+7f7c1c000000-7f7c1c021000 rw-p 00000000 00:00 0 
+7f7c1c021000-7f7c20000000 ---p 00000000 00:00 0 
+7f7c20100000-7f7c20200000 rw-p 00000000 00:00 0 
+7f7c20300000-7f7c20400000 rw-p 00000000 00:00 0 
+7f7c20500000-7f7c20600000 rw-p 00000000 00:00 0 
+7f7c20700000-7f7c20800000 ---p 00000000 00:00 0 
+7f7c20800000-7f7c20e5f000 r--p 01362000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c20e5f000-7f7c21000000 r--p 00000000 00:00 0 
+7f7c21000000-7f7c2100e000 rw-p 00000000 00:00 0 
+7f7c2100e000-7f7c21563000 rw-p 01b70000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c21563000-7f7c219dd000 r--p 020c5000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c219f4000-7f7c21a79000 rw-p 00000000 00:00 0 
+7f7c21a79000-7f7c21a7b000 r--p 00000000 103:02 39852051                  /usr/lib/x86_64-linux-gnu/libcrypt.so.1.1.0
+7f7c21a7b000-7f7c21a90000 r-xp 00002000 103:02 39852051                  /usr/lib/x86_64-linux-gnu/libcrypt.so.1.1.0
+7f7c21a90000-7f7c21aaa000 r--p 00017000 103:02 39852051                  /usr/lib/x86_64-linux-gnu/libcrypt.so.1.1.0
+7f7c21aaa000-7f7c21aab000 r--p 00030000 103:02 39852051                  /usr/lib/x86_64-linux-gnu/libcrypt.so.1.1.0
+7f7c21aab000-7f7c21aac000 rw-p 00031000 103:02 39852051                  /usr/lib/x86_64-linux-gnu/libcrypt.so.1.1.0
+7f7c21aac000-7f7c21ab4000 rw-p 00000000 00:00 0 
+7f7c21ab4000-7f7c21c37000 r--p 00000000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c21c37000-7f7c22e0d000 r-xp 00183000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c22e0d000-7f7c23ff7000 r--p 01359000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c23ff7000-7f7c23ffb000 rw-p 02543000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c23ffb000-7f7c24000000 rw-p 027b8000 103:02 51870081                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjvmcicompiler.so
+7f7c24000000-7f7c24227000 rw-p 00000000 00:00 0 
+7f7c24227000-7f7c28000000 ---p 00000000 00:00 0 
+7f7c28000000-7f7c28021000 rw-p 00000000 00:00 0 
+7f7c28021000-7f7c2c000000 ---p 00000000 00:00 0 
+7f7c2c000000-7f7c2c3aa000 rw-p 00000000 00:00 0 
+7f7c2c3aa000-7f7c30000000 ---p 00000000 00:00 0 
+7f7c30000000-7f7c30021000 rw-p 00000000 00:00 0 
+7f7c30021000-7f7c34000000 ---p 00000000 00:00 0 
+7f7c34000000-7f7c34485000 rw-p 00000000 00:00 0 
+7f7c34485000-7f7c38000000 ---p 00000000 00:00 0 
+7f7c38000000-7f7c38021000 rw-p 00000000 00:00 0 
+7f7c38021000-7f7c3c000000 ---p 00000000 00:00 0 
+7f7c3c000000-7f7c3c021000 rw-p 00000000 00:00 0 
+7f7c3c021000-7f7c40000000 ---p 00000000 00:00 0 
+7f7c40000000-7f7c40070000 rw-p 00000000 00:00 0 
+7f7c40070000-7f7c44000000 ---p 00000000 00:00 0 
+7f7c44000000-7f7c44021000 rw-p 00000000 00:00 0 
+7f7c44021000-7f7c48000000 ---p 00000000 00:00 0 
+7f7c48000000-7f7c48021000 rw-p 00000000 00:00 0 
+7f7c48021000-7f7c4c000000 ---p 00000000 00:00 0 
+7f7c4c000000-7f7c4c021000 rw-p 00000000 00:00 0 
+7f7c4c021000-7f7c50000000 ---p 00000000 00:00 0 
+7f7c50000000-7f7c50021000 rw-p 00000000 00:00 0 
+7f7c50021000-7f7c54000000 ---p 00000000 00:00 0 
+7f7c54000000-7f7c54025000 rw-p 00000000 00:00 0 
+7f7c54025000-7f7c58000000 ---p 00000000 00:00 0 
+7f7c58000000-7f7c58021000 rw-p 00000000 00:00 0 
+7f7c58021000-7f7c5c000000 ---p 00000000 00:00 0 
+7f7c5c000000-7f7c5c400000 rw-p 00000000 00:00 0 
+7f7c5c400000-7f7c5c900000 rw-p 00000000 00:00 0 
+7f7c5c900000-7f7c5cb00000 rw-p 00000000 00:00 0 
+7f7c5cb00000-7f7c5cb80000 rw-p 00000000 00:00 0 
+7f7c5cb80000-7f7c5cc00000 rw-p 00000000 00:00 0 
+7f7c5cc00000-7f7c5cf00000 rw-p 00000000 00:00 0 
+7f7c5cf00000-7f7c5d000000 rw-p 00000000 00:00 0 
+7f7c5d000000-7f7c5d300000 rw-p 00000000 00:00 0 
+7f7c5d300000-7f7c5d3c0000 rw-p 00000000 00:00 0 
+7f7c5d3c0000-7f7c5d400000 rw-p 00000000 00:00 0 
+7f7c5d400000-7f7c5d800000 rw-p 00000000 00:00 0 
+7f7c5d800000-7f7c5f500000 rw-p 00000000 00:00 0 
+7f7c5f500000-7f7c5f540000 rw-p 00000000 00:00 0 
+7f7c5f540000-7f7c5f600000 ---p 00000000 00:00 0 
+7f7c5f600000-7f7c5faa0000 rw-p 00000000 00:00 0 
+7f7c5faa0000-7f7c60000000 ---p 00000000 00:00 0 
+7f7c60000000-7f7c60021000 rw-p 00000000 00:00 0 
+7f7c60021000-7f7c64000000 ---p 00000000 00:00 0 
+7f7c64100000-7f7c64200000 rw-p 00000000 00:00 0 
+7f7c64300000-7f7c64400000 rw-p 00000000 00:00 0 
+7f7c64422000-7f7c64427000 r--p 00000000 103:02 51867375                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/languages/python/lib/graalpy23.0/libposix.graalpy230-310-native-x86_64-linux.so
+7f7c64427000-7f7c6442b000 r-xp 00004000 103:02 51867375                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/languages/python/lib/graalpy23.0/libposix.graalpy230-310-native-x86_64-linux.so
+7f7c6442b000-7f7c6442c000 r--p 00007000 103:02 51867375                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/languages/python/lib/graalpy23.0/libposix.graalpy230-310-native-x86_64-linux.so
+7f7c6442c000-7f7c6442d000 rw-p 00007000 103:02 51867375                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/languages/python/lib/graalpy23.0/libposix.graalpy230-310-native-x86_64-linux.so
+7f7c6442d000-7f7c64430000 rw-p 00039000 103:02 51867375                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/languages/python/lib/graalpy23.0/libposix.graalpy230-310-native-x86_64-linux.so
+7f7c64430000-7f7c64463000 rw-p 00000000 00:00 0 
+7f7c64500000-7f7c64600000 rw-p 00000000 00:00 0 
+7f7c64605000-7f7c6468a000 rw-p 00000000 00:00 0 
+7f7c64700000-7f7c64800000 rw-p 00000000 00:00 0 
+7f7c64806000-7f7c64809000 r--p 00000000 103:02 51869393                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libtrufflenfi.so
+7f7c64809000-7f7c64816000 r-xp 00003000 103:02 51869393                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libtrufflenfi.so
+7f7c64816000-7f7c64819000 r--p 00010000 103:02 51869393                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libtrufflenfi.so
+7f7c64819000-7f7c6481a000 r--p 00012000 103:02 51869393                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libtrufflenfi.so
+7f7c6481a000-7f7c6481b000 rw-p 00013000 103:02 51869393                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libtrufflenfi.so
+7f7c6481b000-7f7c6481c000 rw-p 0004a000 103:02 51869393                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libtrufflenfi.so
+7f7c64900000-7f7c64a00000 rw-p 00000000 00:00 0 
+7f7c64a20000-7f7c64c00000 rw-p 00000000 00:00 0 
+7f7c64c04000-7f7c64c2e000 rw-p 00000000 00:00 0 
+7f7c64c32000-7f7c64cda000 rw-p 00000000 00:00 0 
+7f7c64cf9000-7f7c64d00000 r--s 00000000 103:02 40504943                  /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+7f7c64d00000-7f7c64e00000 rw-p 00000000 00:00 0 
+7f7c64e01000-7f7c64e78000 rw-p 00000000 00:00 0 
+7f7c64e7c000-7f7c64ec0000 rw-p 00000000 00:00 0 
+7f7c64ec0000-7f7c64ecd000 r-xp 00000000 103:02 51866632                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libverify.so
+7f7c64ecd000-7f7c64ecf000 r--p 0000c000 103:02 51866632                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libverify.so
+7f7c64ecf000-7f7c64ed0000 rw-p 0000e000 103:02 51866632                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libverify.so
+7f7c64ed0000-7f7c64ed2000 rw-p 00010000 103:02 51866632                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libverify.so
+7f7c64ed2000-7f7c64ed6000 ---p 00000000 00:00 0 
+7f7c64ed6000-7f7c64ef4000 rw-p 00000000 00:00 0 
+7f7c64ef4000-7f7c64ef5000 r--p 00000000 00:00 0 
+7f7c64ef5000-7f7c64efb000 r-xp 00000000 103:02 51869757                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libmanagement_ext.so
+7f7c64efb000-7f7c64efc000 r--p 00005000 103:02 51869757                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libmanagement_ext.so
+7f7c64efc000-7f7c64efd000 rw-p 00006000 103:02 51869757                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libmanagement_ext.so
+7f7c64efd000-7f7c64f00000 rw-p 00009000 103:02 51869757                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libmanagement_ext.so
+7f7c64f00000-7f7c64f31000 rw-p 00000000 00:00 0 
+7f7c64f31000-7f7c64f46000 r-xp 00000000 103:02 51865979                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libnet.so
+7f7c64f46000-7f7c64f47000 ---p 00015000 103:02 51865979                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libnet.so
+7f7c64f47000-7f7c64f48000 r--p 00015000 103:02 51865979                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libnet.so
+7f7c64f48000-7f7c64f49000 rw-p 00016000 103:02 51865979                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libnet.so
+7f7c64f49000-7f7c64f4e000 rw-p 0001b000 103:02 51865979                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libnet.so
+7f7c64f4e000-7f7c64f61000 r-xp 00000000 103:02 51865608                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libnio.so
+7f7c64f61000-7f7c64f62000 r--p 00012000 103:02 51865608                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libnio.so
+7f7c64f62000-7f7c64f63000 rw-p 00013000 103:02 51865608                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libnio.so
+7f7c64f63000-7f7c64f6b000 rw-p 00019000 103:02 51865608                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libnio.so
+7f7c64f6b000-7f7c64f9c000 rw-p 00000000 00:00 0 
+7f7c64f9c000-7f7c64f9f000 r--p 00000000 103:02 65812693                  /home/a4090/miniconda3/envs/auto_pose/lib/libz.so.1.2.13
+7f7c64f9f000-7f7c64fae000 r-xp 00003000 103:02 65812693                  /home/a4090/miniconda3/envs/auto_pose/lib/libz.so.1.2.13
+7f7c64fae000-7f7c64fb5000 r--p 00012000 103:02 65812693                  /home/a4090/miniconda3/envs/auto_pose/lib/libz.so.1.2.13
+7f7c64fb5000-7f7c64fb6000 r--p 00018000 103:02 65812693                  /home/a4090/miniconda3/envs/auto_pose/lib/libz.so.1.2.13
+7f7c64fb6000-7f7c64fb7000 rw-p 00019000 103:02 65812693                  /home/a4090/miniconda3/envs/auto_pose/lib/libz.so.1.2.13
+7f7c64fb7000-7f7c64fb8000 ---p 00000000 00:00 0 
+7f7c64fb8000-7f7c650b9000 rw-p 00000000 00:00 0 
+7f7c650b9000-7f7c650bd000 ---p 00000000 00:00 0 
+7f7c650bd000-7f7c651ba000 rw-p 00000000 00:00 0 
+7f7c651ba000-7f7c651be000 ---p 00000000 00:00 0 
+7f7c651be000-7f7c653bb000 rw-p 00000000 00:00 0 
+7f7c653bb000-7f7c653bf000 ---p 00000000 00:00 0 
+7f7c653bf000-7f7c654bc000 rw-p 00000000 00:00 0 
+7f7c654bc000-7f7c654c0000 ---p 00000000 00:00 0 
+7f7c654c0000-7f7c656bd000 rw-p 00000000 00:00 0 
+7f7c656bd000-7f7c656c1000 ---p 00000000 00:00 0 
+7f7c656c1000-7f7c657be000 rw-p 00000000 00:00 0 
+7f7c657be000-7f7c657c2000 ---p 00000000 00:00 0 
+7f7c657c2000-7f7c659bf000 rw-p 00000000 00:00 0 
+7f7c659bf000-7f7c659c3000 ---p 00000000 00:00 0 
+7f7c659c3000-7f7c65bc0000 rw-p 00000000 00:00 0 
+7f7c65bc0000-7f7c65bc4000 ---p 00000000 00:00 0 
+7f7c65bc4000-7f7c65cc1000 rw-p 00000000 00:00 0 
+7f7c65cc1000-7f7c65cc5000 ---p 00000000 00:00 0 
+7f7c65cc5000-7f7c65dc2000 rw-p 00000000 00:00 0 
+7f7c65dc2000-7f7c65dc6000 ---p 00000000 00:00 0 
+7f7c65dc6000-7f7c65ec3000 rw-p 00000000 00:00 0 
+7f7c65ec3000-7f7c66734000 r--p 00000000 103:02 39848971                  /usr/lib/locale/locale-archive
+7f7c66734000-7f7c66738000 ---p 00000000 00:00 0 
+7f7c66738000-7f7c66835000 rw-p 00000000 00:00 0 
+7f7c66835000-7f7c66839000 ---p 00000000 00:00 0 
+7f7c66839000-7f7c66936000 rw-p 00000000 00:00 0 
+7f7c66936000-7f7c66937000 ---p 00000000 00:00 0 
+7f7c66937000-7f7c66a38000 rw-p 00000000 00:00 0 
+7f7c66a38000-7f7c66b06000 r-xp 00000000 103:02 51869100                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjsvml.so
+7f7c66b06000-7f7c66b07000 r--p 000cd000 103:02 51869100                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjsvml.so
+7f7c66b07000-7f7c66b08000 rw-p 000ce000 103:02 51869100                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjsvml.so
+7f7c66b08000-7f7c66b0e000 rw-p 000d4000 103:02 51869100                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjsvml.so
+7f7c66b0e000-7f7c66bea000 rw-p 00000000 00:00 0 
+7f7c66bea000-7f7c66beb000 ---p 00000000 00:00 0 
+7f7c66beb000-7f7c66cec000 rw-p 00000000 00:00 0 
+7f7c66cec000-7f7c66ced000 ---p 00000000 00:00 0 
+7f7c66ced000-7f7c68000000 rw-p 00000000 00:00 0 
+7f7c68000000-7f7c68021000 rw-p 00000000 00:00 0 
+7f7c68021000-7f7c6c000000 ---p 00000000 00:00 0 
+7f7c6c000000-7f7c6c021000 rw-p 00000000 00:00 0 
+7f7c6c021000-7f7c70000000 ---p 00000000 00:00 0 
+7f7c70000000-7f7c70021000 rw-p 00000000 00:00 0 
+7f7c70021000-7f7c74000000 ---p 00000000 00:00 0 
+7f7c74000000-7f7c74004000 r-xp 00000000 103:02 51871985                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libmanagement.so
+7f7c74004000-7f7c74005000 r--p 00003000 103:02 51871985                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libmanagement.so
+7f7c74005000-7f7c74006000 rw-p 00004000 103:02 51871985                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libmanagement.so
+7f7c74006000-7f7c74009000 rw-p 00007000 103:02 51871985                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libmanagement.so
+7f7c74009000-7f7c74010000 r-xp 00000000 103:02 51866985                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libzip.so
+7f7c74010000-7f7c74011000 ---p 00007000 103:02 51866985                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libzip.so
+7f7c74011000-7f7c74012000 r--p 00007000 103:02 51866985                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libzip.so
+7f7c74012000-7f7c74013000 rw-p 00008000 103:02 51866985                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libzip.so
+7f7c74013000-7f7c74016000 rw-p 0000b000 103:02 51866985                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libzip.so
+7f7c74016000-7f7c7655c000 rw-p 00000000 00:00 0 
+7f7c7655c000-7f7c7655d000 ---p 00000000 00:00 0 
+7f7c7655d000-7f7c7665e000 rw-p 00000000 00:00 0 
+7f7c7665e000-7f7c7665f000 ---p 00000000 00:00 0 
+7f7c7665f000-7f7c76760000 rw-p 00000000 00:00 0 
+7f7c76760000-7f7c76761000 ---p 00000000 00:00 0 
+7f7c76761000-7f7c76f0a000 rw-p 00000000 00:00 0 
+7f7c76f0a000-7f7c77aca000 ---p 00000000 00:00 0 
+7f7c77aca000-7f7c77b0a000 rw-p 00000000 00:00 0 
+7f7c77b0a000-7f7c7894a000 ---p 00000000 00:00 0 
+7f7c7894a000-7f7c7898a000 rw-p 00000000 00:00 0 
+7f7c7898a000-7f7c9490a000 ---p 00000000 00:00 0 
+7f7c9490a000-7f7c94e8a000 rw-p 00000000 00:00 0 
+7f7c94e8a000-7f7c95a4a000 ---p 00000000 00:00 0 
+7f7c95a4a000-7f7c95a8a000 rw-p 00000000 00:00 0 
+7f7c95a8a000-7f7c968ca000 ---p 00000000 00:00 0 
+7f7c968ca000-7f7c9690a000 rw-p 00000000 00:00 0 
+7f7c9690a000-7f7cb288a000 ---p 00000000 00:00 0 
+7f7cb288a000-7f7cb29aa000 rw-p 00000000 00:00 0 
+7f7cb29aa000-7f7cb2b22000 ---p 00000000 00:00 0 
+7f7cb2b22000-7f7cb2b2a000 rw-p 00000000 00:00 0 
+7f7cb2b2a000-7f7cb2cf2000 ---p 00000000 00:00 0 
+7f7cb2cf2000-7f7cb2cfa000 rw-p 00000000 00:00 0 
+7f7cb2cfa000-7f7cb64ea000 ---p 00000000 00:00 0 
+7f7cb64ea000-7f7cb659a000 rw-p 00000000 00:00 0 
+7f7cb659a000-7f7cb6712000 ---p 00000000 00:00 0 
+7f7cb6712000-7f7cb671a000 rw-p 00000000 00:00 0 
+7f7cb671a000-7f7cb68e2000 ---p 00000000 00:00 0 
+7f7cb68e2000-7f7cb68ea000 rw-p 00000000 00:00 0 
+7f7cb68ea000-7f7cba0da000 ---p 00000000 00:00 0 
+7f7cba0da000-7f7cba18a000 rw-p 00000000 00:00 0 
+7f7cba18a000-7f7cba302000 ---p 00000000 00:00 0 
+7f7cba302000-7f7cba30a000 rw-p 00000000 00:00 0 
+7f7cba30a000-7f7cba4d2000 ---p 00000000 00:00 0 
+7f7cba4d2000-7f7cba4da000 rw-p 00000000 00:00 0 
+7f7cba4da000-7f7cbdcca000 ---p 00000000 00:00 0 
+7f7cbdcca000-7f7cbf4e6000 rw-p 00000000 00:00 0 
+7f7cbf4e6000-7f7cbf5c6000 ---p 00000000 00:00 0 
+7f7cbf5c6000-7f7cbf5e3000 rw-p 00000000 00:00 0 
+7f7cbf5e3000-7f7cbf6ab000 ---p 00000000 00:00 0 
+7f7cbf6ab000-7f7cbf6b5000 rw-p 00000000 00:00 0 
+7f7cbf6b5000-7f7cbf6c2000 ---p 00000000 00:00 0 
+7f7cbf6c2000-7f7cc0542000 rwxp 00000000 00:00 0 
+7f7cc0542000-7f7cc6938000 ---p 00000000 00:00 0 
+7f7cc6938000-7f7cc6e08000 rwxp 00000000 00:00 0 
+7f7cc6e08000-7f7cc744c000 ---p 00000000 00:00 0 
+7f7cc744c000-7f7cc76bc000 rwxp 00000000 00:00 0 
+7f7cc76bc000-7f7cce6c2000 ---p 00000000 00:00 0 
+7f7cce6c2000-7f7cce6e6000 r-xp 00000000 103:02 51869794                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjava.so
+7f7cce6e6000-7f7cce6e7000 ---p 00024000 103:02 51869794                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjava.so
+7f7cce6e7000-7f7cce6e8000 r--p 00024000 103:02 51869794                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjava.so
+7f7cce6e8000-7f7cce6e9000 rw-p 00025000 103:02 51869794                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjava.so
+7f7cce6e9000-7f7cce6ea000 rw-p 00000000 00:00 0 
+7f7cce6ea000-7f7cce6f5000 rw-p 0002f000 103:02 51869794                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjava.so
+7f7cce6f5000-7f7cce6fd000 rw-s 00000000 103:02 63966921                  /tmp/hsperfdata_a4090/162363
+7f7cce6fd000-7f7cce700000 r--p 00000000 103:02 39848170                  /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f7cce700000-7f7cce707000 r-xp 00003000 103:02 39848170                  /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f7cce707000-7f7cce709000 r--p 0000a000 103:02 39848170                  /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f7cce709000-7f7cce70a000 r--p 0000b000 103:02 39848170                  /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f7cce70a000-7f7cce70b000 rw-p 0000c000 103:02 39848170                  /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f7cce70b000-7f7cce711000 rw-p 00000000 00:00 0 
+7f7cce711000-7f7cce712000 ---p 00000000 00:00 0 
+7f7cce712000-7f7cce713000 r--p 00000000 00:00 0 
+7f7cce713000-7f7cd84ab000 r--s 00000000 103:02 51868487                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/modules
+7f7cd84ab000-7f7cd84c6000 r-xp 00000000 103:02 51869974                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjimage.so
+7f7cd84c6000-7f7cd84c7000 ---p 0001b000 103:02 51869974                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjimage.so
+7f7cd84c7000-7f7cd84c9000 r--p 0001b000 103:02 51869974                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjimage.so
+7f7cd84c9000-7f7cd84ca000 rw-p 0001d000 103:02 51869974                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjimage.so
+7f7cd84ca000-7f7cd84cc000 rw-p 00024000 103:02 51869974                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/libjimage.so
+7f7cd84cc000-7f7cd84ce000 r--p 00000000 103:02 39848193                  /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7f7cd84ce000-7f7cd84d2000 r-xp 00002000 103:02 39848193                  /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7f7cd84d2000-7f7cd84d4000 r--p 00006000 103:02 39848193                  /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7f7cd84d4000-7f7cd84d5000 r--p 00007000 103:02 39848193                  /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7f7cd84d5000-7f7cd84d6000 rw-p 00008000 103:02 39848193                  /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7f7cd84d6000-7f7cd95f5000 r-xp 00000000 103:02 51866492                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/server/libjvm.so
+7f7cd95f5000-7f7cd95f6000 ---p 0111f000 103:02 51866492                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/server/libjvm.so
+7f7cd95f6000-7f7cd96ab000 r--p 0111f000 103:02 51866492                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/server/libjvm.so
+7f7cd96ab000-7f7cd96df000 rw-p 011d4000 103:02 51866492                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/server/libjvm.so
+7f7cd96df000-7f7cd9738000 rw-p 00000000 00:00 0 
+7f7cd9738000-7f7cd973e000 rw-p 015a3000 103:02 51866492                  /home/a4090/miniconda3/envs/auto_pose/lib/jvm/lib/server/libjvm.so
+7f7cd973e000-7f7cd9741000 rw-p 00000000 00:00 0 
+7f7cd9741000-7f7cd9763000 r--p 00000000 103:02 39848138                  /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f7cd9763000-7f7cd98db000 r-xp 00022000 103:02 39848138                  /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f7cd98db000-7f7cd9929000 r--p 0019a000 103:02 39848138                  /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f7cd9929000-7f7cd992d000 r--p 001e7000 103:02 39848138                  /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f7cd992d000-7f7cd992f000 rw-p 001eb000 103:02 39848138                  /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f7cd992f000-7f7cd9935000 rw-p 00000000 00:00 0 
+7f7cd9935000-7f7cd993b000 r--p 00000000 103:02 39848188                  /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f7cd993b000-7f7cd994c000 r-xp 00006000 103:02 39848188                  /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f7cd994c000-7f7cd9952000 r--p 00017000 103:02 39848188                  /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f7cd9952000-7f7cd9953000 r--p 0001c000 103:02 39848188                  /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f7cd9953000-7f7cd9954000 rw-p 0001d000 103:02 39848188                  /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f7cd9954000-7f7cd9958000 rw-p 00000000 00:00 0 
+7f7cd9958000-7f7cd995c000 r--p 00000000 103:02 51864144                  /home/a4090/miniconda3/envs/auto_pose/lib/libgcc_s.so.1
+7f7cd995c000-7f7cd9971000 r-xp 00004000 103:02 51864144                  /home/a4090/miniconda3/envs/auto_pose/lib/libgcc_s.so.1
+7f7cd9971000-7f7cd9975000 r--p 00019000 103:02 51864144                  /home/a4090/miniconda3/envs/auto_pose/lib/libgcc_s.so.1
+7f7cd9975000-7f7cd9976000 r--p 0001c000 103:02 51864144                  /home/a4090/miniconda3/envs/auto_pose/lib/libgcc_s.so.1
+7f7cd9976000-7f7cd9977000 rw-p 0001d000 103:02 51864144                  /home/a4090/miniconda3/envs/auto_pose/lib/libgcc_s.so.1
+7f7cd9977000-7f7cd9984000 r--p 00000000 103:02 39848143                  /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7f7cd9984000-7f7cd9a2b000 r-xp 0000d000 103:02 39848143                  /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7f7cd9a2b000-7f7cd9ac4000 r--p 000b4000 103:02 39848143                  /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7f7cd9ac4000-7f7cd9ac5000 r--p 0014c000 103:02 39848143                  /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7f7cd9ac5000-7f7cd9ac6000 rw-p 0014d000 103:02 39848143                  /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7f7cd9ac6000-7f7cd9b6f000 r--p 00000000 103:02 51864761                  /home/a4090/miniconda3/envs/auto_pose/lib/libstdc++.so.6.0.33
+7f7cd9b6f000-7f7cd9c0f000 r-xp 000a9000 103:02 51864761                  /home/a4090/miniconda3/envs/auto_pose/lib/libstdc++.so.6.0.33
+7f7cd9c0f000-7f7cd9c95000 r--p 00149000 103:02 51864761                  /home/a4090/miniconda3/envs/auto_pose/lib/libstdc++.so.6.0.33
+7f7cd9c95000-7f7cd9ca0000 r--p 001cf000 103:02 51864761                  /home/a4090/miniconda3/envs/auto_pose/lib/libstdc++.so.6.0.33
+7f7cd9ca0000-7f7cd9ca4000 rw-p 001da000 103:02 51864761                  /home/a4090/miniconda3/envs/auto_pose/lib/libstdc++.so.6.0.33
+7f7cd9ca4000-7f7cd9ca8000 rw-p 00000000 00:00 0 
+7f7cd9ca8000-7f7cd9ca9000 r--p 00000000 103:02 39848142                  /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f7cd9ca9000-7f7cd9cab000 r-xp 00001000 103:02 39848142                  /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f7cd9cab000-7f7cd9cac000 r--p 00003000 103:02 39848142                  /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f7cd9cac000-7f7cd9cad000 r--p 00003000 103:02 39848142                  /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f7cd9cad000-7f7cd9cae000 rw-p 00004000 103:02 39848142                  /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f7cd9cae000-7f7cd9cb0000 rw-p 00000000 00:00 0 
+7f7cd9cb0000-7f7cd9cb1000 r--p 00000000 103:02 39848110                  /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f7cd9cb1000-7f7cd9cd4000 r-xp 00001000 103:02 39848110                  /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f7cd9cd4000-7f7cd9cdc000 r--p 00024000 103:02 39848110                  /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f7cd9cdc000-7f7cd9cdd000 ---p 00000000 00:00 0 
+7f7cd9cdd000-7f7cd9cde000 r--p 0002c000 103:02 39848110                  /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f7cd9cde000-7f7cd9cdf000 rw-p 0002d000 103:02 39848110                  /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f7cd9cdf000-7f7cd9ce0000 rw-p 00000000 00:00 0 
+7fffcad45000-7fffcad49000 ---p 00000000 00:00 0 
+7fffcad49000-7fffcae45000 rw-p 00000000 00:00 0                          [stack]
+7fffcaf4f000-7fffcaf53000 r--p 00000000 00:00 0                          [vvar]
+7fffcaf53000-7fffcaf55000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+
+
+VM Arguments:
+jvm_args: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -Dorg.graalvm.launcher.class=com.oracle.graal.python.shell.GraalPythonMain -Dorg.graalvm.launcher.executablename=/home/a4090/miniconda3/envs/auto_pose/bin/python 
+java_command: <unknown>
+java_class_path (initial): /home/a4090/miniconda3/envs/auto_pose/lib/jvm/languages/python/bin/../../../lib/graalvm/graalpython-launcher.jar:/home/a4090/miniconda3/envs/auto_pose/lib/jvm/languages/python/bin/../../../lib/graalvm/launcher-common.jar
+Launcher Type: generic
+
+[Global flags]
+     intx CICompilerCount                          = 15                                        {product} {ergonomic}
+     uint ConcGCThreads                            = 6                                         {product} {ergonomic}
+     bool EnableJVMCIProduct                       = true                                {JVMCI product} {jimage}
+     uint G1ConcRefinementThreads                  = 23                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 16777216                                  {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 2113929216                                {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 32178700288                               {product} {ergonomic}
+   size_t MaxNewSize                               = 19293798400                               {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 16777216                                  {product} {ergonomic}
+   size_t MinHeapSize                              = 16777216                                  {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 11613124                               {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 120022558                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 120022558                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 32178700288                            {manageable} {ergonomic}
+     intx ThreadPriorityPolicy                     = 1                                         {product} {jimage}
+     bool UseCompressedClassPointers               = true                           {product lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=/home/a4090/miniconda3/envs/auto_pose/bin:/opt/ros/noetic/bin:/home/a4090/miniconda3/condabin:/home/a4090/.local/bin:/home/a4090/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+LD_LIBRARY_PATH=/home/a4090/CoppeliaSim:/usr/lib/x86_64-linux-gnu:/opt/ros/noetic/lib:/opt/ros/noetic/lib/x86_64-linux-gnu
+SHELL=/bin/bash
+DISPLAY=:0
+LANG=en_US.UTF-8
+LC_NUMERIC=zh_CN.UTF-8
+LC_TIME=zh_CN.UTF-8
+TERM=xterm-256color
+
+Active Locale:
+LC_ALL=LC_CTYPE=en_US.UTF-8;LC_NUMERIC=zh_CN.UTF-8;LC_TIME=zh_CN.UTF-8;LC_COLLATE=en_US.UTF-8;LC_MONETARY=zh_CN.UTF-8;LC_MESSAGES=en_US.UTF-8;LC_PAPER=zh_CN.UTF-8;LC_NAME=zh_CN.UTF-8;LC_ADDRESS=zh_CN.UTF-8;LC_TELEPHONE=zh_CN.UTF-8;LC_MEASUREMENT=zh_CN.UTF-8;LC_IDENTIFICATION=zh_CN.UTF-8
+LC_COLLATE=en_US.UTF-8
+LC_CTYPE=en_US.UTF-8
+LC_MESSAGES=en_US.UTF-8
+LC_MONETARY=zh_CN.UTF-8
+LC_NUMERIC=zh_CN.UTF-8
+LC_TIME=zh_CN.UTF-8
+
+Signal Handlers:
+   SIGSEGV: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+    SIGBUS: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+    SIGFPE: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+   SIGPIPE: javaSignalHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGXFSZ: javaSignalHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGILL: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+   SIGUSR2: SR_handler in libjvm.so, mask=00000000000000000000000000000000, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGHUP: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGINT: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGTERM: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGQUIT: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGTRAP: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+
+
+---------------  S Y S T E M  ---------------
+
+OS:
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=20.04
+DISTRIB_CODENAME=focal
+DISTRIB_DESCRIPTION="Ubuntu 20.04.6 LTS"
+uname: Linux 5.15.0-119-generic #129~20.04.1-Ubuntu SMP Wed Aug 7 13:07:13 UTC 2024 x86_64
+OS uptime: 1 days 19:59 hours
+libc: glibc 2.31 NPTL 2.31 
+rlimit (soft/hard): STACK 8192k/infinity , CORE 0k/infinity , NPROC 513269/513269 , NOFILE 1048576/1048576 , AS infinity/infinity , CPU infinity/infinity , DATA infinity/infinity , FSIZE infinity/infinity , MEMLOCK 65536k/65536k
+load average: 1050.48 1051.33 1049.25
+
+/proc/meminfo:
+MemTotal:       131491188 kB
+MemFree:        34343536 kB
+MemAvailable:   96251816 kB
+Buffers:         7343244 kB
+Cached:         36291560 kB
+SwapCached:            0 kB
+Active:         25426108 kB
+Inactive:       48418548 kB
+Active(anon):      15800 kB
+Inactive(anon): 31273856 kB
+Active(file):   25410308 kB
+Inactive(file): 17144692 kB
+Unevictable:        1036 kB
+Mlocked:            1036 kB
+SwapTotal:       4194300 kB
+SwapFree:        4194300 kB
+Dirty:               516 kB
+Writeback:             0 kB
+AnonPages:      30201964 kB
+Mapped:          3112480 kB
+Shmem:           1079920 kB
+KReclaimable:   20604132 kB
+Slab:           22176456 kB
+SReclaimable:   20604132 kB
+SUnreclaim:      1572324 kB
+KernelStack:      108624 kB
+PageTables:       406488 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    69939892 kB
+Committed_AS:   106571236 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      237924 kB
+VmallocChunk:          0 kB
+Percpu:            46208 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:     40960 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:     3691340 kB
+DirectMap2M:    29454336 kB
+DirectMap1G:    100663296 kB
+
+/sys/kernel/mm/transparent_hugepage/enabled: always [madvise] never
+/sys/kernel/mm/transparent_hugepage/defrag (defrag/compaction efforts parameter): always defer defer+madvise [madvise] never
+
+Process Memory:
+Virtual Size: 39859152K (peak: 39919768K)
+Resident Set Size: 1132272K (peak: 1132272K) (anon: 907796K, file: 224476K, shmem: 0K)
+Swapped out: 0K
+C-Heap outstanding allocations: 98568K, retained: 9159K
+glibc malloc tunables: (default)
+
+/proc/sys/kernel/threads-max (system-wide limit on the number of threads): 1026538
+/proc/sys/vm/max_map_count (maximum number of memory map areas a process may have): 65530
+/proc/sys/kernel/pid_max (system-wide limit on number of process identifiers): 4194304
+
+container (cgroup) information:
+container_type: cgroupv1
+cpu_cpuset_cpus: 0-31
+cpu_memory_nodes: 0
+active_processor_count: 32
+cpu_quota: no quota
+cpu_period: 100000
+cpu_shares: no shares
+memory_limit_in_bytes: unlimited
+memory_and_swap_limit_in_bytes: unlimited
+memory_soft_limit_in_bytes: unlimited
+memory_usage_in_bytes: 81848168 k
+memory_max_usage_in_bytes: 82078840 k
+kernel_memory_usage_in_bytes: 19245220 k
+kernel_memory_max_usage_in_bytes: unlimited
+kernel_memory_limit_in_bytes: 19247268 k
+maximum number of tasks: unlimited
+current number of tasks: 5654
+
+Steal ticks since vm start: 0
+Steal ticks percentage since vm start:  0.000
+
+CPU: total 32 (initial active 32) (16 cores per cpu, 2 threads per core) family 6 model 183 stepping 1 microcode 0x123, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, sha, fma, vzeroupper, clflush, clflushopt, clwb
+CPU Model and flags from /proc/cpuinfo:
+model name	: Intel(R) Core(TM) i9-14900K
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb intel_pt sha_ni xsaveopt xsavec xgetbv1 xsaves split_lock_detect avx_vnni dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req umip pku ospke waitpkg gfni vaes vpclmulqdq tme rdpid movdiri movdir64b fsrm md_clear serialize pconfig arch_lbr flush_l1d arch_capabilities
+
+Online cpus: 0-31
+Offline cpus: 
+BIOS frequency limitation: <Not Available>
+Frequency switch latency (ns): 0
+Available cpu frequencies: <Not Available>
+Current governor: performance
+Core performance/turbo boost: <Not Available>
+
+Memory: 4k page, physical 131491188k(34307500k free), swap 4194300k(4194300k free)
+Page Sizes: 4k
+
+vm_info: OpenJDK 64-Bit Server VM (17.0.7+4-jvmci-23.0-b10) for linux-amd64 JRE (17.0.7+4-jvmci-23.0-b10), built on Mar 24 2023 22:17:53 by "buildslave" with gcc 10.3.0
+
+END.

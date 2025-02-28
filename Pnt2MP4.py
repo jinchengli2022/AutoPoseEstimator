@@ -47,8 +47,8 @@ time = 5
 # input_folder = f"Data/real_data/pour_water/episode_{time}/track_vis_cup{cup}"  # 替换为包含 PNG 图像的文件夹路径
 # output_file = f"Data/real_data/pour_water/episode_{time}/track_vis_cup{cup}.mp4"  # 输出视频文件名
 
-input_folder = f"simulate_captured/track_vis"  # 替换为包含 PNG 图像的文件夹路径
-output_file = f"simulate_captured/display.mp4"  # 输出视频文件名
+input_folder = f"output/flower/flower_mask_vis"  # 替换为包含 PNG 图像的文件夹路径
+output_file = f"output/flower/mask.mp4"  # 输出视频文件名
 frame_rate = 15  # 设置帧率
 png_to_video(input_folder, output_file, frame_rate)
 

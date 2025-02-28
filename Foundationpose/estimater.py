@@ -179,7 +179,7 @@ class FoundationPose:
     '''Copmute pose from given pts to self.pcd
     @pts: (N,3) np array, downsampled scene points
     '''
-
+    t1 = time.time()
     set_seed(0)
     logging.info('Welcome')
 
@@ -195,10 +195,14 @@ class FoundationPose:
       else:
         self.glctx = glctx
 
+    print("glctx use time: ", time.time() - t1)
+
+    t1 = time.time()
     depth = erode_depth(depth, radius=2, device='cuda')
     # print(f"Depth after erosion:\n{depth}")  # 直接打印
     depth = bilateral_filter_depth(depth, radius=2, device='cuda')
     # print(f"Depth after bilateral filtering:\n{depth}")  # 直接打印
+    print("depth use time: ", time.time() - t1)
 
     if self.debug>=2:
       xyz_map = depth2xyzmap(depth, K)
@@ -207,6 +211,8 @@ class FoundationPose:
       o3d.io.write_point_cloud(f'{self.debug_dir}/scene_raw.ply',pcd)
       cv2.imwrite(f'{self.debug_dir}/ob_mask.png', (ob_mask*255.0).clip(0,255))
 
+
+    t1 = time.time()
     normal_map = None
     valid = (depth>=0.001) & (ob_mask>0)
     if valid.sum()<4:
@@ -214,6 +220,7 @@ class FoundationPose:
       pose = np.eye(4)
       pose[:3,3] = self.guess_translation(depth=depth, mask=ob_mask, K=K)
       return pose
+    print("valid use time: ", time.time() - t1)
 
     if self.debug>=2:
       imageio.imwrite(f'{self.debug_dir}/color.png', rgb)
@@ -227,6 +234,7 @@ class FoundationPose:
     self.ob_id = ob_id
     self.ob_mask = ob_mask
 
+    t1 = time.time()
     poses = self.generate_random_pose_hypo(K=K, rgb=rgb, depth=depth, mask=ob_mask, scene_pts=None)
     poses = poses.data.cpu().numpy()
     logging.info(f'poses:{poses.shape}')
@@ -234,21 +242,37 @@ class FoundationPose:
 
     poses = torch.as_tensor(poses, device='cuda', dtype=torch.float)
     poses[:,:3,3] = torch.as_tensor(center.reshape(1,3), device='cuda')
+    print("generate_random_pose_hypo use time: ", time.time() - t1)
 
+    t1 = time.time()
     add_errs = self.compute_add_err_to_gt_pose(poses)
     logging.info(f"after viewpoint, add_errs min:{add_errs.min()}")
+    print("add_errs use time: ", time.time() - t1)
 
+    t1 = time.time()
     xyz_map = depth2xyzmap(depth, K)
-    poses, vis = self.refiner.predict(mesh=self.mesh, mesh_tensors=self.mesh_tensors, rgb=rgb, depth=depth, K=K, ob_in_cams=poses.data.cpu().numpy(), normal_map=normal_map, xyz_map=xyz_map, glctx=self.glctx, mesh_diameter=self.diameter, iteration=iteration, get_vis=self.debug>=2)
+    print("depth2xyzmap use time: ", time.time() - t1)
+    
+    t1 = time.time()
+    poses, vis = self.refiner.predict(
+      mesh=self.mesh, mesh_tensors=self.mesh_tensors, rgb=rgb, depth=depth, K=K, ob_in_cams=poses.data.cpu().numpy(), normal_map=normal_map, xyz_map=xyz_map, glctx=self.glctx, mesh_diameter=self.diameter, iteration=iteration, get_vis=self.debug>=2)
+    print("refiner.predict use time: ", time.time() - t1)
+    
+    print(f"vis: {vis}")
     if vis is not None:
       imageio.imwrite(f'{self.debug_dir}/vis_refiner.png', vis)
 
+    t1 = time.time()
     scores, vis = self.scorer.predict(mesh=self.mesh, rgb=rgb, depth=depth, K=K, ob_in_cams=poses.data.cpu().numpy(), normal_map=normal_map, mesh_tensors=self.mesh_tensors, glctx=self.glctx, mesh_diameter=self.diameter, get_vis=self.debug>=2)
+    print("scorer.predict use time: ", time.time() - t1)
+    
     if vis is not None:
       imageio.imwrite(f'{self.debug_dir}/vis_score.png', vis)
 
+    t1 = time.time()
     add_errs = self.compute_add_err_to_gt_pose(poses)
     logging.info(f"final, add_errs min:{add_errs.min()}")
+    print("compute_add_err_to_gt_pose use time: ", time.time() - t1)
 
     ids = torch.as_tensor(scores).argsort(descending=True)
     logging.info(f'sort ids:{ids}')
@@ -258,10 +282,12 @@ class FoundationPose:
     logging.info(f'sorted scores:{scores}')
 
     ### 检测方位角，如果大于阈值，则位姿检测顺延
-    print("开始位姿阈值检测", end="->")
-    threshold_angle = 360  # 替换为实际的阈值
+    # print("开始位姿阈值检测", end="->")
+    threshold_angle = 30  # 替换为实际的阈值
     i_tmp = 0 # 默认提取分数最高项
     # 提取分数最高项的位姿
+   
+    t1 = time.time()
     best_pose = poses[0] @ self.get_tf_to_centered_mesh()
     # 检测方位角，如果大于阈值，则位姿检测顺延
     if index != 0:
@@ -272,13 +298,13 @@ class FoundationPose:
 
         # 计算当前位姿与上一个位姿的角度差
         angle_diff = get_rotation_angle(R1, R2)
-        print(f"当前角度差为{angle_diff}度", end="->")
+        # print(f"当前角度差为{angle_diff}度", end="->")
         # 如果角度差大于阈值，跳出循环
         if angle_diff <= threshold_angle:
-          print(f"满足阈值条件{threshold_angle}度", end="->")
+        #   print(f"满足阈值条件{threshold_angle}度", end="->")
           break
         else:
-          print("不满足阈值条件，姿态顺延", end="->")
+        #   print("不满足阈值条件，姿态顺延", end="->")
           # 如果不满足条件，顺延读取序号
           i_tmp += 1
           best_pose = poses[i_tmp] @ self.get_tf_to_centered_mesh()  # 更新当前位姿
@@ -298,6 +324,7 @@ class FoundationPose:
     #
     # self.poses = poses
     # self.scores = scores
+    print("selection use time: ", time.time() - t1)
 
 
 

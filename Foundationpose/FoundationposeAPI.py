@@ -4,6 +4,7 @@ import argparse
 import numpy as np
 import trimesh
 import cv2
+import trimesh.bounds
 import yaml
 from Foundationpose.datareader import LinemodReader
 from estimater import *
@@ -46,7 +47,8 @@ class PoseEstimationAPI:
         config = {
             'model_path': model_path,
             'camera_matrix': camera_matrix,
-            'mesh_scale': depth_scale,
+            'mesh_scale': 0.001,
+            'depth_scale': depth_scale,
             'device': 'cuda:0',
             'debug_level': 0
         }
@@ -71,9 +73,24 @@ class PoseEstimationAPI:
         self.model_vertices = mesh.vertices.copy()
         self.model_normals = mesh.vertex_normals.copy()
         self.mesh = mesh
-        # 计算包围盒
+
+        # 标准尺寸：    长：0.084   宽：0.067   高：0.127
+        # 计算OBB包围盒
         self.to_origin, self.extents = trimesh.bounds.oriented_bounds(mesh)
         self.bbox = np.stack([-self.extents / 2, self.extents / 2], axis=0).reshape(2, 3)
+
+        # 计算AABB（轴对齐包围盒）  长：0.085   宽：0.069   高：0.131
+        # min_bounds, max_bounds = mesh.bounds  # 返回的min_bounds和max_bounds是AABB的两个对角点
+        # center = (min_bounds + max_bounds) / 2
+        # self.to_origin = np.array([
+        #     [1, 0, 0, -center[0]],
+        #     [0, 1, 0, -center[1]],
+        #     [0, 0, 1, -center[2]],
+        #     [0, 0, 0, 1]
+        # ])
+        # # 构建self.bbox的形式
+        # self.bbox = np.stack([min_bounds, max_bounds], axis=0)  # 形成2x3的矩阵
+
 
     def _create_estimator(self, config):
         """创建FoundationPose估计器"""
@@ -107,10 +124,13 @@ class PoseEstimationAPI:
         # 预处理输入
         color_img = np.asarray(color_img, dtype=np.uint8)
         depth_map = np.asarray(depth_map, dtype=np.float32)
-        depth_map *= self.config['mesh_scale']      # 将内部处理的depth回归到m单位
+        depth_map *= self.config['depth_scale']      # 将内部处理的depth回归到m单位
         depth_map = np.asarray(depth_map, dtype=np.float16)     # 量化
         mask = np.asarray(mask, dtype=bool)
 
+        print("预处理输入 use time: ", tim.time() - start_time)
+        
+        t1 = tim.time()
         # 执行姿态估计
         pose = self.estimator.register(
             K=camera_matrix,
@@ -120,6 +140,8 @@ class PoseEstimationAPI:
             ob_id=obj_id,
             index=frame_id
         )
+        print("register use time: ", tim.time() - t1)
+
 
         # odd transfor
         pose = pose @ np.linalg.inv(self.to_origin)

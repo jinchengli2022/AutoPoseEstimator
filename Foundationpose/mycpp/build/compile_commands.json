@@ -1,12 +1,14 @@
 [
 {
-  "directory": "/Git/AutoPoseEstimator/Foundationpose/mycpp/build",
-  "command": "/usr/bin/c++ -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_NO_LIB -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -Dmycpp_EXPORTS -I/Git/AutoPoseEstimator/Foundationpose/mycpp/include -isystem /root/miniconda3/envs/ljc/lib/python3.10/site-packages/pybind11/include -isystem /root/miniconda3/envs/ljc/include/python3.10 -isystem /root/miniconda3/envs/ljc/include -isystem /root/miniconda3/envs/ljc/include/eigen3  -std=c++14 -fopenmp -g3 -O3 -O3 -DNDEBUG -fPIC -fvisibility=hidden -flto -fno-fat-lto-objects -o CMakeFiles/mycpp.dir/src/app/pybind_api.cpp.o -c /Git/AutoPoseEstimator/Foundationpose/mycpp/src/app/pybind_api.cpp",
-  "file": "/Git/AutoPoseEstimator/Foundationpose/mycpp/src/app/pybind_api.cpp"
+  "directory": "/home/a4090/ljc/AutoPoseEstimator/Foundationpose/mycpp/build",
+  "command": "/usr/bin/c++ -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_NO_LIB -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -Dmycpp_EXPORTS -I/home/a4090/ljc/AutoPoseEstimator/Foundationpose/mycpp/include -isystem /home/a4090/miniconda3/envs/auto2/lib/python3.10/site-packages/pybind11/include -isystem /home/a4090/miniconda3/envs/auto2/include/python3.10 -isystem /home/a4090/miniconda3/envs/auto2/include -isystem /home/a4090/miniconda3/envs/auto2/include/eigen3  -std=c++14 -fopenmp -g3 -O3 -O3 -DNDEBUG -fPIC -fvisibility=hidden -flto -fno-fat-lto-objects -o CMakeFiles/mycpp.dir/src/app/pybind_api.cpp.o -c /home/a4090/ljc/AutoPoseEstimator/Foundationpose/mycpp/src/app/pybind_api.cpp",
+  "file": "/home/a4090/ljc/AutoPoseEstimator/Foundationpose/mycpp/src/app/pybind_api.cpp",
+  "output": "CMakeFiles/mycpp.dir/src/app/pybind_api.cpp.o"
 },
 {
-  "directory": "/Git/AutoPoseEstimator/Foundationpose/mycpp/build",
-  "command": "/usr/bin/c++ -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_NO_LIB -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -Dmycpp_EXPORTS -I/Git/AutoPoseEstimator/Foundationpose/mycpp/include -isystem /root/miniconda3/envs/ljc/lib/python3.10/site-packages/pybind11/include -isystem /root/miniconda3/envs/ljc/include/python3.10 -isystem /root/miniconda3/envs/ljc/include -isystem /root/miniconda3/envs/ljc/include/eigen3  -std=c++14 -fopenmp -g3 -O3 -O3 -DNDEBUG -fPIC -fvisibility=hidden -flto -fno-fat-lto-objects -o CMakeFiles/mycpp.dir/src/Utils.cpp.o -c /Git/AutoPoseEstimator/Foundationpose/mycpp/src/Utils.cpp",
-  "file": "/Git/AutoPoseEstimator/Foundationpose/mycpp/src/Utils.cpp"
+  "directory": "/home/a4090/ljc/AutoPoseEstimator/Foundationpose/mycpp/build",
+  "command": "/usr/bin/c++ -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_NO_LIB -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -Dmycpp_EXPORTS -I/home/a4090/ljc/AutoPoseEstimator/Foundationpose/mycpp/include -isystem /home/a4090/miniconda3/envs/auto2/lib/python3.10/site-packages/pybind11/include -isystem /home/a4090/miniconda3/envs/auto2/include/python3.10 -isystem /home/a4090/miniconda3/envs/auto2/include -isystem /home/a4090/miniconda3/envs/auto2/include/eigen3  -std=c++14 -fopenmp -g3 -O3 -O3 -DNDEBUG -fPIC -fvisibility=hidden -flto -fno-fat-lto-objects -o CMakeFiles/mycpp.dir/src/Utils.cpp.o -c /home/a4090/ljc/AutoPoseEstimator/Foundationpose/mycpp/src/Utils.cpp",
+  "file": "/home/a4090/ljc/AutoPoseEstimator/Foundationpose/mycpp/src/Utils.cpp",
+  "output": "CMakeFiles/mycpp.dir/src/Utils.cpp.o"
 }
 ]
