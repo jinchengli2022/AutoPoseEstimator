@@ -41,14 +41,19 @@ def png_to_video(input_folder, output_file, frame_rate=30):
     video.release()
     print(f"视频已保存到: {output_file}")
 
-# 示例用法
-cup = 0
-time = 5
-# input_folder = f"Data/real_data/pour_water/episode_{time}/track_vis_cup{cup}"  # 替换为包含 PNG 图像的文件夹路径
-# output_file = f"Data/real_data/pour_water/episode_{time}/track_vis_cup{cup}.mp4"  # 输出视频文件名
+if "__name__" == "__main__":
+    # 示例用法
+    time = 0
+    name = "vase"
+    task = "pick_flower"
+    # input_folder = f"Data/real_data/pour_water/episode_{time}/track_vis_cup{cup}"  # 替换为包含 PNG 图像的文件夹路径
+    # output_file = f"Data/real_data/pour_water/episode_{time}/track_vis_cup{cup}.mp4"  # 输出视频文件名
 
-input_folder = f"output/flower/flower_mask_vis"  # 替换为包含 PNG 图像的文件夹路径
-output_file = f"output/flower/mask.mp4"  # 输出视频文件名
-frame_rate = 15  # 设置帧率
-png_to_video(input_folder, output_file, frame_rate)
+    input_folder = f"output/data_real/{task}/episode_{time}/{name}/{name}_track_vis"  # 替换为包含 PNG 图像的文件夹路径
+    output_file = f"output/data_real/{task}/episode_{time}/track_vis_{name}.mp4"  # 输出视频文件名
+
+    # input_folder = f"output/{task}/episode_{time}/{name}/{name}_track_vis"  # 替换为包含 PNG 图像的文件夹路径
+    # output_file = f"output/{task}/episode_{time}/track_vis_{name}.mp4"  # 输出视频文件名
+    frame_rate = 15  # 设置帧率
+    png_to_video(input_folder, output_file, frame_rate)
 

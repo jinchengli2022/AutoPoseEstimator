@@ -298,13 +298,13 @@ class FoundationPose:
 
         # 计算当前位姿与上一个位姿的角度差
         angle_diff = get_rotation_angle(R1, R2)
-        # print(f"当前角度差为{angle_diff}度", end="->")
+        print(f"当前角度差为{angle_diff}度", end="->")
         # 如果角度差大于阈值，跳出循环
         if angle_diff <= threshold_angle:
-        #   print(f"满足阈值条件{threshold_angle}度", end="->")
+          print(f"满足阈值条件{threshold_angle}度", end="->")
           break
         else:
-        #   print("不满足阈值条件，姿态顺延", end="->")
+          print("不满足阈值条件，姿态顺延", end="->")
           # 如果不满足条件，顺延读取序号
           i_tmp += 1
           best_pose = poses[i_tmp] @ self.get_tf_to_centered_mesh()  # 更新当前位姿

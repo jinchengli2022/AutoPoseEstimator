@@ -54,7 +54,7 @@ class PoseEstimationAPI:
         }
 
         self.config = config
-        self.device = config.get('device', 'cuda:0')
+        self.device = config.get('device', 'cuda')
         self.debug_dir = config.get('debug_dir', './debug')
         os.makedirs(self.debug_dir, exist_ok=True)
 
@@ -108,7 +108,7 @@ class PoseEstimationAPI:
             refiner=None# 会自动加载weights
         )
 
-    def process_frame(self, color_img, depth_map, mask, obj_id, frame_id, camera_matrix):
+    def process_frame(self, color_img, depth_map, mask, obj_id, frame_id, camera_matrix, rounds):
         """
         单帧姿态估计处理
         :param color_img: RGB图像 (H,W,3) uint8
@@ -132,14 +132,19 @@ class PoseEstimationAPI:
         
         t1 = tim.time()
         # 执行姿态估计
-        pose = self.estimator.register(
-            K=camera_matrix,
-            rgb=color_img,
-            depth=depth_map,
-            ob_mask=mask,
-            ob_id=obj_id,
-            index=frame_id
-        )
+        if frame_id % rounds == 0:
+            print(f"当前帧{frame_id}执行注册")
+            pose = self.estimator.register(
+                K=camera_matrix,
+                rgb=color_img,
+                depth=depth_map,
+                ob_mask=mask,
+                ob_id=obj_id,
+                index=frame_id
+            )
+        else:
+            pose = self.estimator.track_one(rgb=color_img, depth=depth_map, K=camera_matrix, iteration=2)
+
         print("register use time: ", tim.time() - t1)
 
 

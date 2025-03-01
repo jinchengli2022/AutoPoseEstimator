@@ -164,6 +164,12 @@ class Detections:
             if dataset_name != "lmo"
             else lmo_object_ids[self.object_ids],
             "score": self.scores,
+            # "semantic_score": self.semantic_score,
+            # "appearance_score": self.appearance_score,
+            # "geometric_score": self.geometric_score,
+            # "visible_ratio": self.visible_ratio,
+            # "geometric_score": float(detections["geometric_score"][idx_det]),
+            # "visible_ratio": float(detections["visible_ratio"][idx_det]),
             "bbox": boxes,
             "time": runtime,
             "segmentation": self.masks,
@@ -207,10 +213,20 @@ def convert_npz_to_json(idx, list_npz_paths):
             "category_id": int(detections["category_id"][idx_det]),
             "bbox": detections["bbox"][idx_det].tolist(),
             "score": float(detections["score"][idx_det]),
+            # "semantic_score": float(detections["semantic_score"][idx_det]),
+            # "appearance_score": float(detections["appearance_score"][idx_det]),
+            # "geometric_score": float(detections["geometric_score"][idx_det]),
+            # "visible_ratio": float(detections["visible_ratio"][idx_det]),
             "time": float(detections["time"]),
             "segmentation": mask_to_rle(
                 force_binary_mask(detections["segmentation"][idx_det])
             ),
+            
         }
         results.append(result)
     return results
+
+        # detections.add_attribute("semantic_score", semantic_score)
+        # detections.add_attribute("appearance_score", appe_scores)
+        # detections.add_attribute("geometric_score", geometric_score)
+        # detections.add_attribute("visible_ratio", visible_ratio)

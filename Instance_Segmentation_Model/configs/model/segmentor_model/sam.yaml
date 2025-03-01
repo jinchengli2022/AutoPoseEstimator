@@ -1,10 +1,15 @@
 _target_: Instance_Segmentation_Model.model.sam.CustomSamAutomaticMaskGenerator
 points_per_batch: 64
+#原始
 stability_score_thresh: 0.85
-box_nms_thresh: 0.7
+# 原始
+# box_nms_thresh: 0.7 
+box_nms_thresh: 0.1
 min_mask_region_area: 0
 crop_overlap_ratio: 
+# 原始
 pred_iou_thresh: 0.88
+
 segmentor_width_size: ${model.segmentor_width_size}
 sam:
   _target_: Instance_Segmentation_Model.model.sam.load_sam
