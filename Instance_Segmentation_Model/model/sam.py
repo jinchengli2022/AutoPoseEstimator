@@ -103,6 +103,7 @@ class CustomSamAutomaticMaskGenerator(SamAutomaticMaskGenerator):
 
     @torch.no_grad()
     def generate_masks(self, image: np.ndarray) -> List[Dict[str, Any]]:
+        print("开始进行sam的mask生成")
         if self.segmentor_width_size is not None:
             orig_size = image.shape[:2]
             image = self.preprocess_resize(image)
@@ -118,6 +119,7 @@ class CustomSamAutomaticMaskGenerator(SamAutomaticMaskGenerator):
             )
         if self.segmentor_width_size is not None:
             mask_data = self.postprocess_resize(mask_data, orig_size)
+        print("sam的mask生成结束")
         return mask_data
 
     def _generate_masks(self, image: np.ndarray) -> MaskData:

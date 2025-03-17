@@ -1,5 +1,5 @@
 # ninja log v5
-0	8366	1740656808752067542	/home/a4090/ljc/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-310/bindings.o	48e4c122f079db15
-0	29704	1740656830088840910	/home/a4090/ljc/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-310/common.o	658ce7703ca8da4c
-2	8449	1740656838741149243	/home/a4090/ljc/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-310/home/a4090/ljc/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/torch_ngp_grid_encoder/bindings.o	e348f46992f7ea70
-2	45398	1740656875682432919	/home/a4090/ljc/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-310/home/a4090/ljc/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/torch_ngp_grid_encoder/gridencoder.o	dc78ab58ccea08d0
+1	11190	1741847083808916230	/home/ljc/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-310/bindings.o	2c7e45cd247f8651
+1	32027	1741847104640260129	/home/ljc/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-310/common.o	b59ac610aefe0600
+2	11307	1741847116222117480	/home/ljc/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-310/home/ljc/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/torch_ngp_grid_encoder/bindings.o	1efbdbb299784f48
+2	49877	1741847154785721932	/home/ljc/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/build/temp.linux-x86_64-cpython-310/home/ljc/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/torch_ngp_grid_encoder/gridencoder.o	ee5fb41765376f78

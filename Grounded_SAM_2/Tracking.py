@@ -44,6 +44,34 @@ class VideoMaskPredictor:
         self.processor = AutoProcessor.from_pretrained(grounding_model_id)
         self.grounding_model = AutoModelForZeroShotObjectDetection.from_pretrained(grounding_model_id).to(self.device)
 
+    def predict_mask_with_box(self, rgb_path, mask_path, box):
+        """
+        输入一张 RGB 图像，返回对应的单通道二值掩码（uint8）
+        :param rgb_image: numpy 数组格式的 RGB 图像
+        :return: 单通道二值掩码，前景像素值为 255，背景为 0
+        """
+        bgr_image = cv2.imread(rgb_path)
+        rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)
+        # 将 numpy 图像转换为 PIL 格式
+        image_pil = Image.fromarray(rgb_image)
+
+        # 使用 SAM2 图像分割器生成掩码
+        self.image_predictor.set_image(np.array(image_pil.convert("RGB")))
+        masks, scores_pred, logits = self.image_predictor.predict(
+            point_coords=None,
+            point_labels=None,
+            box=box,
+            multimask_output=False,
+        )
+        # 处理返回的掩码（若返回多个，则取第一个）
+        if masks.ndim >= 3:
+            mask = masks[0]
+        else:
+            mask = masks
+
+        # 将概率/浮点型掩码二值化，并转换为 uint8 格式（0/255）
+        mask_binary = (mask > 0.5).astype(np.uint8) * 255
+        cv2.imwrite(mask_path, mask_binary)
 
     def predict_mask(self, rgb_path, mask_path, text_prompt):
         """

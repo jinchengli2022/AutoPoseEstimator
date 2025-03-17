@@ -475,7 +475,7 @@ if __name__ == "__main__":
     # MASK DEBUG
     id = ""
     time = 0
-    name = "vase"
+    name = "flower"
     task = 'pick_flower'
     
     parser = argparse.ArgumentParser()

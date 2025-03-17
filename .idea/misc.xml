@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="foundationpose" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="my_pose_est" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="auto_pose" project-jdk-type="Python SDK" />
 </project>

@@ -33,7 +33,7 @@ setup(
         ],extra_compile_args={'gcc': c_flags, 'nvcc': nvcc_flags}),
     ],
     include_dirs=[
-	"/home/a4090/miniconda3/envs/auto2/include/eigen3",
+	"/home/ljc/miniconda3/envs/auto_pose/include/eigen3",
 	"/usr/local/include/eigen3",
 	"/usr/include/eigen3"
     ],

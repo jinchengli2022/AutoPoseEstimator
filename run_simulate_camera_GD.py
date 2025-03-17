@@ -1,10 +1,15 @@
 import os
+os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
+os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
+os.environ["http_proxy"] = "http://127.0.0.1:7890"
+os.environ["https_proxy"] = "http://127.0.0.1:7890"
 import sys
 import shutil  # 新增导入shutil模块
 import json
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))     # 添加当前路径到sys.path可检索的模块中区
 sys.path.append('Grounded_SAM_2')  # 将实际路径添加到 sys.path 中
-
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.append('Grounded_SAM_2')  # 将实际路径添加到 sys.path 中
 # import pyrealsense2 as rs
 import numpy as np
 import cv2
@@ -489,9 +494,9 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
     # 新增命令行参数，用于传入 name、text_prompt 和 task
-    parser.add_argument("--name", default="teacover", help="物体或实验的名称")
-    parser.add_argument("--text_prompt", default="lid", help="分割时使用的文本提示")
-    parser.add_argument("--task", default="lip8", help="任务名称，用于构建数据和输出目录")
+    parser.add_argument("--name", default="vase", help="物体或实验的名称")
+    parser.add_argument("--text_prompt", default="vase", help="分割时使用的文本提示")
+    parser.add_argument("--task", default="ism_test", help="任务名称，用于构建数据和输出目录")
     # 以下参数可根据需要传入，也可使用默认值
     parser.add_argument("--cad_path", default=None, help="CAD模型的路径")
     parser.add_argument("--sam2_checkpoint", default="Grounded_SAM_2/checkpoints/sam2.1_hiera_large.pt", help="SAM2 checkpoint路径")
@@ -511,7 +516,7 @@ if __name__ == "__main__":
     if args.sam_tmp_dir is None:
         args.sam_tmp_dir = f"Data/real_data/{args.name}_mesh/{args.name}_tmp"
     if args.data_dir is None:
-        args.data_dir = f"Data/data_real/{args.task}/episode_0"
+        args.data_dir = f"Data/real_data/{args.task}/episode_1"
     if args.track_vis_dir is None:
         args.track_vis_dir = f"output/data_real/{args.task}/episode_0/{args.name}/{args.name}_track_vis"
     if args.mask_vis_dir is None:
@@ -525,7 +530,7 @@ if __name__ == "__main__":
     
     # 循环多个episode，每次更新相关路径，使用传入的 args.name、args.text_prompt 和 args.task
     for episode in range(0, 8):
-        args.data_dir = f"Data/data_real/{args.task}/episode_{episode}"
+        args.data_dir = f"Data/real_data/{args.task}/episode_{episode}"
         args.track_vis_dir = f"output/data_real/{args.task}/episode_{episode}/{args.name}/{args.name}_track_vis"
         args.mask_vis_dir = f"output/data_real/{args.task}/{args.name}/{args.name}_mask_vis"
         args.track_pose_path = f"output/data_real/{args.task}/episode_{episode}/"

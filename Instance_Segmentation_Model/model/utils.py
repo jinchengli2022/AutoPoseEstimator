@@ -160,10 +160,13 @@ class Detections:
         results = {
             "scene_id": scene_id,
             "image_id": frame_id,
-            "category_id": self.object_ids + 1
-            if dataset_name != "lmo"
-            else lmo_object_ids[self.object_ids],
-            "score": self.scores,
+
+            # 验证sam分割
+            # "category_id": self.object_ids + 1
+            # if dataset_name != "lmo"
+            # else lmo_object_ids[self.object_ids],
+            # "score": self.scores,
+
             # "semantic_score": self.semantic_score,
             # "appearance_score": self.appearance_score,
             # "geometric_score": self.geometric_score,
@@ -210,9 +213,12 @@ def convert_npz_to_json(idx, list_npz_paths):
         result = {
             "scene_id": int(detections["scene_id"]),
             "image_id": int(detections["image_id"]),
-            "category_id": int(detections["category_id"][idx_det]),
             "bbox": detections["bbox"][idx_det].tolist(),
-            "score": float(detections["score"][idx_det]),
+
+            # 验证SAM分割
+            # "category_id": int(detections["category_id"][idx_det]),
+            # "score": float(detections["score"][idx_det]),
+
             # "semantic_score": float(detections["semantic_score"][idx_det]),
             # "appearance_score": float(detections["appearance_score"][idx_det]),
             # "geometric_score": float(detections["geometric_score"][idx_det]),

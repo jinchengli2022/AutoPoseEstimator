@@ -1,4 +1,4 @@
-# Install script for directory: /home/a4090/ljc/AutoPoseEstimator/Foundationpose/mycpp
+# Install script for directory: /home/ljc/Git/AutoPoseEstimator/Foundationpose/mycpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/a4090/ljc/AutoPoseEstimator/Foundationpose/mycpp/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/ljc/Git/AutoPoseEstimator/Foundationpose/mycpp/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

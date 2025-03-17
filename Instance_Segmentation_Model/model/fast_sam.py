@@ -110,19 +110,19 @@ class FastSAM(object):
         return detections
 
     @torch.no_grad()
-    def generate_masks(self, image) -> List[Dict[str, Any]]:
-        if self.segmentor_width_size is not None:
-            orig_size = image.shape[:2]
-        detections = self.model(image)
-
-        masks = detections[0].masks.data
-        boxes = detections[0].boxes.data[:, :4]  # two lasts:  confidence and class
-
-        # define class data
-        mask_data = {
-            "masks": masks.to(self.current_device),
-            "boxes": boxes.to(self.current_device),
-        }
-        if self.segmentor_width_size is not None:
-            mask_data = self.postprocess_resize(mask_data, orig_size)
-        return mask_data
+    # def generate_masks(self, image) -> List[Dict[str, Any]]:
+    #     if self.segmentor_width_size is not None:
+    #         orig_size = image.shape[:2]
+    #     detections = self.model(image)
+    #
+    #     masks = detections[0].masks.data
+    #     boxes = detections[0].boxes.data[:, :4]  # two lasts:  confidence and class
+    #
+    #     # define class data
+    #     mask_data = {
+    #         "masks": masks.to(self.current_device),
+    #         "boxes": boxes.to(self.current_device),
+    #     }
+    #     if self.segmentor_width_size is not None:
+    #         mask_data = self.postprocess_resize(mask_data, orig_size)
+    #     return mask_data

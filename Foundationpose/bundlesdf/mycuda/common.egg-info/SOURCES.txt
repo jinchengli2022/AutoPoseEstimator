@@ -1,8 +1,8 @@
 bindings.cpp
 common.cu
 setup.py
-/home/a4090/ljc/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/torch_ngp_grid_encoder/bindings.cpp
-/home/a4090/ljc/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/torch_ngp_grid_encoder/gridencoder.cu
+/home/ljc/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/torch_ngp_grid_encoder/bindings.cpp
+/home/ljc/Git/AutoPoseEstimator/Foundationpose/bundlesdf/mycuda/torch_ngp_grid_encoder/gridencoder.cu
 common.egg-info/PKG-INFO
 common.egg-info/SOURCES.txt
 common.egg-info/dependency_links.txt
