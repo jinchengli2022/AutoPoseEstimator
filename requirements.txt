@@ -133,6 +133,17 @@ einops
 # Download
 gdown
 
+# Qwen
+accelerate
+tiktoken
+einops
+transformers_stream_generator==0.0.4
+scipy
+torchvision
+pillow
+tensorboard
+matplotlib
+
 ###blenderproc安装
 #去官网手动安装https://github.com/DLR-RM/BlenderProc
 ###kaolin==0.15.0 
