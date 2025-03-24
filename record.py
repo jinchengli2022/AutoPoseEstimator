@@ -29,7 +29,7 @@ class FrameSaver:
         ]
 
         self.camera_parameters = {
-            "0": {
+            "camera_intrinsics": {
                 "cam_K": cam_K,
                 "depth_scale": self.profile.get_device().first_depth_sensor().get_depth_scale()
             }
